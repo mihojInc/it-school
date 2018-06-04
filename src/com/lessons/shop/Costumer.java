@@ -21,7 +21,7 @@ public class Costumer implements Purchase {
     public void buy(Item item) {
         if (item.getPrice() > money)
             System.out.println(name + " haven't money for buy " + item.getName());
-        else if (countGodsInCart() > 5)
+        else if (countGodsInCart() == 5)
             System.out.println("You cart is full.");
         else {
 
@@ -42,7 +42,7 @@ public class Costumer implements Purchase {
      *
      * @return amount gods in cart
      */
-    private int countGodsInCart() {
+    public int countGodsInCart() {
         int count = 5;
         for (Item item : shoppingCart)
             if (item == null)

@@ -1,7 +1,7 @@
 package com.lessons.shop;
 
 /**
- * Can create trade point from small sall to supermarket
+ * Can create trade point from small sell to supermarket
  */
 public abstract class Shop {
 

@@ -1,7 +1,7 @@
 package com.lessons.shop;
 
 /**
- * our trade point
+ * Small trade point
  */
 public class Kiosk extends Shop {
 
@@ -17,13 +17,13 @@ public class Kiosk extends Shop {
     }
 
     /**
-     * we haven't method by show all 10 product, need see in method main.StockForTenItem.getInfoAbout
+     * Add product and pay for it
      */
     @Override
     public void addItemToStock(Item product) {
 
         //we sell with marg % of market prise
-        double buyPrice = product.getPrice() - product.getPrice() / MARG;
+        double buyPrice = getPriceWithMarg(product.getPrice());
         if (buyPrice < super.money) {
             super.money -= buyPrice;
             stock.addProduct(product);

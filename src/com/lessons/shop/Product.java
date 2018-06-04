@@ -1,7 +1,7 @@
 package com.lessons.shop;
 
 /**
- * some product for trading
+ * Some product for trading,
  * may be abstract, but just one
  */
 public class Product implements Item {
@@ -14,11 +14,8 @@ public class Product implements Item {
     public Product() {
     }
 
-    //it so nether use, still..
-    private String name = "no name";
-
-    //it's to
-    private double price = 0;
+    private String name;
+    private double price;
 
     @Override
     public String getName() {

@@ -119,7 +119,9 @@ public class Main {
                     String productName = scanner.nextLine();
 
                     Item item = kiosk.stock.getProductByName(productName);
-                    if (item != null) {
+                    if (costumer.countGodsInCart() == 5)
+                        System.out.println("The costumer's cart is full.");
+                    else if (item != null) {
                         costumer.buy(item);
                         kiosk.sell(item);
                         System.out.println(costumer.getName() + " buy " + item.getName());

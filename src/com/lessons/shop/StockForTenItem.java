@@ -1,7 +1,7 @@
 package com.lessons.shop;
 
 /**
- * main shops stock for save it products and gods
+ * Main shops stock for save it products and gods
  */
 public class StockForTenItem {
 
@@ -73,7 +73,23 @@ public class StockForTenItem {
         }
     }
 
+    /**
+     * Allow change stock size
+     * Danger. If stock be smaller - products disappear
+     * @param size new size
+     */
+    public void setStockSize(int size) {
+        Item[] newStock = new Item[size];
+        for(int i = 0; i<size ; i++) {
+            if(i+1 > products.length )
+                break;
+            newStock[i] = products[i];
+        }
+        products = newStock;
+    }
+
     public Item[] getProducts() {
         return products;
     }
+
 }
