@@ -6,7 +6,7 @@ package lesson4.phop;
 public class Salo implements Item {
 
     private String name;
-    private static final double price = 3d ;
+    private static final double price = 6.0 ;
 
     Salo(String name ){
         this.name =name;
