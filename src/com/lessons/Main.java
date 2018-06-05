@@ -1,4 +1,4 @@
-package com.company;
+package com.lessons;
 import java.util.Scanner;
 
 public class Main {
