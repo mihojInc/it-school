@@ -19,22 +19,31 @@ public class Main {
         //create new shop and send main settings in constructor
         Shop shop = new Shop(countGoods, mon);
 
+        //ask question and set settings of the Buyer
+        System.out.println("What size of your bag: ");
+        countGoods = cons.nextInt();
+        System.out.println("How much money do you have: ");
+        mon = cons.nextDouble();
+
+        com.lessons.Buyer buy = new com.lessons.Buyer(mon, countGoods);
+
+
         //this loop will execute while we don`t press q
-        do{
+        do {
             //asq about our action
             System.out.println("What will we do? \nAdd goods (a) \nBye good (b) \nGet list (g) \nQuit (q)");
 
             //read answer
             ans = ans1.nextLine();
 
-            switch (ans){
+            switch (ans) {
                 case "a":
                     //if we press a we add googs
                     shop.addGoods();
                     break;
                 case "b":
                     //if we press b we bye googs
-                    shop.byeGoods();
+                    shop.byeGoods(buy);
                     break;
                 case "g":
                     //if we press a we print list of goods
@@ -44,12 +53,12 @@ public class Main {
                     //if we press a we quit
                     System.out.println("Good bye");
                     break;
-                default :
+                default:
                     //if we press something else we print message about incorrect enter
                     System.out.println("Your choise is incorrect");
             }
 
-        }while (ans=="q");
+        } while (ans != "q");
 
     }
 }
