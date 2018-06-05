@@ -23,6 +23,15 @@ public class Shop {
     private int curPos = 0;
 
     /*
+      constructor set main settings our shop
+    */
+    Shop(int countGoods, double mon) {
+        assort = new Goods[countGoods];
+        money = mon;
+
+    }
+
+    /*
     this method print list of goods wich we hve in the shop
      */
     public void listGoods() {
@@ -100,25 +109,19 @@ public class Shop {
         Scanner ans1 = new Scanner(System.in);
         if (curPos == 0) {
             System.out.println("We don`t have goods for selling");
-        } else {
+        }
+        else {
 
-            if(buy.getHaveCash()<assort[curPos - 1].getPrice()||buy.getPlace()){
+            if(buy.isCasheEnought(assort[curPos - 1].getPrice())||buy.getPlace()){
                 System.out.println("You can`t buy this goods.");
             }
             else{
                 listGoods();
                 money += assort[curPos - 1].getPrice();
+                buy.buyGoods(assort[curPos-1]);
                 assort[--curPos] = null;
+
             }
         }
-    }
-
-    /*
-      constructor set main settings our shop
-    */
-    Shop(int countGoods, double mon) {
-        assort = new Goods[countGoods];
-        money = mon;
-
     }
 }

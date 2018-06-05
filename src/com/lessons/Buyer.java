@@ -1,26 +1,57 @@
 package com.lessons;
+/*
+Goods it`s class wich describe buyer behavour
+ */
 class Buyer {
 
+    /**
+     * Cuccernt posoition in a array where save goods
+     */
     int curPos;
-
+    /**
+     * current cache
+     */
     private double haveCash;
+    /**
+     * goods wich he has
+     */
+    private Goods[] haveGoods;
 
+    /**
+     * return if his bag is fill
+     * @return
+     */
     public boolean getPlace(){
-        if (curPos == 0)
+        if (curPos == haveGoods.length)
             return false;
         else
             return true;
     }
 
-    public void setHaveCash(double haveCash) {
-        this.haveCash = haveCash;
+    /**
+     * describe procedure buy goods
+     * @param good
+     */
+    public void buyGoods(com.lessons.Goods good){
+
+        haveCash -= good.getPrice();
+        haveGoods[curPos++] = good;
+
     }
 
-    public double getHaveCash() {
-        return haveCash;
+    /**
+     * return gurren
+     * @return
+     */
+    public boolean isCasheEnought(double price) {
+       return price >  haveCash ? false:true;
     }
 
-    private Goods[] haveGoods;
+    /**
+     * constructor of our class
+     * @param haveCash
+     * @param size
+     */
 
     public Buyer(double haveCash, int size) {
         curPos = 0;

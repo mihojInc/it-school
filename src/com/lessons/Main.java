@@ -58,7 +58,7 @@ public class Main {
                     System.out.println("Your choise is incorrect");
             }
 
-        } while (ans != "q");
+        } while (ans.equalsIgnoreCase("q"));
 
     }
 }
