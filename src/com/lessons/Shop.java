@@ -1,11 +1,22 @@
 package com.lessons;
 
+
 public class Shop {
+
+    /**
+     * var cash sets shop cash;
+     * var productList sets list of products in shop;
+     * var count counts how many products store in shop;
+     */
     private double cash;
-//    private Product[] productList;
     private Item[] productList;
     private int count;
 
+    /**
+     * constructor sets shop cash and how many product can be stored in shop
+     * @param cash
+     * @param quantity
+     */
     public Shop(double cash, int quantity){
         if(quantity<1){
             throw new RuntimeException("It's forbidden");
@@ -15,6 +26,9 @@ public class Shop {
         this.productList = new Item[quantity];
     }
 
+    /**
+     * method shows list of products
+     */
     public void showProducts(){
         if(productList != null){
             System.out.print("List of products: ");
@@ -27,10 +41,17 @@ public class Shop {
         }
     }
 
+    /**
+     * method shows cash size
+     */
     public void showCash(){
         System.out.println("Cash is: " + cash);
     }
 
+    /**
+     * method adds product to shop
+     * @param product
+     */
     public void buyProduct(Item product){
         if(cash < product.getPrice()){
             System.out.println("Your cash isn't enough");
@@ -47,6 +68,10 @@ public class Shop {
         System.out.println("your cash is: " + cash);
     }
 
+    /**
+     * method sells product from shop
+     * @param productName
+     */
     public void sellProduct(String productName){
         double price = 0;
         if (productList[0] == null){
