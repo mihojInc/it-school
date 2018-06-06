@@ -10,7 +10,7 @@ public class Main {
             for (Month m : Month.values()) {
                 if(s.getRus()==m.getSeason())
                 {
-                    System.out.println("Месяц " + m.getRusName() + " Количество дней " + m.getColDay());
+                    System.out.println("\t Месяц " + m.getRusName() + " Количество дней " + m.getColDay());
                 }
             }
         }

@@ -1,5 +1,9 @@
 package com.lessons;
 
+/**
+ * This enup describe month
+ *
+ */
 public enum  Month {
     January (31, "Январь", Season.WINTER.getRus()),
     February (30, "Февраль", Season.WINTER.getRus()),
@@ -40,7 +44,12 @@ public enum  Month {
     public void setRusName(String rusName) {
         this.rusName = rusName;
     }
-
+    /**
+     *
+     * @param colDay quantity day in month
+     * @param rusName rus name month
+     * @param season ich season belong month
+     */
     Month(int colDay, String rusName, String season) {
         this.colDay = colDay;
         this.rusName = rusName;

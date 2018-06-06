@@ -1,5 +1,8 @@
 package com.lessons;
-
+/**
+ * This enup describe season
+ * Parametr is a name of season in russian
+ */
 public enum  Season {
     WINTER("Зима"),
     SPRING ("Весна"),
