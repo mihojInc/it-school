@@ -95,6 +95,17 @@ public class Shop {
         }else{
             System.out.println("There is no product with this name\n");
         }
+    }
 
+    public Item[] getProductList() {
+        return productList;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }
