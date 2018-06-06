@@ -1,5 +1,5 @@
 package com.lessons;
-/*
+/**
 Goods it`s class wich describe buyer behavour
  */
 class Buyer {

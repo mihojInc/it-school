@@ -2,27 +2,27 @@ package com.lessons;
 
 import java.util.Scanner;
 
-/*
+/**
    This class describe shop behavour
  */
 public class Shop {
 
-    /*
+    /**
     assort conteins list of goods wich we have in our shop
      */
     private Goods[] assort;
 
-    /*
+    /**
     money is current cash in the shop
      */
     private double money;
 
-    /*
+    /**
     curPos save count of goods in our shop
      */
     private int curPos = 0;
 
-    /*
+    /**
       constructor set main settings our shop
     */
     Shop(int countGoods, double mon) {
@@ -31,7 +31,7 @@ public class Shop {
 
     }
 
-    /*
+    /**
     this method print list of goods wich we hve in the shop
      */
     public void listGoods() {
@@ -51,7 +51,7 @@ public class Shop {
         System.out.println("Cash " + money);
     }
 
-    /*
+    /**
      This method add good in our shop
     */
     public void addGoods() {
@@ -101,7 +101,7 @@ public class Shop {
         }
     }
 
-    /*
+    /**
       This method delete good in our shop
     */
     public void byeGoods(com.lessons.Buyer buy) {
