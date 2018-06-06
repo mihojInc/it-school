@@ -4,13 +4,12 @@ package com.lessons;
  * This class is a bread model that describes bread parameters and methods.
  */
 
-public class Bread implements Item{
+public class Bread implements Item {
     private String name;
     private Double price;
+    private ItemType itemType;
 
-    Bread(String name, Double price){
-        this.name = name;
-        this.price = price;
+    Bread() {
     }
 
     @Override
@@ -19,7 +18,30 @@ public class Bread implements Item{
     }
 
     @Override
+    public void setName(String itemName) {
+        this.name = itemName;
+    }
+
+
+    @Override
     public Double getPrice() {
         return price;
     }
+
+    @Override
+    public void setPrice(Double itemPrice) {
+        this.price = itemPrice;
+    }
+
+    @Override
+    public ItemType getItemType() {
+        return itemType;
+    }
+
+    @Override
+    public void setItemType(ItemType itemType) {
+        this.itemType = itemType;
+    }
+
+
 }

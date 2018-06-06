@@ -4,12 +4,12 @@ package com.lessons;
  * This class is a chocolate model that describes chocolate parameters and methods.
  */
 
-public class Chocolate implements Item{
+public class Chocolate implements Item {
     private String name;
-    private static final Double PRICE = 6d;
+    private Double price;
+    private ItemType itemType;
 
-    Chocolate(String name){
-        this.name = name;
+    Chocolate() {
     }
 
     @Override
@@ -18,7 +18,27 @@ public class Chocolate implements Item{
     }
 
     @Override
+    public void setName(String itemName) {
+        this.name = itemName;
+    }
+
+    @Override
     public Double getPrice() {
-        return PRICE;
+        return price;
+    }
+
+    @Override
+    public void setPrice(Double itemPrice) {
+        this.price = itemPrice;
+    }
+
+    @Override
+    public ItemType getItemType() {
+        return itemType;
+    }
+
+    @Override
+    public void setItemType(ItemType itemType) {
+        this.itemType = itemType;
     }
 }
