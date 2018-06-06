@@ -36,10 +36,11 @@ public class Interaction {
         Scanner scan = new Scanner(System.in);
         System.out.println("\nChoose action you want to do by printing the necessary word:\n");
         System.out.println("create product - print 'create'");
+        System.out.println("see list of created products in shop - print 'created list'");
         System.out.println("add product to shop - print 'add'");
         System.out.println("sell product - print 'sell'");
         System.out.println("see list of products in shop - print 'shop list'");
-        System.out.println("see list of created products in shop - print 'created list'");
+        System.out.println("watch cash - print 'cash'");
         System.out.println("exit - print 'exit'\n");
 
         String checkStr = scan.nextLine();
@@ -55,6 +56,12 @@ public class Interaction {
                 break;
             case "shop list":
                 showShopProductList();
+                break;
+            case "cash":
+                watchCash();
+                break;
+            case "sell":
+                sellProducts();
                 break;
             case "exit":
                 System.out.println(Messages.EXIT.getMessage());
@@ -147,9 +154,40 @@ public class Interaction {
     /**
      * method shows product list in shop
      */
-    public void showShopProductList(){
+    public void showShopProductList() {
         shop.showProducts();
         startChoice();
     }
 
+    /**
+     * method for selling products
+     */
+    public void sellProducts(){
+        String name;
+        String productName = "";
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Print name of product");
+        name = scan.nextLine();
+
+        for(int i = 0; i<count; i++){
+            if(name.equals(createdProductList[i].getName())){
+                shop.sellProduct(createdProductList[i].getName());
+                productName = name;
+                break;
+            }
+        }
+
+        if(productName == ""){
+            System.out.println("There is no products with name " + name + "in shop\n");
+        }
+        startChoice();
+    }
+
+    /**
+     * method shows cash
+     */
+    public void watchCash(){
+        shop.showCash();
+        startChoice();
+    }
 }
