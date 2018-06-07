@@ -10,7 +10,7 @@ public class Shop {
     /**
     assort conteins list of goods wich we have in our shop
      */
-    private Goods[] assort;
+    private com.lessons.MyList assort;
 
     /**
     money is current cash in the shop
