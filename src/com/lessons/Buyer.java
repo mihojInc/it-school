@@ -24,10 +24,7 @@ class Buyer {
      * @return
      */
     public boolean getPlace() {
-        if (curPos == haveGoods.length)
-            return false;
-        else
-            return true;
+        return curPos != haveGoods.length;
     }
 
     /**
@@ -48,7 +45,7 @@ class Buyer {
      * @return
      */
     public boolean isCasheEnought(double price) {
-        return price > haveCash ? false : true;
+        return !(price > haveCash);
     }
 
     /**

@@ -31,7 +31,7 @@ public class Main {
         do {
             //asq about our action
             System.out.println("What will we do? \nAdd goods (a) \nBye good (b) \nGet list (g) \nQuit (q)");
-            System.out.println("");
+            System.out.println();
             //read answer
             ans = ans1.nextLine();
 

@@ -83,8 +83,6 @@ public class TShirt implements Goods {
             return false;
         if (cost != other.cost)
             return false;
-        if (price != other.price)
-            return false;
-        return true;
+        return !(price != other.price);
     }
 }
