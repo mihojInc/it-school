@@ -11,6 +11,7 @@ public class MyArrayList implements Listable {
 
     /**
      * The method that adds an object to an array
+     *
      * @param o
      */
     @Override
@@ -29,6 +30,7 @@ public class MyArrayList implements Listable {
 
     /**
      * The method that adds an object to an array by index
+     *
      * @param index
      * @param o
      */
@@ -43,12 +45,13 @@ public class MyArrayList implements Listable {
 
     /**
      * The method that removes an object from an array
+     *
      * @param o
      */
     @Override
     public void remove(Object o) {
         for (int i = 0; i < myList.length; i++) {
-            if (myList[i] == o) {
+            if (myList[i].equals(o)) {
                 myList[i] = null;
                 size--;
                 return;
@@ -58,18 +61,28 @@ public class MyArrayList implements Listable {
 
     /**
      * The method that removes an object from an array by index
+     *
      * @param index
      */
     @Override
     public void remove(int index) {
-        if (index > myList.length) {
-            myList[index] = null;
-            size--;
+        Object[] newArray = new Object[myList.length - 1];
+        int x = 0;
+        for (int i = 0; i < myList.length; i++) {
+            if (i == index) continue;
+            newArray[x++] = myList[i];
         }
+        myList = newArray;
+
+        //        if (index < myList.length) {
+//            myList[index] = null;
+//            size--;
+//        }
     }
 
     /**
      * The method that gets the object by index
+     *
      * @param index
      * @return
      */
@@ -80,6 +93,7 @@ public class MyArrayList implements Listable {
 
     /**
      * The method that gets the size of the array
+     *
      * @return
      */
     @Override
