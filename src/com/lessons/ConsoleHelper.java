@@ -78,15 +78,15 @@ public class ConsoleHelper {
                 switch (scanner.nextInt()) {
                     case 1:
                         System.out.println("Вы выбрали раздел: " + GoodsType.BOOK);
-                        createBook(scanner);
+//                        createBook(scanner);
                         return GoodsType.BOOK;
                     case 2:
                         System.out.println("Вы выбрали раздел: " + GoodsType.NEWSPAPER);
-                        createNewspaper(scanner);
+//                        createNewspaper(scanner);
                         return GoodsType.NEWSPAPER;
                     case 3:
                         System.out.println("Вы выбрали раздел: " + GoodsType.MAGAZINES);
-                        createMagazines(scanner);
+//                        createMagazines(scanner);
                         return GoodsType.MAGAZINES;
                 }
             }
