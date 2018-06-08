@@ -77,16 +77,20 @@ public class Interaction {
      * method for creating new product
      */
     public void createProduct(){
-        String productName;
-        Double productPrice;
+        String productName = "";
+        Double productPrice = 0d;
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Print name of product");
         productName = scan.nextLine();
 
         System.out.println("Print price of product");
-        String price = scan.nextLine();
-        productPrice = Double.valueOf(price);
+        if(!scan.hasNextDouble()){
+            System.out.println(Messages.ERROR.getMessage());
+            createProduct();
+        }else{
+            productPrice = scan.nextDouble();
+        }
 
         Item product = new Product(productName, productPrice);
         addToCreatedProductList(product);
