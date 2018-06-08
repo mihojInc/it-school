@@ -1,6 +1,7 @@
 package com.lessons;
+
 /**
-Goods it`s class wich describe buyer behavour
+ * Goods it`s class wich describe buyer behavour
  */
 class Buyer {
 
@@ -19,9 +20,10 @@ class Buyer {
 
     /**
      * return if his bag is fill
+     *
      * @return
      */
-    public boolean getPlace(){
+    public boolean getPlace() {
         if (curPos == haveGoods.length)
             return false;
         else
@@ -30,9 +32,10 @@ class Buyer {
 
     /**
      * describe procedure buy goods
+     *
      * @param good
      */
-    public void buyGoods(com.lessons.Goods good){
+    public void buyGoods(com.lessons.Goods good) {
 
         haveCash -= good.getPrice();
         haveGoods[curPos++] = good;
@@ -41,14 +44,16 @@ class Buyer {
 
     /**
      * return gurren
+     *
      * @return
      */
     public boolean isCasheEnought(double price) {
-       return price >  haveCash ? false:true;
+        return price > haveCash ? false : true;
     }
 
     /**
      * constructor of our class
+     *
      * @param haveCash
      * @param size
      */
