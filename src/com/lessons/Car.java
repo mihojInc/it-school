@@ -68,7 +68,6 @@ public class Car implements Goods {
             return false;
         Car other = (Car) obj;
 
-        System.out.println(other.name + " " + this.name);
 
         if (!this.getName().equals(other.getName()))
             return false;
