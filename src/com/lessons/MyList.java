@@ -47,7 +47,7 @@ public class MyList {
      * @param o object wich we add in the list
      */
     public void add(Object o) {
-        if(hasSame(o)) {
+        if (hasSame(o)) {
             System.out.println("We have the same good");
             return;
         }
@@ -56,7 +56,7 @@ public class MyList {
             myList[0] = o;
             ++count;
         } else {
-            for (int i = 0; i < myList.length-1; i++) {
+            for (int i = 0; i < myList.length - 1; i++) {
                 if (myList[i] == null) {
                     myList[i] = o;
                     ++count;
@@ -74,7 +74,7 @@ public class MyList {
      * @param idx slot where we will add new object
      */
     public void add(int idx, Object o) {
-        if(hasSame(o)) {
+        if (hasSame(o)) {
             System.out.println("We have the same good");
             return;
         }
@@ -92,7 +92,7 @@ public class MyList {
         if (count == myList.length) {
             increaseSize();
         }
-        if (count == myList.length / 2) {
+        if (count < myList.length / 2) {
             //if the size is too big we shtink array
             shrinkSize();
         }
@@ -102,7 +102,7 @@ public class MyList {
      * @param o removable object
      */
     public void remove(Object o) {
-        for (int i = 0; i < myList.length-1; i++) {
+        for (int i = 0; i < myList.length - 1; i++) {
             if (myList[i] == o) {
                 myList[i] = null;
                 count--;
@@ -117,7 +117,7 @@ public class MyList {
      */
     public void remove(int idx) {
         if (idx < myList.length) {
-            myList[idx] = 0;
+            myList[idx] = null;
         }
         analizeSize();
     }
@@ -142,16 +142,15 @@ public class MyList {
 
 
     /**
-     *
      * @param o added object
      * @return is this object in array
      */
-    public boolean hasSame(Object o){
+    public boolean hasSame(Object o) {
 
-        if (count!=0) {
-            for (int i = 0; i<myList.length; i++) {
+        if (count != 0) {
+            for (int i = 0; i < myList.length; i++) {
 
-                if (myList[i]!=null && myList[i].equals(o)) {
+                if (myList[i] != null && myList[i].equals(o)) {
                     return true;
                 }
 

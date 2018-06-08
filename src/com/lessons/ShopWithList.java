@@ -104,7 +104,7 @@ public class ShopWithList {
 
             com.lessons.Goods ts = (com.lessons.Goods) assort.get(idx - 1);
 
-            if (buy.isCasheEnought(ts.getPrice()) || buy.getPlace()) {
+            if (!buy.isCasheEnought(ts.getPrice()) || !buy.getPlace()) {
                 System.out.println("You can`t buy this goods.");
             } else {
                 money += ts.getPrice();
