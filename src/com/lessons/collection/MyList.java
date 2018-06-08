@@ -22,7 +22,7 @@ public class MyList implements IList {
     public void add(int index, Object o) {
         resize(index);
         //check correct index
-        if (index < objects.length & index > 0) {
+        if (index < objects.length & index >= 0) {
             objects[index] = o;
         }
     }
@@ -49,7 +49,7 @@ public class MyList implements IList {
      */
     @Override
     public boolean remove(int index) {
-        if (index < objects.length & index > 0) {
+        if (index < objects.length & index >= 0) {
             objects[index] = null;
             return true;
         }
@@ -70,7 +70,7 @@ public class MyList implements IList {
      */
     @Override
     public Object get(int index) {
-        if (index < objects.length & index > 0) {
+        if (index < objects.length & index >= 0) {
             return objects[index];
         }
         return null;
