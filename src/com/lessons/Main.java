@@ -13,6 +13,5 @@ public class Main {
 
         interaction.startChoice();
 
-
     }
 }
