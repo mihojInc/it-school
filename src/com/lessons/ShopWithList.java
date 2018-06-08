@@ -25,8 +25,7 @@ public class ShopWithList {
     /**
      constructor set main settings our shop
      */
-    Shop(int countGoods, double mon) {
-        assort = new Goods[countGoods];
+    ShopWithList(double mon) {
         money = mon;
 
     }
@@ -36,20 +35,8 @@ public class ShopWithList {
      */
     public void listGoods() {
 
-        System.out.println("List of goods");
-        if (curPos != 0) {
-            for (Goods s : assort) {
-                if (s != null) {
-                    System.out.println(s.getName() + " price:" + s.getPrice() + " cost: " + s.getCost());
-                }
-            }
-
-        } else {
-            System.out.println("We don`t have goods");
-        }
-
-        System.out.println("Cash " + money);
-    }
+            assort.getList();
+          }
 
     /**
      This method add good in our shop
@@ -61,9 +48,6 @@ public class ShopWithList {
         Scanner co = new Scanner(System.in);
         Scanner ans1 = new Scanner(System.in);
 
-        if (curPos == assort.length) {
-            System.out.println("Sorry you can`t add new goods");
-        } else {
 
             System.out.println("What kind of do you want to add");
             System.out.println("1 Car");
@@ -86,19 +70,19 @@ public class ShopWithList {
 
             switch (ans) {
                 case 1:
-                    assort[curPos++] = new Car(n, p, c);
+                    assort.add(new Car(n, p, c));
                     break;
                 case 2:
-                    assort[curPos++] = new Butter(n, p, c);
+                    assort.add(new Butter(n, p, c));
                     break;
                 case 3:
-                    assort[curPos++] = new TShirt(n, p, c);
+                    assort.add(new TShirt(n, p, c));
                     break;
 
             }
 
             money -= c;
-        }
+
     }
 
     /**
@@ -107,20 +91,27 @@ public class ShopWithList {
     public void byeGoods(com.lessons.Buyer buy) {
 
         Scanner ans1 = new Scanner(System.in);
-        if (curPos == 0) {
+        if (assort.size()==0) {
             System.out.println("We don`t have goods for selling");
         }
         else {
 
-            if(buy.isCasheEnought(assort[curPos - 1].getPrice())||buy.getPlace()){
+            System.out.println("Choise you good");
+            assort.getList();
+
+            Scanner s = new Scanner(System.in);
+
+            int idx = s.nextInt();
+
+            com.lessons.Goods ts = (com.lessons.Goods)assort.get(idx-1);
+
+            if(buy.isCasheEnought(ts.getPrice())||buy.getPlace()){
                 System.out.println("You can`t buy this goods.");
             }
             else{
-                listGoods();
-                money += assort[curPos - 1].getPrice();
-                buy.buyGoods(assort[curPos-1]);
-                assort[--curPos] = null;
-
+                money += ts.getPrice();
+                buy.buyGoods(ts);
+                assort.remove(idx-1);
             }
         }
     }

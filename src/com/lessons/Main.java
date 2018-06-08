@@ -10,18 +10,16 @@ public class Main {
         Scanner cons = new Scanner(System.in);
         String ans;
 
-        //ask question and set settings of the shop
-        System.out.println("What count of doods do we have: ");
-        int countGoods = cons.nextInt();
+
         System.out.println("How much money do we have in cash: ");
         double mon = cons.nextDouble();
 
         //create new shop and send main settings in constructor
-        Shop shop = new Shop(countGoods, mon);
+        com.lessons.ShopWithList shop = new com.lessons.ShopWithList(mon);
 
         //ask question and set settings of the Buyer
         System.out.println("What size of your bag: ");
-        countGoods = cons.nextInt();
+        int countGoods = cons.nextInt();
         System.out.println("How much money do you have: ");
         mon = cons.nextDouble();
 
@@ -32,7 +30,7 @@ public class Main {
         do {
             //asq about our action
             System.out.println("What will we do? \nAdd goods (a) \nBye good (b) \nGet list (g) \nQuit (q)");
-
+            System.out.println("");
             //read answer
             ans = ans1.nextLine();
 
@@ -58,7 +56,7 @@ public class Main {
                     System.out.println("Your choise is incorrect");
             }
 
-        } while (ans.equalsIgnoreCase("q"));
+        } while (!ans.equalsIgnoreCase("q"));
 
     }
 }
