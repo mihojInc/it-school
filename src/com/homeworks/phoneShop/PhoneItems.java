@@ -41,4 +41,15 @@ public class PhoneItems implements Item {
         return phone;
     }
 
+    public void setPhone(Phone phone) {
+        this.phone = phone;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 }

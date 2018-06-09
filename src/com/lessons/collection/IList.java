@@ -3,14 +3,14 @@ package com.lessons.collection;
 /**
  * For create some array with any Objects
  */
-public interface IList {
+public interface IList<T> {
 
     /**
      * Add
      *
      * @param o Object to the first free space of array, biggest to the size*2 if array is full
      */
-    void add(Object o);
+    void add(T o);
 
     /**
      * Overwrite
@@ -18,13 +18,13 @@ public interface IList {
      * @param index position
      * @param o     Object.
      */
-    void add(int index, Object o);
+    void add(int index, T o);
 
     /**
      * Delete Object from array
      * @return true if o is exist
      */
-    boolean remove(Object o);
+    boolean remove(T o);
 
     /**
      * Delete Object by his index

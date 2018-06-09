@@ -1,8 +1,10 @@
 package com.homeworks.phoneShop;
 
 import com.homeworks.phones.AndroidSeries.FlyFS1050;
+import com.homeworks.phones.AppleSeries.Apple;
 import com.homeworks.phones.AppleSeries.Apple7;
 import com.homeworks.phones.AppleSeries.SuperIphone;
+import com.homeworks.phones.Phone;
 import com.lessons.collection.MyList;
 import com.lessons.shop.Item;
 
@@ -43,6 +45,12 @@ public class Main {
             if (phone != null)
                 System.out.println("Phone: " + phone.getName() + ", price: " + phone.getPrice() * 1.2);
         }
-    }
 
+        //get info about phone in stock
+        PhoneItems phoneItems = (PhoneItems)stock.get(0);
+        Phone phone = phoneItems.getPhone();
+
+        if (phone instanceof Apple)
+            System.out.println(((Apple) phone).getInfo());
+    }
 }
