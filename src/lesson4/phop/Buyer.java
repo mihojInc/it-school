@@ -8,13 +8,13 @@ public class Buyer {
     private double money ;
     private Integer count1;
     private double marga;
-    private String listGods;
+    private String[] listGods;
 
     Buyer(Integer goodsList, double money, double marga){
         list = new Item[goodsList];
         this.money = money;
         this.marga = marga;
-        listGods = "  ";
+        listGods =new  String[goodsList];
         count1 = 0;
     }
     public Item[] getList() {
@@ -51,10 +51,21 @@ public class Buyer {
             list[count1] = good;
             money = money - (good.getPrice()* marga);
             ++count1;
-            listGods = listGods + good.getName() ;
+            for (int i=0; i<listGods.length;i++){
+                if (listGods[i] == null){
+                    listGods[i]= good.getName();
+                    break;
+                }
+            }
+
             System.out.println("Вы купили: " + good.getName() + "     Цена : " + (good.getPrice()* marga  ) + "$");
             System.out.println("В кошельке: " + money + "$    В сумке: " + count1 + " товар(a)");
-            System.out.println( "                      а именно : " + listGods);
+            System.out.println( "                      а именно : " );
+            for (int i =0; i<listGods.length; i++){
+                if (listGods[i] != null){
+                    System.out.println("                                  "+ listGods[i]);
+                }
+            }
             System.out.println();
         }else {
             System.out.println("В сумке нет места для новой покупки");

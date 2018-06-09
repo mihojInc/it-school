@@ -7,15 +7,19 @@ public class Shop {
     private Item[] goods;
     private double balance;
     private Integer count;
-    private String listGoods;
+    public String[] list ;
+    private int index;
 
 
     Shop(Integer goodsSize, double balance) {
         goods = new Item[goodsSize];
         this.balance = balance;
-        listGoods = " ";
         count = 0;
+        list = new String[goodsSize];
+        index =0;
+
     }
+
 /* метод закупки товара магазином*/
 
     public void buyGood(Item good) {
@@ -27,12 +31,22 @@ public class Shop {
             goods[count] = good;
             balance = balance - good.getPrice();
             ++count;
-            listGoods = listGoods + good.getName();
+            for ( int i =0; i<list.length; i++){
+                if (list[i] == null){
+                 list[i] = good.getName();
+                 index++;
+                 break;
+                }
+            }
             System.out.println("Наименование товара: " + good.getName() + "    Цена : "
                     + good.getPrice() + "$ успешно добавлено");
-
             System.out.println("В Кассе: " + balance + "$     Количество товаров: " + count);
-            System.out.println("                На складе :  " + listGoods);
+            System.out.println("                На складе :  ");
+            for (int i = 0; i< list.length; i++){
+               if( list[i] != null){
+                   System.out.println("                              " + list[i]);
+               }
+            }
             System.out.println();
         } else {
             System.out.println("Нет места для твоего товара");
@@ -55,6 +69,7 @@ public class Shop {
      } */
 
    /* метод добавления товара в магазин через консоль*/
+
     public void buyProduct(Item good) {
         System.out.println("Введите название нового товара: ");
         Scanner sc = new Scanner(System.in);
@@ -72,10 +87,23 @@ public class Shop {
             goods[count] = good;
             balance = balance - price;
             ++count;
-            listGoods = listGoods + name;
+            for (int i = 0; i<list.length; i++){
+                if(list[i] == null){
+                    list[i]= name;
+                    index++;
+                    break;
+                }
+            }
+
             System.out.println("Наименование товара: " + name + "    Цена : " + price + "$ успешно добавлено");
             System.out.println("В Кассе: " + balance + "$     Количество товаров: " + count);
-            System.out.println("                На складе :  " + listGoods);
+            System.out.println("                На складе :  ");
+
+            for (int i =0; i < list.length; i++){
+                if (list[i] != null){
+                    System.out.println("                             " + list[i]);
+                }
+            }
             System.out.println();
         }
     }

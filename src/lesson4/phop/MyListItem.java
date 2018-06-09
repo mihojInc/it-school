@@ -34,10 +34,10 @@ public class MyListItem implements MyList {
     @Override
     public void remove(Object object) {
         for (int i= 0;i<list.length; i++){
-            if ( list[i] == object){
+            if ( list[i].equals(object)){
                 list[i]= null;
                 count--;
-                break;
+                return;
             }
         }
 
