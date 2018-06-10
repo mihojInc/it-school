@@ -1,11 +1,14 @@
 package com.lessons;
 
+/**
+ * This enum describes used commands in this program for working with the array of numbers: sort, clear, close program.
+ */
+
 public enum SortCommands {
 
-    ADD_NUMBER("add"),
-    SORT_DESCENDING("sort d"),
-    SORT_ASCENDING("sort a"),
-    CLEAR_LIST("clear"),
+    SORT_DESCENDING("d"),
+    SORT_ASCENDING("a"),
+    CLEAR_LIST("c"),
     QUIT("q");
 
     private String commandName;
