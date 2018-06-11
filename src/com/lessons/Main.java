@@ -15,23 +15,27 @@ public class Main {
         Random rnd = new Random(System.currentTimeMillis());
         int step  = 0;
 
+
         boolean rez = false;
 
-        System.out.println("Make a step");
+        do{
+            System.out.println("Make a step");
 
-        step = sc.nextInt();
+            step = sc.nextInt();
 
-        do {
-            rez = game.step(step, false);
+            do {
+                rez = game.step(step, false);
 
-        }while (!rez);
+            }while (!rez);
 
-        do {
+            do {
 
-            rez = game.step(Math.abs(rnd.nextInt(9)), true);
-        }while (!rez);
+                rez = game.step(Math.abs(rnd.nextInt(9)), true);
+            }while (!rez);
 
-        game.draw();
+            game.draw();
+        }while (!game.analizeWin());
+
 
 
     }
