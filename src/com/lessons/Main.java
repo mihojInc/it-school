@@ -1,11 +1,11 @@
 package com.lessons;
+
 import java.util.Random;
 
 import java.util.Scanner;
 
 public class Main {
-
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
 
         Scanner sc = new Scanner(System.in);
@@ -13,30 +13,37 @@ public class Main {
         game.draw();
 
         Random rnd = new Random(System.currentTimeMillis());
-        int step  = 0;
+        int step = 0;
 
 
         boolean rez = false;
 
-        do{
-            System.out.println("Make a step");
-
-            step = sc.nextInt();
+        do {
 
             do {
+                System.out.println("Make a step");
+
+                step = sc.nextInt();
                 rez = game.step(step, false);
 
-            }while (!rez);
+            } while (!rez);
+
+            if (game.analizeWin()) break;
+
+            game.draw();
+            System.out.println("Computer step");
 
             do {
 
                 rez = game.step(Math.abs(rnd.nextInt(9)), true);
-            }while (!rez);
+            } while (!rez);
+
 
             game.draw();
-        }while (!game.analizeWin());
+        } while (!game.analizeWin());
 
-
+        System.out.println(game.getWinner());
 
     }
+
 }
