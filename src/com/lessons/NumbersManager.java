@@ -67,7 +67,7 @@ public class NumbersManager {
     }
 
     /**
-     * Method for working with enum of commands.
+     * Method for working with enum of commands: sort, clear, quit
      */
     private void chooseOption() {
         while (true) {
