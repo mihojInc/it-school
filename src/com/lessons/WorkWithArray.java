@@ -14,7 +14,7 @@ public class WorkWithArray {
     public void addNumber(){
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Enter numbers. Max quantity of numbers is " + mainArray.length);
+        System.out.println("Enter number ");
 
         if(!scan.hasNextInt()){
             System.out.println(Messages.ERROR);
@@ -32,6 +32,10 @@ public class WorkWithArray {
 
     public void showSortToMax(){
         Integer[] maxArray = sortToMax();
+        if(maxArray[0] == null){
+            System.out.println("Array is empty");
+            return;
+        }
         System.out.print("Array sorted to max: ");
         for(int i = 0; i<maxArray.length; i++){
             if(maxArray[i] != null){
@@ -42,11 +46,15 @@ public class WorkWithArray {
     }
 
     public void showSortToMin(){
-        Integer[] maxArray = sortToMin();
+        Integer[] minArray = sortToMin();
+        if(minArray[0] == null){
+            System.out.println("Array is empty");
+            return;
+        }
         System.out.print("Array sorted to min: ");
-        for(int i = 0; i<maxArray.length; i++){
-            if(maxArray[i] != null){
-                System.out.print(maxArray[i] + " ");
+        for(int i = 0; i<minArray.length; i++){
+            if(minArray[i] != null){
+                System.out.print(minArray[i] + " ");
             }
         }
         System.out.print("\n");
@@ -100,9 +108,11 @@ public class WorkWithArray {
     }
 
     public void clear(){
-        for(Integer num: mainArray){
-            num = null;
+        for(int i = 0; i < mainArray.length; i++){
+            mainArray[i] = null;
         }
+        count = 0;
+        System.out.println("Array is empty");
     }
 
 }
