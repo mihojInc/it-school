@@ -1,5 +1,6 @@
 package com.lessons;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class TicTacToe {
@@ -60,18 +61,36 @@ public class TicTacToe {
      */
     public static void getPlayerMove(){
         boolean correctInput = false;
-        do{
-            System.out.println("Gamer" + currentGamer + ", enter number of string (1-3) and number of column through space!");
-            int i = input.nextInt() - 1;
-            int j = input.nextInt() - 1;
-            if(i>=0 && i<str && j>=0 && j<col && gameField[i][j].equals(emptyCell)){
-                gameField[i][j] = currentGamer;
-                correctInput = true;
-            }
-            else {
-                System.out.println("Position [" + (i+1) + "][" + (j+1) + "] is incorrect. Try again!");
-            }
+        int k = 0;
+        do {
+            if (currentGamer.equals(cross)) {
+                System.out.println("Gamer" + currentGamer + ", enter number of string (1-3) and number of column through space!");
+                int i = input.nextInt() - 1;
+                int j = input.nextInt() - 1;
+                if (i >= 0 && i < str && j >= 0 && j < col && gameField[i][j].equals(emptyCell)) {
+                    gameField[i][j] = currentGamer;
+                    correctInput = true;
+                } else {
+                    System.out.println("Position [" + (i + 1) + "][" + (j + 1) + "] is incorrect. Try again!");
+                }
+            } else if (currentGamer.equals(zero)) {
+                System.out.println("Computer made its choice");
+                final Random compChoose = new Random();
+                int i = compChoose.nextInt(2);
+                int j = compChoose.nextInt(2);
+                if (i >= 0 && i < str && j >= 0 && j < col && gameField[i][j].equals(emptyCell)) {
+                    gameField[i][j] = currentGamer;
+                    correctInput = true;
+                } else {
+                    System.out.println("Computer's step is wrong so it is trying again");
+                    k++;
+                    if (k > 10) {
+                        System.out.println("Computer can't continue, so the game is over. Try it later! Sorry!");
+                        System.exit(0);}
 
+                }
+
+            }
         }
         while (!correctInput);
     }
