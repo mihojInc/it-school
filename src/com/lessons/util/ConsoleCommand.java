@@ -1,18 +1,20 @@
-package com.util;
+package com.lessons.util;
 
 /**
  * Represent console commands from compare with user input
  */
-public enum ConsoleComand {
-    Q("q");
+public enum ConsoleCommand {
+    Q("q"),
+    R("r"),
+    F("f");
 
     private String consoleIterpritate;
 
-    ConsoleComand(String consoleIterpritate) {
+    ConsoleCommand(String consoleIterpritate) {
         this.consoleIterpritate = consoleIterpritate;
     }
 
-    public String getConsoleIterpritate() {
+    public String getConsoleInterpritate() {
         return consoleIterpritate;
     }
 }

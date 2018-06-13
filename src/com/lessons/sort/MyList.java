@@ -1,4 +1,4 @@
-package com.sort;
+package com.lessons.sort;
 
 /**
  * New array of objects
@@ -69,11 +69,51 @@ public class MyList<T> implements IList<T> {
      * Return type T object by his index or null if it's d't exist
      */
     @Override
-    public T get(int index){
+    public T get(int index) {
         if (index < objects.length) {
-            return (T)objects[index];
+            return (T) objects[index];
         }
         return null;
+    }
+
+    /**
+     * Insert T object in to index position with shift
+     *
+     * @param index  position
+     * @param object T object
+     */
+    public void insert(int index, T object) {
+
+        if (index > this.size()) {
+            this.add(index, object);
+        } else {
+            Object[] shiftedList = new Object[objects.length + 1];
+
+            int i = 0;
+            for (Object o : objects) {
+                if (i != index) {
+                    shiftedList[i] = o;
+                    i++;
+                } else {
+                    shiftedList[i] = object;
+                    shiftedList[++i] = o;
+                    i++;
+                }
+            }
+            objects = shiftedList;
+        }
+    }
+
+    /**
+     * Count length of array for his last exist object
+     *
+     * @return Integer index of last no null object
+     */
+    public Integer length() {
+        int realSize = objects.length;
+        while (objects[--realSize] == null) ;
+
+        return realSize;
     }
 
     /**

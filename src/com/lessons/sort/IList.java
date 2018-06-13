@@ -1,4 +1,4 @@
-package com.sort;
+package com.lessons.sort;
 
 /**
  * For create some array with any Objects
