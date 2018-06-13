@@ -9,6 +9,7 @@ public class Main {
 
 
         Scanner sc = new Scanner(System.in);
+        Scanner ansExit = new Scanner(System.in);
         Game game = new Game();
         game.draw();
 
@@ -17,32 +18,40 @@ public class Main {
 
 
         boolean rez = false;
-
         do {
-
-            do {
-                System.out.println("Make a step");
-
-                step = sc.nextInt();
-                rez = game.step(step, false);
-
-            } while (!rez);
-
-            if (game.analizeWin()) break;
-
-            game.draw();
-            System.out.println("Computer step");
-
+            game.initial();
             do {
 
-                rez = game.step(Math.abs(rnd.nextInt(9)), true);
-            } while (!rez);
+                do {
+                    System.out.println("Make a step");
+
+                    step = sc.nextInt();
+                    rez = game.step(step, false);
+
+                } while (!rez);
+
+                if (game.analizeWin()) break;
+
+                game.draw();
+                System.out.println("Computer step");
+
+                do {
+
+                    rez = game.step(Math.abs(rnd.nextInt(9)), true);
+                } while (!rez);
+
+
+                game.draw();
+            } while (!game.analizeWin());
 
 
             game.draw();
-        } while (!game.analizeWin());
 
-        System.out.println(game.getWinner());
+            System.out.println("\n" + game.getWinner());
+
+            System.out.println("Continue game? y/n");
+        }while (ansExit.nextLine().equals("y"));
+
 
     }
 

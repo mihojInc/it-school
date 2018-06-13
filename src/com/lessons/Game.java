@@ -13,12 +13,19 @@ public class Game {
     /**
      * winner save type of winnew
      */
-    private String winner;
+    private String winner = "";
+
+    boolean draw = true;
+
+    public Game() {
+        initial();
+    }
+
 
     /**
      * First initialization array symbol ""
      */
-    public Game() {
+    public void initial() {
         for (int i = 0; i < 3; i++)
             for (int k = 0; k < 3; k++)
                 dash[i][k] = "";
@@ -119,7 +126,7 @@ public class Game {
 
         //chech if there is a diagonal line
         if ((dash[0][0].equals(dash[1][1]) && dash[1][1].equals(dash[2][2])) || (dash[0][2].equals(dash[1][1]) && dash[1][1].equals(dash[2][0]))) {
-            if (dash[0][2].equals(""))//it can be diagonal line, but free spot. Here we chech it
+            if (dash[1][1].equals(""))//it can be diagonal line, but free spot. Here we chech it
                 return false;
             winner = dash[0][0];
             return true;
@@ -127,15 +134,25 @@ public class Game {
         for (int i = 0; i < 3; i++) {//Chech horisontal and vertical lines
             if ((dash[0][i].equals(dash[1][i]) && dash[1][i].equals(dash[2][i])) || (dash[i][0].equals(dash[i][1]) && dash[i][1].equals(dash[i][2]))) {
 
-                if (dash[0][i].equals("")||dash[1][i].equals(""))
+                if (dash[0][i].equals("")||dash[i][1].equals(""))
                     return false;
 
                 winner = dash[0][0];
                 return true;
             }
         }
-        return false;
 
+        draw = true;
+        for (int i = 0; i < 3; i++)
+            for (int k=0;k<3; k++)
+            {
+                if (dash[i][k]=="")//analize if the draw
+                    draw = false;
+
+            }
+        if (draw)
+            return true;
+        return false;
     }
 
     /**
@@ -144,7 +161,16 @@ public class Game {
      */
     public String getWinner() {
 
-        return winner.equals("0") ? "Computer win" : "Player win";
+
+       if(winner.equals("0"))
+           return "Computer win";
+       else{
+           if (winner.equals("x")) return "Player win";
+            else return "Darw";
+       }
+
+
+        //return winner.equals("0") ? "Computer win" : "Player win";
 
     }
 }
