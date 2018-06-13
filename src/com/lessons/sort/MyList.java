@@ -111,7 +111,8 @@ public class MyList<T> implements IList<T> {
      */
     public Integer length() {
         int realSize = objects.length;
-        while (objects[--realSize] == null) ;
+        if (realSize != 0)
+            while (objects[--realSize] == null) ;
 
         return realSize;
     }
