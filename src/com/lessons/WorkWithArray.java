@@ -16,9 +16,9 @@ public class WorkWithArray {
 
         System.out.println("Enter number ");
 
-        if(!scan.hasNextInt()){
-            System.out.println(Messages.ERROR);
-            addNumber();
+        while (!scan.hasNextInt()) {
+            System.out.println(Messages.ERROR.getMessage() + "Please enter number");
+            scan.next();
         }
 
         if(count>mainArray.length){

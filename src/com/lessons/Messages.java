@@ -1,5 +1,14 @@
 package com.lessons;
 
-public class Messages {
-    public static String ERROR = "You entered wrong data\n";
+public enum Messages {
+    ERROR ("incorrect data\n");
+    private String message;
+
+    Messages(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }
