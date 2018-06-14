@@ -1,4 +1,4 @@
-package com.util.tttFiles;
+package com.lessons.util.gameFiles;
 
 /**
  * Represent one field with his status

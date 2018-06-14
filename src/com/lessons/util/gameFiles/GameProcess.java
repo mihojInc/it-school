@@ -1,22 +1,22 @@
-package com.util.tttFiles;
+package com.lessons.util.gameFiles;
 
-import com.collection.MyList;
+import com.lessons.collection.MyList;
 
 import java.util.Scanner;
 
 /**
- * Func for game
+ * GameProcess for game
  */
-public class Func {
+public class GameProcess {
 
     /**
      * Write to console all Field by his status
      */
     public void getFieldDesk() {
-        String fild = Field.ZERO.getFildByStatement() + Field.ONE.getFildByStatement() + Field.TWO.getFildByStatement() + "\n" +
+        String fields = Field.ZERO.getFildByStatement() + Field.ONE.getFildByStatement() + Field.TWO.getFildByStatement() + "\n" +
                 Field.THREE.getFildByStatement() + Field.FOUR.getFildByStatement() + Field.FIVE.getFildByStatement() + "\n" +
                 Field.SIX.getFildByStatement() + Field.SEVEN.getFildByStatement() + Field.EIGTH.getFildByStatement();
-        System.out.println(fild);
+        System.out.println(fields);
     }
 
     /**
@@ -24,7 +24,7 @@ public class Func {
      *
      * @return true if combinations d't coincided
      */
-    public boolean chekWin() {
+    public boolean checkWin() {
         if ((Field.ZERO.getStatementsField() == StatementsField.WITHX & Field.ONE.getStatementsField() == StatementsField.WITHX & Field.TWO.getStatementsField() == StatementsField.WITHX) ||
                 (Field.THREE.getStatementsField() == StatementsField.WITHX & Field.FOUR.getStatementsField() == StatementsField.WITHX & Field.FIVE.getStatementsField() == StatementsField.WITHX) ||
                 (Field.SIX.getStatementsField() == StatementsField.WITHX & Field.SEVEN.getStatementsField() == StatementsField.WITHX & Field.EIGTH.getStatementsField() == StatementsField.WITHX) ||
@@ -49,6 +49,9 @@ public class Func {
         return true;
     }
 
+    /**
+     * JVM step
+     */
     public void cpuStep() {
 
         System.out.println("Cpu step:");
@@ -60,32 +63,32 @@ public class Func {
                 emptyFields.add(field);
             }
 
-        int countEmptyFiels = emptyFields.size();
+        int countEmptyFields = emptyFields.size();
 
-        if (countEmptyFiels == 0) {
+        if (countEmptyFields == 0) {
             System.out.println("No steps. Nobody win.");
 
         } else {
             // 0.99 need for avoid null pointer exception
-            int random = (int) Math.floor(Math.random() * countEmptyFiels * 0.99);
+            int random = (int) Math.floor(Math.random() * countEmptyFields * 0.99);
             emptyFields.get(random).setStatementsField(StatementsField.WITH0);
         }
     }
 
     /**
-     * @param scanner - from control filed number (0-8)
+     * User step
      */
     public void playerStep(Scanner scanner) {
         boolean filesSet = false;
 
         System.out.println("You step:");
 
-        do {
+        while (!filesSet) {
             try {
                 int input = Integer.valueOf(scanner.nextLine());
 
                 if (input < 0 | input > 8) {
-                    System.out.println(input + " not a fild, sorry. Try 0 - 8.");
+                    System.out.println(input + " not a field, sorry. Try 0 - 8.");
 
                 } else if (Field.values()[input].getStatementsField() != StatementsField.EMPTY) {
                     System.out.println("Field " + input + " is d't empty.");
@@ -98,7 +101,7 @@ public class Func {
                 System.out.println("It's not a number, try again");
             }
 
-        } while (!filesSet);
+        }
     }
 
 

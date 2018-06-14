@@ -1,4 +1,4 @@
-package com.collection;
+package com.lessons.collection;
 
 /**
  * For create some array with any Objects

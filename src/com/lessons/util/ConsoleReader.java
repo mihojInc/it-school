@@ -1,6 +1,6 @@
-package com.util;
+package com.lessons.util;
 
-import com.util.tttFiles.Func;
+import com.lessons.util.gameFiles.GameProcess;
 
 import java.util.Scanner;
 
@@ -17,18 +17,20 @@ public class ConsoleReader {
     public static void ticTacToe() {
         System.out.println("Welcome to game");
 
-        Func func = new Func();
-        func.getFieldDesk();
+        GameProcess gameProcess = new GameProcess();
+        gameProcess.getFieldDesk();
 
         int step = 1;
-        do {
+        while (gameProcess.checkWin() & step < 11) {
             if (step % 2 == 0)
-                func.cpuStep();
+                gameProcess.cpuStep();
             else
-                func.playerStep(scanner);
-            func.getFieldDesk();
+                gameProcess.playerStep(scanner);
+
+            if (step != 10)
+                gameProcess.getFieldDesk();
             step++;
-        } while (func.chekWin() & step < 11);
+        }
     }
 
 }

@@ -1,6 +1,6 @@
 package com.lessons;
 
-import com.util.ConsoleReader;
+import com.lessons.util.ConsoleReader;
 
 public class Main {
 
