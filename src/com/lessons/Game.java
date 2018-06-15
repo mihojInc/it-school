@@ -8,20 +8,53 @@ import java.util.Scanner;
  */
 public class Game {
 
+
     /**
      * Thsi array save current statment in the game
      */
-    private String[][] dash = new String[3][3];
-
+    private String[][] play = new String[3][3];
+    private Scanner sc;
     /**
      * winner save type of winnew
      */
-    private String winner = "";
+    private Players winner;
 
     private boolean draw = true;
 
-    public Game() {
+    public Game(Scanner sc) {
+        this.sc = sc;
         initial();
+    }
+
+    public void playGame() {
+
+        initial();
+        //draw dashboard in current statment
+        DashBoard.draw(play);
+        //main loob of game. Loop is brake when user answer is exit
+
+        while (true) {
+
+            while (!analizeWin()) {
+                //player step
+                step(Players.PLAYER);
+                if (analizeWin()) break;
+                DashBoard.draw(play);
+                System.out.println("Computer step");
+                step(Players.COMPUTER);
+                DashBoard.draw(play);
+            }
+
+
+            DashBoard.draw(play);
+
+            System.out.println("\n" + winner.getRusName() + " win");
+
+            System.out.println("Continue game? y/n");
+            if (!sc.nextLine().equals("y")) break;
+        }
+
+
     }
 
 
@@ -31,7 +64,7 @@ public class Game {
     public void initial() {
         for (int i = 0; i < 3; i++)
             for (int k = 0; k < 3; k++)
-                dash[i][k] = "";
+                play[i][k] = "";
     }
 
     /**
@@ -39,18 +72,18 @@ public class Game {
      * @param player type of player if its is computer or player
      * @return if all ok return true, is was something trouble return false
      */
-    public void step(boolean player) {
+    public void step(Players player) {
         //Create random calss for computer step
         Random rnd = new Random(System.currentTimeMillis());
-        Scanner sc = new Scanner(System.in);
 
-        do {
+
+        while (true) {
             //chek if chois is incorrect. we can choise only from 1 to 9
-            int pos = (player == true) ? sc.nextInt() : rnd.nextInt(9);
-            if (1 > pos || pos > 10) {
-                if (player)
-                    System.out.println("Try more");
 
+            int pos = (player == Players.PLAYER) ? sc.nextInt() : rnd.nextInt(9);
+            if (1 > pos || pos > 10) {
+                if (player == Players.PLAYER)
+                    System.out.println("Try more");
                 continue;
             }
 
@@ -58,77 +91,77 @@ public class Game {
             //int s = ((pos-1) % 3)==0?2:(pos % 3)-1;
             int s = ((pos - 1) % 3); //calculate position
             int f = ((pos - 1) / 3); //calculate position
-            if (dash[f][s].equals("")) { //check if this spot is free, another way return false
-                dash[f][s] = player ? "x" : "0";
+            if (play[f][s].equals("")) { //check if this spot is free, another way return false
+                play[f][s] = player.getMark();
                 return;
             } else {
-                System.out.println(player == true ? "Try more" : "");
+                System.out.println(player == Players.PLAYER ? "Try more" : "");
                 continue;
             }
 
-        } while (true);
+        }
     }
 
     /**
      * This procedure draw dashboard
      */
-    public void draw() {
-
-        int i = 0;
-        int k = 0;
-        for (i = 0; i < 3; i++) {
-            for (k = 0; k < 3; k++) {
-
-                if (k == 2) {
-
-                    if (!dash[i][k].equals("")) {//check if this spot is free
-
-                        if (i != 2) // check if its spot is last. We have to drow another line in last spots
-                            System.out.print(dash[i][k] + "_");
-                        else
-                            System.out.print(dash[i][k] + "  ");
-                    } else {
-                        if (i != 2)
-                            System.out.print("__");
-
-
-                    }
-                    continue;
-                }
-
-
-                if (!dash[i][k].equals("")) {
-
-                    if (i != 2)
-                        System.out.print(dash[i][k] + "_|");
-                    else System.out.print(dash[i][k] + " |");
-
-
-                } else {
-                    if (i != 2)
-                        System.out.print("__|");
-                    else {
-                        System.out.print("  |");
-                    }
-
-                }
-
-
-            }
-
-            System.out.println();
-
-
-            k = 0;
-        }
-
-    }
+//    public void draw() {
+//
+//        int i = 0;
+//        int k = 0;
+//        for (i = 0; i < 3; i++) {
+//            for (k = 0; k < 3; k++) {
+//
+//                if (k == 2) {
+//
+//                    if (!dash[i][k].equals("")) {//check if this spot is free
+//
+//                        if (i != 2) // check if its spot is last. We have to drow another line in last spots
+//                            System.out.print(dash[i][k] + "_");
+//                        else
+//                            System.out.print(dash[i][k] + "  ");
+//                    } else {
+//                        if (i != 2)
+//                            System.out.print("__");
+//
+//
+//                    }
+//                    continue;
+//                }
+//
+//
+//                if (!dash[i][k].equals("")) {
+//
+//                    if (i != 2)
+//                        System.out.print(dash[i][k] + "_|");
+//                    else System.out.print(dash[i][k] + " |");
+//
+//
+//                } else {
+//                    if (i != 2)
+//                        System.out.print("__|");
+//                    else {
+//                        System.out.print("  |");
+//                    }
+//
+//                }
+//
+//
+//            }
+//
+//            System.out.println();
+//
+//
+//            k = 0;
+//        }
+//
+//    }
 
     /**
      * Clear arrray
      */
     public void clear() {
-        dash = new String[3][3];
+        play = new String[3][3];
     }
 
     /**
@@ -139,19 +172,30 @@ public class Game {
     public boolean analizeWin() {
 
         //chech if there is a diagonal line
-        if ((dash[0][0].equals(dash[1][1]) && dash[1][1].equals(dash[2][2])) || (dash[0][2].equals(dash[1][1]) && dash[1][1].equals(dash[2][0]))) {
-            if (dash[1][1].equals(""))//it can be diagonal line, but free spot. Here we check it
+        if ((play[0][0].equals(play[1][1]) && play[1][1].equals(play[2][2]))
+                || (play[0][2].equals(play[1][1]) && play[1][1].equals(play[2][0]))) {
+            if (play[1][1].equals(""))//it can be diagonal line, but free spot. Here we check it
                 return false;
-            winner = dash[0][0];
+
+            if (Players.PLAYER.getMark().equals(play[0][0]))
+                winner = Players.PLAYER;
+            else
+                winner = Players.COMPUTER;
+
             return true;
         }
         for (int i = 0; i < 3; i++) {//Chech horisontal and vertical lines
-            if ((dash[0][i].equals(dash[1][i]) && dash[1][i].equals(dash[2][i])) || (dash[i][0].equals(dash[i][1]) && dash[i][1].equals(dash[i][2]))) {
+            if ((play[0][i].equals(play[1][i]) && play[1][i].equals(play[2][i]))
+                    || (play[i][0].equals(play[i][1]) && play[i][1].equals(play[i][2]))) {
 
-                if (dash[0][i].equals("") || dash[i][1].equals(""))
+                if (play[0][i].equals("") || play[i][1].equals(""))
                     return false;
 
-                winner = dash[0][0];
+                if (Players.PLAYER.getMark().equals(play[0][0]))
+                    winner = Players.PLAYER;
+                else
+                    winner = Players.COMPUTER;
+
                 return true;
             }
         }
@@ -159,7 +203,7 @@ public class Game {
         draw = true;
         for (int i = 0; i < 3; i++)
             for (int k = 0; k < 3; k++) {
-                if (dash[i][k].equals(""))//analize if the draw
+                if (play[i][k].equals(""))//analize if the draw
                     draw = false;
 
             }
@@ -171,18 +215,9 @@ public class Game {
     /**
      * @return who win the game
      */
-    public String getWinner() {
-
-
-        if (winner.equals("0"))
-            return "Computer win";
-        else {
-            if (winner.equals("x")) return "Player win";
-            else return "Darw";
-        }
 
 
         //return winner.equals("0") ? "Computer win" : "Player win";
 
-    }
+
 }
