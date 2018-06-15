@@ -1,8 +1,11 @@
 package com.lessons;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args){
-        Application.interactionWithUser();
+        Scanner in = new Scanner(System.in);
+        Application.interactionWithUser(in);
     }
 }

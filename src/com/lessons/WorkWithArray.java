@@ -2,10 +2,10 @@ package com.lessons;
 
 import java.util.ArrayList;
 
-public class workWithArray {
+public class WorkWithArray {
     private ArrayList<Integer> array;
 
-    workWithArray(){
+    WorkWithArray(){
         array = new ArrayList<Integer>(10);
     }
 
