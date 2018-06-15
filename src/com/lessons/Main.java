@@ -1,9 +1,13 @@
 package com.lessons;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args){
-        TicTacToe.game();
+
+        Scanner input1 = new Scanner(System.in);
+        TicTacToe.startGame(input1);
     }
 
 
