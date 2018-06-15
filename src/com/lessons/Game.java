@@ -80,7 +80,13 @@ public class Game {
         while (true) {
             //chek if chois is incorrect. we can choise only from 1 to 9
 
-            int pos = (player == Players.PLAYER) ? sc.nextInt() : rnd.nextInt(9);
+            int check = 0;
+            while (!sc.hasNextInt()) {
+                sc.next();
+                System.out.println("Wrong number");
+            }
+            check = sc.nextInt();
+            int pos = (player == Players.PLAYER) ? check : rnd.nextInt(9);
             if (1 > pos || pos > 10) {
                 if (player == Players.PLAYER)
                     System.out.println("Try more");
