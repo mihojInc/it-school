@@ -23,13 +23,13 @@ public class Interaction {
             }else if (checkString.equals(Commands.UNIQUE_PLAYERS.getCommand())){
                 functions.showUniquePlayers();
             }else if (checkString.equals(Commands.RATING_PLAYERS.getCommand())){
-
+                functions.showPlayersByRating();
             }else if (checkString.equals(Commands.DELETE_PLAYER.getCommand())){
                 functions.deletePlayer();
             }else if (checkString.equals(Commands.SHOW_TEAM_AND_PLAYERS.getCommand())){
                 functions.showTeams();
             }else if (checkString.equals(Commands.PLAY_MATCH.getCommand())){
-
+                functions.play();
             }else if (checkString.equals(Commands.EXIT.getCommand())){
                 System.out.println("Program is finished");
                 return;

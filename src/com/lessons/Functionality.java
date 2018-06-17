@@ -54,6 +54,13 @@ public class Functionality {
     }
 
     public void showPlayersByRating(){
+        SortByRating ratingSort = new SortByRating();
+        TreeSet<Player> playerTree = new TreeSet<>(ratingSort);
+        playerTree.addAll(players);
+
+        for(Player  player : playerTree){
+            System.out.println(player.getRating() + " " + player.getName() + " " + player.getTeam());
+        }
 
     }
 
@@ -100,12 +107,44 @@ public class Functionality {
         }
 
         for(String team: teamList){
-            System.out.println(team);
+            System.out.println("Team: " + team);
                 for(Player player: uniquePlayer){
                     if(team.equals(player.getTeam())){
                         System.out.println("Name: " + player.getName() + "; Age: " + player.getAge() + "; Rating " + player.getRating());
                     }
                 }
+        }
+    }
+
+    public void play(){
+        String team1;
+        String team2;
+        Integer rating1 = 0;
+        Integer rating2 = 0;
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Enter name of first team");
+        team1 = scan.nextLine();
+        System.out.println("Enter name of second team");
+        team2 = scan.nextLine();
+
+        for(Player rating: players){
+            if(team1.equals(rating.getTeam())){
+                rating1+=rating.getRating();
+            }
+            if(team2.equals(rating.getTeam())){
+                rating2+=rating.getRating();
+            }
+        }
+
+        if(rating1 == 0 || rating2 == 0){
+            System.out.println("You print incorrect name of team");
+        }else if(rating1>rating2){
+            System.out.println(team1 + " win with score: " + rating1 + ":" + rating2);
+        }else if(rating1<rating2){
+            System.out.println(team2 + " win with score: " + rating2 + ":" + rating1);
+        }else{
+            System.out.println("Both teams have the same rating");
         }
     }
 }
