@@ -5,6 +5,7 @@ import java.util.*;
 public class Functionality {
     private List <Player> players = new ArrayList<>();
 
+
     public void add_player(){
         Player player;
         String name;
@@ -57,6 +58,54 @@ public class Functionality {
     }
 
     public void deletePlayer(){
+        Set<Player> uniquePlayer = new HashSet<>(players);
+        TreeMap<Integer, Player> playersMap = new TreeMap<>();
+        Scanner scan = new Scanner(System.in);
+        Integer number;
+        Player deletePlayer;
 
+        int i = 1;
+        for (Player player: uniquePlayer){
+            playersMap.put(i,player);
+            i++;
+        }
+
+        for(Map.Entry<Integer, Player> entry : playersMap.entrySet()){
+            System.out.println(entry.getKey() + " - " + entry.getValue().getName());
+            System.out.println("Team: " + entry.getValue().getTeam() + "; Age: " + entry.getValue().getAge() + "; Rating " + entry.getValue().getRating() + "\n");
+        }
+
+        System.out.println("Enter number of player, you want to delete");
+
+        while (!scan.hasNextInt()) {
+            System.out.println("It's not a number" + "Please enter number");
+            scan.next();
+        }
+        number = scan.nextInt();
+        if(number > playersMap.lastKey()){
+            System.out.println("There is no player with this number");
+        }else{
+            deletePlayer = playersMap.get(number);
+            players.remove(deletePlayer);
+        }
+    }
+
+
+    public void showTeams(){
+        Set<String> teamList = new HashSet<>();
+        Set<Player> uniquePlayer = new HashSet<>(players);
+
+        for(Player team: uniquePlayer){
+            teamList.add(team.getTeam());
+        }
+
+        for(String team: teamList){
+            System.out.println(team);
+                for(Player player: uniquePlayer){
+                    if(team.equals(player.getTeam())){
+                        System.out.println("Name: " + player.getName() + "; Age: " + player.getAge() + "; Rating " + player.getRating());
+                    }
+                }
+        }
     }
 }

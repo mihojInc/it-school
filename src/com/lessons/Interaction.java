@@ -25,9 +25,9 @@ public class Interaction {
             }else if (checkString.equals(Commands.RATING_PLAYERS.getCommand())){
 
             }else if (checkString.equals(Commands.DELETE_PLAYER.getCommand())){
-
+                functions.deletePlayer();
             }else if (checkString.equals(Commands.SHOW_TEAM_AND_PLAYERS.getCommand())){
-
+                functions.showTeams();
             }else if (checkString.equals(Commands.PLAY_MATCH.getCommand())){
 
             }else if (checkString.equals(Commands.EXIT.getCommand())){
