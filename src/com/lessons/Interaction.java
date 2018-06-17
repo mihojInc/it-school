@@ -2,14 +2,25 @@ package com.lessons;
 
 import java.util.Scanner;
 
+/**
+ * Class for interaction with user
+ */
 public class Interaction {
 
     Functionality functions;
 
+    /**
+     * constructor. Takes object of class with functions
+     * @param functions
+     */
     public Interaction(Functionality functions){
         this.functions = functions;
     }
 
+    /**
+     * Method allows user to choose command. And performs congruent function
+     * @param scan
+     */
     public void mainChoice(Scanner scan){
 
         while(true){

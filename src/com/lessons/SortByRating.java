@@ -2,6 +2,9 @@ package com.lessons;
 
 import java.util.Comparator;
 
+/**
+ * Comparator for sorting football players by rating
+ */
 public class SortByRating implements Comparator<Player> {
 
     @Override

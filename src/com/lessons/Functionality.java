@@ -2,10 +2,15 @@ package com.lessons;
 
 import java.util.*;
 
+/**
+ * Class with methods for working with players
+ */
 public class Functionality {
     private List <Player> players = new ArrayList<>();
 
-
+    /**
+     * method for adding new player to list
+     */
     public void add_player(){
         Player player;
         String name;
@@ -39,6 +44,9 @@ public class Functionality {
         players.add(player);
     }
 
+    /**
+     * Method for showing list of unique players
+     */
     public void showUniquePlayers(){
         Set<Player> uniquePlayer = new HashSet<>(players);
         int i = 1;
@@ -53,6 +61,9 @@ public class Functionality {
         }
     }
 
+    /**
+     * methods shows players by their rating from the lowest to the highest
+     */
     public void showPlayersByRating(){
         SortByRating ratingSort = new SortByRating();
         TreeSet<Player> playerTree = new TreeSet<>(ratingSort);
@@ -64,6 +75,9 @@ public class Functionality {
 
     }
 
+    /**
+     * method deletes player from the list
+     */
     public void deletePlayer(){
         Set<Player> uniquePlayer = new HashSet<>(players);
         TreeMap<Integer, Player> playersMap = new TreeMap<>();
@@ -97,7 +111,9 @@ public class Functionality {
         }
     }
 
-
+    /**
+     * Method shows existing teams and players for every team
+     */
     public void showTeams(){
         Set<String> teamList = new HashSet<>();
         Set<Player> uniquePlayer = new HashSet<>(players);
@@ -116,6 +132,9 @@ public class Functionality {
         }
     }
 
+    /**
+     * method compares sum of player's rating of 2 teams
+     */
     public void play(){
         String team1;
         String team2;
