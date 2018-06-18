@@ -65,12 +65,13 @@ public class Functionality {
      * methods shows players by their rating from the lowest to the highest
      */
     public void showPlayersByRating(){
+        Set<Player> uniquePlayer = new HashSet<>(players);
         SortByRating ratingSort = new SortByRating();
         TreeSet<Player> playerTree = new TreeSet<>(ratingSort);
-        playerTree.addAll(players);
+        playerTree.addAll(uniquePlayer);
 
         for(Player  player : playerTree){
-            System.out.println(player.getRating() + " " + player.getName() + " " + player.getTeam());
+            System.out.println(player.getRating() + "; Name: " + player.getName() + "; Team: " + player.getTeam() + "; Age " + player.getAge());
         }
 
     }

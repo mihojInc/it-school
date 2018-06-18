@@ -9,12 +9,11 @@ public class SortByRating implements Comparator<Player> {
 
     @Override
     public int compare(Player o1, Player o2) {
-        if(o1.getRating()> o2.getRating()){
+        if(o1.getRating()>= o2.getRating()){
             return 1;
-        }else if(o1.getRating()< o2.getRating()){
-            return -1;
         }else{
-            return 0;
+            return -1;
         }
+
     }
 }
