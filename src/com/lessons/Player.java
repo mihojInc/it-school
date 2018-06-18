@@ -9,6 +9,16 @@ public class Player implements Comparable<Player>{
     private int age;     //Возраст
     private int rating;  //Рейтинг
 
+    //Constructor
+    public Player() {
+
+    }
+
+    public Player(String name, int age, int rating) {
+        this.name = name;
+        this.age = age;
+        this.rating = rating;
+    }
 
     //Getters and Setters
     public String getName() {

@@ -3,11 +3,11 @@ package com.lessons;
 public enum CommandsForFootball {
 
     //Fields
-    CREATE_TEAM_ONE("1"), //Создать первую команду
-    CREATE_TEAM_TOO("2"), //Создать вторую команду
-    SHOW_PLAYERS("3"), //Показать игроков по рейтингу
-    SHOW_UNIQUE_PLAYERS("4"), //Показать уникальных игроков
-    REMOVE_PLAYERS("5"), //Удалить игрока из коллекции
+    ADD_PLAYERS("1"), //Создать игроков и длбавить их в коллекцию
+    SHOW_PLAYERS_RATING("2"), //Показать игроков по рейтингу
+    SHOW_UNIQUE_PLAYERS("3"), //Показать уникальных игроков
+    REMOVE_PLAYERS("4"), //Удалить игрока из коллекции
+    SHOW_PLAYERS_BY_TEAMS("5"), //Показать игроков по командам
     PLAY_THE_MATCH("6"), //Сыграть матч
     QUIT("Q"); //Выйти из игры
 

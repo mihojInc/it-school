@@ -8,5 +8,6 @@ public class Main {
         FootballManager footballManager = new FootballManager();
         Scanner scanner = new Scanner(System.in);
         footballManager.startGame(scanner);
+        footballManager.showFootballManager();
     }
 }
