@@ -9,7 +9,6 @@ import java.util.List;
 /**
  * Created by Ivan
  * class for game logic
- *
  */
 public class GameLogic {
     /**
