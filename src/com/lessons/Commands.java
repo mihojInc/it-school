@@ -5,7 +5,7 @@ package com.lessons;
  * enum commands
  */
 public enum Commands {
-    SORT_DECREASING("decr"),
+    YES("y"),
     SORT_ASCENDING("asc"),
     CLEAR_LIST("clear"),
     QUIT("q");
