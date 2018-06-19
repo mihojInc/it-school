@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Ivan
  * class with method for numbers
  */
 public class NumberHelper {
