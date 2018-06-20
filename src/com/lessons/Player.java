@@ -1,6 +1,9 @@
+package com.lessons;
 import java.util.Date;
+import java.util.Objects;
 
-public class Player {
+
+public class Player implements Comparable<Player>{
     /**
      * Namr of player
      */
@@ -22,6 +25,10 @@ public class Player {
      */
     private double cost;
 
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
     public Player(String name, String dateBirth, int rank, Team team, double cost) {
         this.name = name;
         this.dateBirth = dateBirth;
@@ -31,32 +38,41 @@ public class Player {
     }
 
     @Override
-    public int hashCode() {
-        return name.hashCode() + dateBirth.hashCode() + rank + team.hashCode() + (int)cost;
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", dateBirth='" + dateBirth + '\'' +
+                ", rank=" + rank +
+                ", team=" + team +
+                ", cost=" + cost +
+                '}';
     }
 
     @Override
-    public boolean equals(Object obj) {
-
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Player other = (Player) obj;
-        if (!name.equals(other.name))
-            return false;
-        if (!dateBirth.equals(other.dateBirth))
-            return false;
-        if (rank != other.rank)
-            return false;
-        if (!team.equals(other.team))
-            return false;
-        if (cost != other.cost)
-            return false;
-        return true;
-
-
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Player)) return false;
+        Player player = (Player) o;
+        return rank == player.rank &&
+                Double.compare(player.cost, cost) == 0 &&
+                Objects.equals(name, player.name) &&
+                Objects.equals(dateBirth, player.dateBirth) &&
+                Objects.equals(team, player.team);
     }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(name, dateBirth, rank, team, cost);
+    }
+
+    @Override
+    public int compareTo(Player o) {
+        return this.rank - o.rank;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
 }

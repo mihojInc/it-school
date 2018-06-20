@@ -1,5 +1,5 @@
+package com.lessons;
 import java.util.Objects;
-
 public class Country {
     private String name;
 

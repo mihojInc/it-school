@@ -1,16 +1,16 @@
-
+package com.lessons;
 public enum Command {
 
-    LIST_PLAYERS ("1. Print list of players", 1),
-    LEADERS_PLAYERS ("2. Print lead players", 1),
-    ADD_PLAYER ("Add player",1),
-    ADD_TEAM ("Add team",1),
-    DELETE_PLAYER ("3. Delete player", 1),
-    CHANGE_TEAM ("4. Change player team", 1),
-    LIST_TEAM ("5. Print list of team", 1),
-    LIST_TEAM_LEAD ("6. Print leaders of team", 1),
-    PLAY_GAME ("7. Play game", 1),
-    ADD_COUNTRY ("8. Add country", 1);
+    LIST_PLAYERS ("1. Print list of players", 1),//
+    LEADERS_PLAYERS ("2. Print lead players", 2),
+    ADD_PLAYER ("3. Add player",3),//
+    ADD_TEAM ("4. Add team",4),//
+    DELETE_PLAYER ("5. Delete player", 5),//
+    CHANGE_TEAM ("6. Change player team", 6),//
+    LIST_TEAM ("7. Print list of team", 7),//
+    LIST_TEAM_LEAD ("8. Print leaders of team", 8),
+    PLAY_GAME ("9. Play game", 9),
+    EXIT ("10. Exit",10);
 
     String comm;
     int level;
@@ -19,4 +19,13 @@ public enum Command {
         this.comm = comm;
         this.level = level;
     }
+
+    public String getComm() {
+        return comm;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
 }

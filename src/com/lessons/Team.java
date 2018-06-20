@@ -1,7 +1,9 @@
-import java.util.HashSet;
-import java.util.Objects;
+package com.lessons;
 
-public class Team {
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Objects;
+public class Team implements Comparable<Team>{
     /**
      * name team
      */
@@ -14,11 +16,16 @@ public class Team {
     /**
      * list of players in the team
      */
-    private HashSet<Player> players;
-    /**
-     * Country wherw located the team
-     */
-    private Country country;
+    private ArrayList<Player> players = new ArrayList<Player>();
+
+    public Team(String nameTeam, double curMoney) {
+        this.nameTeam = nameTeam;
+        this.curMoney = curMoney;
+    }
+
+    void addPlayer(Player pl){
+        players.add(pl);
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -27,13 +34,46 @@ public class Team {
         Team team = (Team) o;
         return Double.compare(team.curMoney, curMoney) == 0 &&
                 Objects.equals(nameTeam, team.nameTeam) &&
-                Objects.equals(players, team.players) &&
-                Objects.equals(country, team.country);
+                Objects.equals(players, team.players);
     }
 
     @Override
     public int hashCode() {
 
-        return nameTeam.hashCode() + (int)curMoney  + players.hashCode() + country.hashCode();
+        return nameTeam.hashCode() + (int)curMoney  + players.hashCode();
+    }
+
+    public String getNameTeam() {
+        return nameTeam;
+    }
+
+    public double getCurMoney() {
+        return curMoney;
+    }
+
+    public int rank(){
+        int rank=0;
+        Iterator<Player> itr = players.iterator();
+
+        while (itr.hasNext()) {
+
+            rank+=itr.next().getRank();
+        }
+       return rank;
+    }
+
+    @Override
+    public int compareTo(Team o) {
+
+        return this.rank()-o.rank();
+    }
+
+    @Override
+    public String toString() {
+        return "Team{" +
+                "nameTeam='" + nameTeam + '\'' +
+                ", curMoney=" + curMoney +
+                ", players=" + players +
+                '}';
     }
 }
