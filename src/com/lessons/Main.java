@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         //new scanner for enter users answer
         Scanner sc = new Scanner(System.in);
         //create new game

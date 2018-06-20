@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * class describe behavour and settings of team
  */
-public class Team implements Comparable<Team>{
+public class Team implements Comparable<Team> {
     /**
      * name team
      */
@@ -29,17 +29,19 @@ public class Team implements Comparable<Team>{
 
     /**
      * add player in the team
+     *
      * @param pl
      */
-    void addPlayer(Player pl){
+    void addPlayer(Player pl) {
         players.add(pl);
     }
 
     /**
      * remove players from th eteam
+     *
      * @param pl
      */
-    void deletePlayers(Player pl){
+    void deletePlayers(Player pl) {
         players.remove(pl);
     }
 
@@ -56,7 +58,7 @@ public class Team implements Comparable<Team>{
     @Override
     public int hashCode() {
 
-        return nameTeam.hashCode() + (int)curMoney  + players.hashCode();
+        return nameTeam.hashCode() + (int) curMoney + players.hashCode();
     }
 
     public String getNameTeam() {
@@ -69,31 +71,32 @@ public class Team implements Comparable<Team>{
 
     /**
      * calculate summ of players rank
+     *
      * @return
      */
-    public int rank(){
-        int rank=0;
+    public int rank() {
+        int rank = 0;
         Iterator<Player> itr = players.iterator();
 
         while (itr.hasNext()) {
 
-            rank+=itr.next().getRank();
+            rank += itr.next().getRank();
         }
-       return rank;
+        return rank;
     }
 
     @Override
     public int compareTo(Team o) {
 
-        return this.rank()-o.rank();
+        return this.rank() - o.rank();
     }
 
     @Override
     public String toString() {
-        String play="\n\t";
+        String play = "\n\t";
         Iterator<Player> itr = players.iterator();
-        while(itr.hasNext()){
-            play = play + itr.next().toString()+"\n\t";
+        while (itr.hasNext()) {
+            play = play + itr.next().toString() + "\n\t";
         }
         return "Team{" +
                 "nameTeam='" + nameTeam + '\'' +

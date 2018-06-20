@@ -6,12 +6,12 @@ import java.util.Scanner;
 import java.util.TreeSet;
 
 /**
- * This class describe Football manageg.
+ * This class describe Football managed.
  */
 public class GamePlay {
 
     /**
-     * sc for save Scaner answer
+     * sc for save Scanner answer
      */
     Scanner sc;
     /**
@@ -23,7 +23,7 @@ public class GamePlay {
      */
     private ArrayList<Team> teams = new ArrayList<Team>();
 
-    GamePlay(Scanner sc){
+    GamePlay(Scanner sc) {
 
         this.sc = sc;
     }
@@ -31,83 +31,84 @@ public class GamePlay {
     /**
      * Main method wich conteins ask and answer of user.
      */
-    public void playGame(){
+    public void playGame() {
 
-       boolean exit = false;//variable for save if we want to exit
-       while (true){//mail application loop. Executing while we in the game
+        boolean exit = false;//variable for save if we want to exit
+        while (true) {//mail application loop. Executing while we in the game
 
-           if(exit)break;//if we want to exit
+            if (exit) break;//if we want to exit
 
-           //print list of application command
-           for (Command cmd:Command.values()){
-               System.out.println(cmd.getComm());
-           }
+            //print list of application command
+            for (Command cmd : Command.values()) {
+                System.out.println(cmd.getComm());
+            }
             //Read the answer and check
-           while(!sc.hasNextInt()){
-               sc.next();
-               System.out.println("Incorrect!");
-           }
-           int ans = sc.nextInt();
-           if(ans>10)continue;
+            while (!sc.hasNextInt()) {
+                sc.next();
+                System.out.println("Incorrect!");
+            }
+            int ans = sc.nextInt();
+            if (ans > 10) continue;
 
-           //executing users choise
-           switch (Command.values()[ans-1] ){
-                   case LIST_PLAYERS:
-                       listPlayer(this.players);
+            //executing users choise
+            switch (Command.values()[ans - 1]) {
+                case LIST_PLAYERS:
+                    listPlayer(this.players);
                     break;
 
-                   case LEADERS_PLAYERS:
-                       sortPlayers();
-                       break;
+                case LEADERS_PLAYERS:
+                    sortPlayers();
+                    break;
 
-                   case ADD_PLAYER:
-                       addPlayers();
-                       break;
+                case ADD_PLAYER:
+                    addPlayers();
+                    break;
 
-                   case ADD_TEAM:
-                       addTeam();
-                       break;
+                case ADD_TEAM:
+                    addTeam();
+                    break;
 
-                   case DELETE_PLAYER:
-                       delPlayer();
-                       break;
+                case DELETE_PLAYER:
+                    delPlayer();
+                    break;
 
-                   case CHANGE_TEAM:
-                       changeTteam();
-                       break;
+                case CHANGE_TEAM:
+                    changeTteam();
+                    break;
 
-                   case LIST_TEAM:
-                       listTeam(this.teams);
-                       break;
+                case LIST_TEAM:
+                    listTeam(this.teams);
+                    break;
 
-                   case LIST_TEAM_LEAD:
-                       sortTeam();
-                       break;
+                case LIST_TEAM_LEAD:
+                    sortTeam();
+                    break;
 
-                   case PLAY_GAME:
-                       Match();
-                       break;
+                case PLAY_GAME:
+                    Match();
+                    break;
 
-                   case EXIT:
-                        exit = true;
-                        break;
+                case EXIT:
+                    exit = true;
+                    break;
 
-                   default:
-                       System.out.println("Incoorect choise");
-                   }
+                default:
+                    System.out.println("Incorect choise");
+            }
 
-               }
-           }
+        }
+    }
 
     /**
      * print list of players to console
+     *
      * @param players
      */
     public void listPlayer(ArrayList<Player> players) {
 
         Iterator<Player> itr = players.iterator();
         //check if the lisp of players is empty
-        if (!itr.hasNext()){
+        if (!itr.hasNext()) {
             System.out.println("List is empty");
             return;
         }
@@ -121,13 +122,14 @@ public class GamePlay {
 
     /**
      * print list of teams to console
+     *
      * @param teams
      */
-    public void listTeam(ArrayList<Team>  teams) {
+    public void listTeam(ArrayList<Team> teams) {
 
         Iterator<Team> itr = teams.iterator();
         //check if the list of teams is empty
-        if (!itr.hasNext()){
+        if (!itr.hasNext()) {
             System.out.println("List is empty");
             return;
         }
@@ -143,9 +145,10 @@ public class GamePlay {
 
     /**
      * Add new players
+     *
      * @return
      */
-    public void addPlayers(){
+    public void addPlayers() {
 
 
         //Ask about player settings name, age, rank, team, cost
@@ -161,7 +164,7 @@ public class GamePlay {
 
         System.out.println("Enter rank player");
 
-        while(!sc.hasNextInt()){//check if the answer is correct
+        while (!sc.hasNextInt()) {//check if the answer is correct
             sc.next();
             System.out.println("Incorrect!");
 
@@ -175,19 +178,19 @@ public class GamePlay {
             teamName = sc.nextLine();
 
 
-        Team team =chekTeam(teamName);//check if the team is exist
-        if(team==null){//if this team is not exist - we can creane new one
+        Team team = chekTeam(teamName);//check if the team is exist
+        if (team == null) {//if this team is not exist - we can create new one
             System.out.println("No team with this name. Add new team y/n");
-            if(sc.nextLine().equals("y")){
+            if (sc.nextLine().equals("y")) {
                 addTeam();//create new team;
-                team =chekTeam(teamName);
+                team = chekTeam(teamName);
 
             }
 
         }
 
         System.out.println("Enter player cost ");
-        while(!sc.hasNextDouble()){//check if the answer is correct
+        while (!sc.hasNextDouble()) {//check if the answer is correct
             sc.next();
             System.out.println("Incorrect!");
 
@@ -195,7 +198,7 @@ public class GamePlay {
         double cost = sc.nextDouble();
         //create new player
         Player newPlayer = new Player(name, birth, rank, team, cost);
-        if (team!=null)//if we created new team, join player to this team
+        if (team != null)//if we created new team, join player to this team
             team.addPlayer(newPlayer);
         players.add(newPlayer);//add in list
 
@@ -204,11 +207,11 @@ public class GamePlay {
     /**
      * Delete player from list
      */
-    public void delPlayer(){
+    public void delPlayer() {
 
         Iterator<Player> itr = players.iterator();
         //check if the list of teams is empty
-        if (!itr.hasNext()){
+        if (!itr.hasNext()) {
             System.out.println("List is empty");
             return;
         }
@@ -216,7 +219,7 @@ public class GamePlay {
         System.out.println("Chose player for delete");
         listPlayer(this.players);//print list of players for delete
         int delPos = sc.nextInt();
-        while (delPos>players.size()){//check correct answer
+        while (delPos > players.size()) {//check correct answer
             System.out.println("Incorrect");
             delPos = sc.nextInt();
         }
@@ -229,9 +232,10 @@ public class GamePlay {
 
     /**
      * add new team in list
+     *
      * @return
      */
-    public void addTeam(){
+    public void addTeam() {
         //Ask about team settings name, money
         System.out.println("Enter name of team");
 
@@ -240,7 +244,7 @@ public class GamePlay {
         while (name.equals(""))
             name = sc.nextLine();
 
-        if(chekTeam(name)!=null){
+        if (chekTeam(name) != null) {
             System.out.println("This team is already exist");
 
         }
@@ -249,7 +253,7 @@ public class GamePlay {
         System.out.println("Enter money team");
 
 
-        while(!sc.hasNextDouble()){
+        while (!sc.hasNextDouble()) {
             sc.next();
             System.out.println("Incorrect!");
 
@@ -264,18 +268,18 @@ public class GamePlay {
     /**
      * change team where play player
      */
-    public void changeTteam(){
+    public void changeTteam() {
 
         //check if the lisp of players or teams is empty
         Iterator<Player> itrP = players.iterator();
 
-        if (!itrP.hasNext()){
+        if (!itrP.hasNext()) {
             System.out.println("List players is empty");
             return;
         }
         Iterator<Team> itrT = teams.iterator();
 
-        if (!itrT.hasNext()){
+        if (!itrT.hasNext()) {
             System.out.println("List team is empty");
             return;
         }
@@ -285,25 +289,25 @@ public class GamePlay {
         System.out.println("Choise players for change");
         listPlayer(this.players);
 
-        while(!sc.hasNextInt()) {//check if the answer is correct
+        while (!sc.hasNextInt()) {//check if the answer is correct
             sc.next();
             System.out.println("Incorrect!");
         }
         int chPlayer = sc.nextInt();
-        if (chPlayer>players.size()){
+        if (chPlayer > players.size()) {
             System.out.println("Incorrect");
             return;
         }
-            //print list of teams for change
+        //print list of teams for change
         System.out.println("Choise team");
         listTeam(this.teams);
 
-        while(!sc.hasNextInt()) {//check if the answer is correct
+        while (!sc.hasNextInt()) {//check if the answer is correct
             sc.next();
             System.out.println("Incorrect!");
         }
         int chTeam = sc.nextInt();
-        if (chTeam>players.size()){
+        if (chTeam > players.size()) {
             System.out.println("Incorrect");
             return;
         }
@@ -320,16 +324,17 @@ public class GamePlay {
 
     /**
      * Chek if th eteam is esist. If exist return team link, another way NULL
+     *
      * @param team
      * @return
      */
-    public Team chekTeam(String team){
+    public Team chekTeam(String team) {
         Iterator<Team> itr = teams.iterator();
 
         Team curPos;
         while (itr.hasNext()) {
             curPos = itr.next();
-            if(team.equals(curPos.getNameTeam()))
+            if (team.equals(curPos.getNameTeam()))
                 return curPos;
         }
         return null;
@@ -338,10 +343,10 @@ public class GamePlay {
     /**
      * Sorting list of players using TreeSet
      */
-    public void sortPlayers(){
+    public void sortPlayers() {
         Iterator<Player> itr = players.iterator();
 
-        if (!itr.hasNext()){
+        if (!itr.hasNext()) {
             System.out.println("List players is empty");
             return;
         }
@@ -353,57 +358,56 @@ public class GamePlay {
     /**
      * Sorting list of teams using TreeSet
      */
-    public void sortTeam(){
+    public void sortTeam() {
         Iterator<Team> itr = teams.iterator();
 
-        if (!itr.hasNext()){
+        if (!itr.hasNext()) {
             System.out.println("List team is empty");
             return;
         }
         TreeSet<Team> sortTeamTree = new TreeSet<Team>(teams);
-        ArrayList<Team> sortTeam= new ArrayList<Team>(sortTeamTree);
+        ArrayList<Team> sortTeam = new ArrayList<Team>(sortTeamTree);
         listTeam(sortTeam);
     }
 
     /**
      * Play mach
      */
-    public void Match(){
+    public void Match() {
         Iterator<Player> itrP = players.iterator();
         //check if the lisp of players or teams is empty
-        if (!itrP.hasNext()){//
+        if (!itrP.hasNext()) {//
             System.out.println("List players is empty");
             return;
         }
         Iterator<Team> itrT = teams.iterator();
 
-        if (!itrT.hasNext()){
+        if (!itrT.hasNext()) {
             System.out.println("List team is empty");
             return;
         }
         //ask for chose team 1 for the game
         System.out.println("Choise team 1");
         listTeam(teams);
-        while(!sc.hasNextInt()){
+        while (!sc.hasNextInt()) {
             sc.next();
         }
         Team t1 = teams.get(sc.nextInt());
         //ask for chose team 2 for the game
         System.out.println("Choise player 2 ");
         listTeam(teams);
-        while(!sc.hasNextInt()){
+        while (!sc.hasNextInt()) {
             sc.next();
         }
         Team t2 = teams.get(sc.nextInt());
         //compare players rank in competitors
-         if (t1.rank()< t2.rank()){
-             System.out.println("Winner team " + t2.getNameTeam());
-         }else
-             if(t1.rank()> t2.rank()){
-             System.out.println("Winner team " + t1.getNameTeam());
-         } else{
-                 System.out.println("Draw");
-         }
+        if (t1.rank() < t2.rank()) {
+            System.out.println("Winner team " + t2.getNameTeam());
+        } else if (t1.rank() > t2.rank()) {
+            System.out.println("Winner team " + t1.getNameTeam());
+        } else {
+            System.out.println("Draw");
+        }
 
     }
 

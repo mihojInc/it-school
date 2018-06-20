@@ -1,4 +1,5 @@
 package com.lessons;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -6,7 +7,7 @@ import java.util.Objects;
  * describe settings and behavour of players
  */
 
-public class Player implements Comparable<Player>{
+public class Player implements Comparable<Player> {
     /**
      * Namr of player
      */
@@ -33,7 +34,7 @@ public class Player implements Comparable<Player>{
     }
 
     public void setTeam(Team team) {
-        if (this.team!=null)this.team.deletePlayers(this);
+        if (this.team != null) this.team.deletePlayers(this);
         this.team = team;
     }
 
