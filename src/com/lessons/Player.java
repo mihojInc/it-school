@@ -2,6 +2,9 @@ package com.lessons;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * describe settings and behavour of players
+ */
 
 public class Player implements Comparable<Player>{
     /**
@@ -19,13 +22,18 @@ public class Player implements Comparable<Player>{
     /**
      * team where the players play
      */
-    private Team team;
+    private Team team = null;
     /**
      * cost player
      */
     private double cost;
 
+    public Team getTeam() {
+        return team;
+    }
+
     public void setTeam(Team team) {
+        if (this.team!=null)this.team.deletePlayers(this);
         this.team = team;
     }
 
@@ -37,13 +45,14 @@ public class Player implements Comparable<Player>{
         this.cost = cost;
     }
 
+
     @Override
     public String toString() {
         return "Player{" +
                 "name='" + name + '\'' +
                 ", dateBirth='" + dateBirth + '\'' +
                 ", rank=" + rank +
-                ", team=" + team +
+                ", team=" + team.getNameTeam() +
                 ", cost=" + cost +
                 '}';
     }

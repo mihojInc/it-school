@@ -1,4 +1,8 @@
 package com.lessons;
+
+/**
+ * Class describe list of commands in menu
+ */
 public enum Command {
 
     LIST_PLAYERS ("1. Print list of players", 1),//
@@ -11,8 +15,13 @@ public enum Command {
     LIST_TEAM_LEAD ("8. Print leaders of team", 8),
     PLAY_GAME ("9. Play game", 9),
     EXIT ("10. Exit",10);
-
+    /**
+     * describe command
+     */
     String comm;
+    /**
+     * number of command
+     */
     int level;
 
     Command(String comm, int level) {

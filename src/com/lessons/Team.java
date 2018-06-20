@@ -3,6 +3,10 @@ package com.lessons;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Objects;
+
+/**
+ * class describe behavour and settings of team
+ */
 public class Team implements Comparable<Team>{
     /**
      * name team
@@ -23,8 +27,20 @@ public class Team implements Comparable<Team>{
         this.curMoney = curMoney;
     }
 
+    /**
+     * add player in the team
+     * @param pl
+     */
     void addPlayer(Player pl){
         players.add(pl);
+    }
+
+    /**
+     * remove players from th eteam
+     * @param pl
+     */
+    void deletePlayers(Player pl){
+        players.remove(pl);
     }
 
     @Override
@@ -51,6 +67,10 @@ public class Team implements Comparable<Team>{
         return curMoney;
     }
 
+    /**
+     * calculate summ of players rank
+     * @return
+     */
     public int rank(){
         int rank=0;
         Iterator<Player> itr = players.iterator();
@@ -70,10 +90,15 @@ public class Team implements Comparable<Team>{
 
     @Override
     public String toString() {
+        String play="\n\t";
+        Iterator<Player> itr = players.iterator();
+        while(itr.hasNext()){
+            play = play + itr.next().toString()+"\n\t";
+        }
         return "Team{" +
                 "nameTeam='" + nameTeam + '\'' +
                 ", curMoney=" + curMoney +
-                ", players=" + players +
+                play +
                 '}';
     }
 }
