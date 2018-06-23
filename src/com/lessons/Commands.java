@@ -2,21 +2,23 @@ package com.lessons;
 
 /**
  * Created by Ivan
- * enum commands
  */
 public enum Commands {
-    YES("y"),
-    SORT_ASCENDING("asc"),
-    CLEAR_LIST("clear"),
+    ADD_PLAYER("add"),
+    UNIQUE_PLAYERS("unique"),
+    SHOW_PLAYERS_BY_RATING("rating"),
+    DELETE_PLAYER("delete"),
+    SHOW_TEAMS_AND_PLAYERS("team"),
+    PLAY_MATCH("play"),
     QUIT("q");
 
-    private String commandName;
+    private String command;
 
-    Commands(String commandName) {
-        this.commandName = commandName;
+    Commands(String command) {
+        this.command = command;
     }
 
-    public String getCommandName() {
-        return commandName;
+    public String getCommand() {
+        return command;
     }
 }
