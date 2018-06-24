@@ -8,16 +8,18 @@ public class Player implements Comparable<Player>{
     private String name; //Имя
     private int age;     //Возраст
     private int rating;  //Рейтинг
+    private String team; //Команда
 
     //Constructor
     public Player() {
 
     }
 
-    public Player(String name, int age, int rating) {
+    public Player(String name, int age, int rating, String team) {
         this.name = name;
         this.age = age;
         this.rating = rating;
+        this.team = team;
     }
 
     //Getters and Setters
@@ -45,8 +47,14 @@ public class Player implements Comparable<Player>{
         this.rating = rating;
     }
 
+    public String getTeam() { return team; }
+
+    public void setTeam(String team) {
+        this.team = team; }
 
     //Overridden super class methods
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -54,18 +62,19 @@ public class Player implements Comparable<Player>{
         Player player = (Player) o;
         return age == player.age &&
                 rating == player.rating &&
-                Objects.equals(name, player.name);
+                Objects.equals(name, player.name) &&
+                Objects.equals(team, player.team);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(name, age, rating);
+        return Objects.hash(name, age, rating, team);
     }
 
     @Override
     public String toString() {
-        return "Имя игрока: " + name + " Возраст: " + age + " Рейтинг по FIFA: " + rating;
+        return "Имя игрока: " + name + " Возраст: " + age + " Рейтинг по FIFA: " + rating + " Команда " + team;
     }
 
     /**

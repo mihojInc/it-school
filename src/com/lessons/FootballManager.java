@@ -37,11 +37,12 @@ public class FootballManager {
                         System.out.println(" ");
                         break;
                     case SHOW_PLAYERS_BY_TEAMS:
-                        playerManager.sortingPlayersByTeams();
+//                        playerManager.sortingPlayersByTeams();
+                        playerManager.aLotOfTeamsWithPlayers();
                         System.out.println(" ");
                         break;
                     case PLAY_THE_MATCH:
-                        playerManager.playMatch(playerManager.getCommandOne(), playerManager.getCommandTwo());
+                        playerManager.playMatch(scanner);
                         System.out.println(" ");
                         break;
                     case QUIT: {
@@ -67,7 +68,7 @@ public class FootballManager {
         System.out.println("Отсортировать игроков по рейтингу, нажмите: " + CommandsForFootball.SHOW_PLAYERS_RATING.getCommandName());
         System.out.println("Посмотреть список уникальных игроков, нажмите: " + CommandsForFootball.SHOW_UNIQUE_PLAYERS.getCommandName());
         System.out.println("Что бы удалить игрока из списка, нажмите: " + CommandsForFootball.REMOVE_PLAYERS.getCommandName());
-        System.out.println("Что бы поделить игроков на две команды, нажмите: " + CommandsForFootball.SHOW_PLAYERS_BY_TEAMS.getCommandName());
+        System.out.println("Что бы поделить игроков на команды, нажмите: " + CommandsForFootball.SHOW_PLAYERS_BY_TEAMS.getCommandName());
         System.out.println("Сыграть между командами матч, нажмите: " + CommandsForFootball.PLAY_THE_MATCH.getCommandName());
         System.out.println("Что бы выйти из игры, нажмите: " + CommandsForFootball.QUIT.getCommandName());
     }

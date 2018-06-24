@@ -3,6 +3,7 @@ package com.lessons;
 import java.util.*;
 
 public class PlayerManager {
+
     private List<Player> playerList = new ArrayList<>();
     //Две команды игроков
     private List<Player> commandOne = new ArrayList<>();
@@ -27,7 +28,7 @@ public class PlayerManager {
      * @param scanner
      */
     public void addPlayers(Scanner scanner) throws InputMismatchException {
-        String name;
+        String name, team;
         int age, rating;
         while (true) {
             System.out.println("Сoздайте игрока! Для выхода нажмите \"q\"");
@@ -35,18 +36,21 @@ public class PlayerManager {
             name = scanner.next();
             if (name.equals("q")) break;
             System.out.print("Введите возраст игрока: ");
-            while (!scanner.hasNextInt()){
+            while (!scanner.hasNextInt()) {
                 System.out.print("Введите возраст игрока цифрами: ");
                 scanner.next();
             }
             age = scanner.nextInt();
             System.out.print("Введите рейтинг игрока по FIFA: ");
-            while (!scanner.hasNextInt()){
+            while (!scanner.hasNextInt()) {
                 System.out.print("Введите рейтинг игрока цифрами: ");
                 scanner.next();
             }
             rating = scanner.nextInt();
-            playerList.add(new Player(name, age, rating));
+            System.out.print("Введите имя команды: ");
+            team = scanner.next();
+
+            playerList.add(new Player(name, age, rating, team));
         }
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("Игроки которых вы создали!");
@@ -82,9 +86,13 @@ public class PlayerManager {
         playerList.sort(new Comparator<Player>() {
             @Override
             public int compare(Player p1, Player p2) {
-                if (p1.getRating() == p2.getRating()) return 0;
-                else if (p1.getRating() > p2.getRating()) return 1;
-                else return -1;
+                if (p1.getRating() == p2.getRating()) {
+                    return 0;
+                } else if (p1.getRating() > p2.getRating()) {
+                    return 1;
+                } else {
+                    return -1;
+                }
             }
         });
         playerList.forEach(System.out::println);
@@ -101,7 +109,7 @@ public class PlayerManager {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~");
         for (Player player : playerSet) {
             System.out.println("Имя игрока: " + player.getName() + " Возраст: " + player.getAge()
-                    + " Рейтинг по FIFA: " + player.getRating());
+                    + " Рейтинг по FIFA: " + player.getRating() + " Команда: " + player.getTeam());
         }
 
     }
@@ -126,6 +134,7 @@ public class PlayerManager {
 
     /**
      * Method for sorting players by teams
+     * //TODO Метод сортировки игроков на две команды больше не нужен
      */
     public void sortingPlayersByTeams() {
         Integer index = 0;
@@ -143,26 +152,43 @@ public class PlayerManager {
     }
 
     /**
+     * //TODO Old parameter List<Player> comm1, List<Player> comm2
      * The method of comparing the two teams by rating
-     * @param comm1
-     * @param comm2
+     * @param
+     * @param
      */
-    public void playMatch(List<Player> comm1, List<Player> comm2) {
-        int raiting1 = 0;
-        int raiting2 = 0;
-        for (Player aComm1 : comm1) {
-            raiting1 += aComm1.getRating();
+    public void playMatch(Scanner scanner) {
+        String team1, team2;
+        int raiting1 = 0 ,raiting2 = 0;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Введите имя первой команды!");
+        team1 = scan.next();
+        System.out.println("Введите имя второй команды!");
+        team2 = scan.next();
+        for (Player rating : playerList) {
+            if (team1.equals(rating.getTeam())) {
+                raiting1 += rating.getRating();
+            }
+            if (team2.equals(rating.getTeam())) {
+                raiting2 += rating.getRating();
+            }
         }
-        for (Player aComm2 : comm2) {
-            raiting2 += aComm2.getRating();
-        }
+
+//        int raiting1 = 0;
+//        int raiting2 = 0;
+//        for (Player aComm1 : comm1) {
+//            raiting1 += aComm1.getRating();
+//        }
+//        for (Player aComm2 : comm2) {
+//            raiting2 += aComm2.getRating();
+//        }
         if (raiting1 > raiting2) {
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            System.out.println("Победила команда \"A\" со счетом: " + raiting1 + ":" + raiting2);
+            System.out.println("Победила команда: " + team1 + " со счетом: " + raiting1 + ":" + raiting2);
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         } else if (raiting1 < raiting2) {
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            System.out.println("Победила команда \"B\" со счетом: " + raiting2 + ":" + raiting1);
+            System.out.println("Победила команда: " + team2 + " со счетом: " + raiting2 + ":" + raiting1);
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         } else {
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -172,6 +198,27 @@ public class PlayerManager {
         //        String result = (raiting1 > raiting2) ? "Победила команда: \"A\" со счетом: " + raiting1 + ":" + raiting2 :
 //                "Победила команда: \"B\" со счетом: " + raiting2 + ":" + raiting1;
 //        System.out.println(result);
+    }
+
+    /**
+     * The method in which players are sorted into teams
+     */
+    public void aLotOfTeamsWithPlayers() {
+        Set<String> teamList = new HashSet<>();
+        Set<Player> playerSet = new HashSet<>(playerList);
+        for (Player team : playerSet) {
+            teamList.add(team.getTeam());
+        }
+        for (String team : teamList) {
+            System.out.println("Команда: " + team);
+            for (Player player : playerSet) {
+                if (team.equals(player.getTeam())) {
+                    System.out.println("Имя: " + player.getName() + " Возраст: " + player.getAge() + " Рейтинг: " + player.getRating());
+                }
+            }
+        }
+
+
     }
 
     /**
