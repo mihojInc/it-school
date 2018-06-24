@@ -12,12 +12,12 @@ public class Main {
         System.out.println(myfile.exists());
 
 
-        // в статических методах не нужно создавать объекты класса
         String path = "C:\\Users\\master\\IdeaProjects\\it-school9workclass\\src\\com\\lessons\\myfile.log";
         String pathL = "C:\\Users\\master\\IdeaProjects\\it-school9workclass\\src\\com\\lessons\\logs.txt";
+        String pathF = "C:\\Users\\master\\IdeaProjects\\it-school9workclass\\src\\com\\lessons\\fonts.txt";
         String directoryPath = "C:\\Users\\master\\IdeaProjects\\it-school9workclass\\src\\com\\lessons\\";
 
-
+        // в статических методах не нужно создавать объекты класса
         for (String sps : FileUtil.listFilesFromDir(directoryPath)) {
 
             System.out.println(sps);
@@ -31,6 +31,9 @@ public class Main {
         }
         File logFile = new File(pathL);
         FileUtil.writeToFile(logFile, FileUtil.listFilesFromDir(directoryPath));
+
+        File fontFile = new File(pathF);
+        FileUtil.writeToFile(fontFile, new String("font size 12p").getBytes());
 
     }
 

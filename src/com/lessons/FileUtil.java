@@ -100,42 +100,60 @@ public class FileUtil {
             fw = new FileWriter(file);
             bw = new BufferedWriter(fw);
 
-
-            //bw = new BufferedWriter(fw);
             for (String strF : text) {
 
                 try {
                     bw.write(strF);
                     bw.newLine();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println("Ошибка записи в файл");
                 }
             }
             try {
                 bw.flush();
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("Ошибка при вызове метода flush()");
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Ошибка при обращении к файлу ");
         } finally {
 
 
             try {
                 fw.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("Ошибка закрытия файла");
             }
             try {
                 bw.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("Ошибка закрытия файла");
             }
         }
 
     }
 
     public static void writeToFile(File file, byte[] info) {
+        FileOutputStream fs = null;
+        try {
+            fs = new FileOutputStream(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("Файл не найден");
+        }
+        try {
+            fs.write(info);
+        } catch (IOException e) {
+            System.out.println("Ошибка записи в файл");
+        } finally {
+
+            try {
+                fs.close();
+                fs.flush();
+
+            } catch (IOException e) {
+                System.out.println("Ошибка закрытия файла");
+            }
+        }
 
     }
 }
