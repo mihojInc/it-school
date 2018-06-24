@@ -10,11 +10,6 @@ import java.util.List;
  */
 public class FileUtil {
 
-    private static FileReader fileReader;
-    private static BufferedReader bufferedReader;
-    private static FileOutputStream fileOutputStream;
-    private static File file;
-
     /**
      * Get File from his path
      *
@@ -22,7 +17,7 @@ public class FileUtil {
      * @return File if it exist or null
      */
     public static File getFile(String path) {
-        file = new File(path);
+        File file = new File(path);
 
         if (file.isFile()) {
             return file;
@@ -38,7 +33,7 @@ public class FileUtil {
      * @return ArrayList with all present files or empty List
      */
     public static List<File> getFiles(String dirPath) {
-        file = new File(dirPath);
+        File file = new File(dirPath);
         List<File> files = new ArrayList<>();
 
         if (file.isFile()) {
@@ -60,7 +55,7 @@ public class FileUtil {
     public static List<String> listFilesFromDir(String dirPath) {
         List<String> listFiles;
 
-        file = new File(dirPath);
+        File file = new File(dirPath);
 
         if (file.isDirectory()) {
             listFiles = Arrays.asList(file.list());
@@ -77,6 +72,9 @@ public class FileUtil {
      */
     public static List<String> readFiles(File file) {
         List<String> fileBody = new ArrayList<>();
+
+        FileReader fileReader = null;
+        BufferedReader bufferedReader = null;
 
         if (file.isFile()) {
             try {
@@ -110,7 +108,7 @@ public class FileUtil {
     public static void writeToFile(File file, List<String> content) {
 
         FileWriter fileWriter = null;
-        BufferedWriter bufferedWriter;
+        BufferedWriter bufferedWriter = null;
 
         if (file.isFile()) {
             try {
@@ -127,7 +125,7 @@ public class FileUtil {
             } finally {
                 try {
                     fileWriter.close();
-                    bufferedReader.close();
+                    bufferedWriter.close();
                 } catch (IOException e) {
                     System.out.println("D't close writers");
                 }
@@ -142,6 +140,8 @@ public class FileUtil {
      * @param content array of the bytes
      */
     public static void writeToFile(File file, byte[] content) {
+        FileOutputStream fileOutputStream = null;
+
         if (file.isDirectory()) {
             System.out.println(file.getName() + " is directory");
         } else {
