@@ -15,9 +15,10 @@ public class FileUtil {
     public static File getFile(String path) {
         File file = new File(path);
         if (file.isFile()) {
+            System.out.println("File path: " + file.getPath());
             return file;
         } else {
-            System.out.println("File not found");
+            System.out.println("File not found!");
         }
         return null;
     }
@@ -32,7 +33,7 @@ public class FileUtil {
         if (file.exists() && file.isDirectory()) {
             return Arrays.asList(file.listFiles());
         } else {
-            System.out.println("Directory is missing");
+            System.out.println("Directory is missing!");
         }
         return null;
     }
@@ -47,7 +48,7 @@ public class FileUtil {
         if (file.exists()) {
             return Arrays.asList(file.list());
         } else {
-            System.out.println("Files is missing");
+            System.out.println("Files is missing!");
         }
         return null;
     }
@@ -67,7 +68,7 @@ public class FileUtil {
                 System.out.println(string);
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("File was not found!");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -82,9 +83,32 @@ public class FileUtil {
     public static void writeFile(File file, List<String> text) {
         //Поток закрывается автоматически без метода flush()
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))) {
-            for (String string : text) {
-                bufferedWriter.write(string);
+            if(file.exists()){
+                for (String string : text) {
+                    bufferedWriter.write(string + "\n");
+                }
+                System.out.println("Recording was successful!");
+            }else {
+                System.out.println("File not found! The recording didn't work!");
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * The method that writes a stream of bytes to a file
+     * @param file - accepts the input file
+     * @param textBytes - array of bytes
+     */
+    public static void writeFile(File file, byte[] textBytes) {
+        try (BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(file))) {
+            if(file.exists()){
+                bufferedOutputStream.write(textBytes);
+                System.out.println("Write the byte stream successfully!");
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found! The byte stream is not completed!");
         } catch (IOException e) {
             e.printStackTrace();
         }
