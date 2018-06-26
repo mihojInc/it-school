@@ -7,7 +7,7 @@ import java.util.*;
  */
 public class Functionality {
     private List <Player> players = new ArrayList<>();
-    private HashMap<String, HashSet<Player>> teamList = new HashMap();
+    private HashMap<String, List<Player>> teamList = new HashMap<>();
 
     /**
      * method for adding new player to list
@@ -44,7 +44,7 @@ public class Functionality {
 
         //players.add(player);
         if(!teamList.containsKey(player.getTeam())){
-            teamList.put(player.getTeam(), new HashSet<>());
+            teamList.put(player.getTeam(), new ArrayList<>());
             teamList.get(player.getTeam()).add(player);
         }else{
             teamList.get(player.getTeam()).add(player);
@@ -56,30 +56,20 @@ public class Functionality {
      * Method for showing list of unique players
      */
     public void showUniquePlayers(){
-//        Set<Player> uniquePlayer = new HashSet<>(players);
-//        int i = 1;
-//        for(Player player: uniquePlayer){
-//            System.out.println("==========Player " + i + "=========");
-//            System.out.println("Name: " + player.getName());
-//            System.out.println("Age: " + player.getAge());
-//            System.out.println("Rating: " + player.getRating());
-//            System.out.println("Team: " + player.getTeam());
-//            System.out.println("===========================");
-//            i++;
-//        }
         int i = 1;
-        for(Map.Entry<String, HashSet<Player>> entry : teamList.entrySet()){
-            //System.out.println("Team: " + entry.getValue().getTeam() + "; Age: " + entry.getValue().getAge() + "; Rating " + entry.getValue().getRating() + "\n");
-            System.out.println("==========Team: " + entry.getKey() + "=========");
+        HashMap<String, HashSet<Player>> uniqueList = new HashMap(teamList);
+        for(Map.Entry<String, HashSet<Player>> entry : uniqueList.entrySet()){
             for(Player player:  entry.getValue()){
-                System.out.println("** Player " + i + " **");
+                System.out.println("==========Player " + i + "=========");
                 System.out.println("Name: " + player.getName());
                 System.out.println("Age: " + player.getAge());
-                System.out.println("Rating: " + player.getRating() + "\n");
+                System.out.println("Rating: " + player.getRating());
+                System.out.println("Team: " + entry.getKey());
+                System.out.println("===========================");
                 i++;
             }
 
-            System.out.println("===========================");
+
         }
     }
 
@@ -137,22 +127,8 @@ public class Functionality {
      * Method shows existing teams and players for every team
      */
     public void showTeams(){
-//        Set<String> teamList = new HashSet<>();
-//        Set<Player> uniquePlayer = new HashSet<>(players);
-//
-//        for(Player team: uniquePlayer){
-//            teamList.add(team.getTeam());
-//        }
-//
-//        for(String team: teamList){
-//            System.out.println("Team: " + team);
-//                for(Player player: uniquePlayer){
-//                    if(team.equals(player.getTeam())){
-//                        System.out.println("Name: " + player.getName() + "; Age: " + player.getAge() + "; Rating " + player.getRating());
-//                    }
-//                }
-//        }
-        for(Map.Entry<String, HashSet<Player>> entry : teamList.entrySet()){
+        HashMap<String, HashSet<Player>> uniqueList = new HashMap(teamList);
+        for(Map.Entry<String, HashSet<Player>> entry : uniqueList.entrySet()){
             System.out.println("==========Team: " + entry.getKey() + "=========");
             for(Player player:  entry.getValue()){
                 System.out.println("Name: " + player.getName() + "; Age: " + player.getAge() + "; Rating " + player.getRating());
@@ -176,14 +152,28 @@ public class Functionality {
         System.out.println("Enter name of second team");
         team2 = scan.nextLine();
 
-        for(Player rating: players){
-            if(team1.equals(rating.getTeam())){
-                rating1+=rating.getRating();
+        HashMap<String, HashSet<Player>> uniqueList = new HashMap(teamList);
+        for(Map.Entry<String, HashSet<Player>> entry : uniqueList.entrySet()){
+            if(team1.equals(entry.getKey())){
+                for(Player player:entry.getValue()){
+                    rating1+=player.getRating();
+                }
             }
-            if(team2.equals(rating.getTeam())){
-                rating2+=rating.getRating();
+            if(team2.equals(entry.getKey())){
+                for(Player player:entry.getValue()){
+                    rating2+=player.getRating();
+                }
             }
         }
+
+//        for(Player rating: players){
+//            if(team1.equals(rating.getTeam())){
+//                rating1+=rating.getRating();
+//            }
+//            if(team2.equals(rating.getTeam())){
+//                rating2+=rating.getRating();
+//            }
+//        }
 
         if(rating1 == 0 || rating2 == 0){
             System.out.println("You print incorrect name of team");
