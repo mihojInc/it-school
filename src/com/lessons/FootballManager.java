@@ -38,7 +38,8 @@ public class FootballManager {
                         break;
                     case SHOW_PLAYERS_BY_TEAMS:
 //                        playerManager.sortingPlayersByTeams();
-                        playerManager.aLotOfTeamsWithPlayers();
+//                        playerManager.aLotOfTeamsWithPlayers();
+                        playerManager.sortingPlayersIntoTeams();
                         System.out.println(" ");
                         break;
                     case PLAY_THE_MATCH:

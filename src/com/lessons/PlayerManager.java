@@ -1,6 +1,7 @@
 package com.lessons;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class PlayerManager {
 
@@ -10,9 +11,7 @@ public class PlayerManager {
     private List<Player> commandTwo = new ArrayList<>();
 
     //Constructor
-    public List<Player> getPlayerList() {
-        return playerList;
-    }
+    public List<Player> getPlayerList() { return playerList; }
 
     //Getters and Setters
     public List<Player> getCommandOne() {
@@ -200,9 +199,7 @@ public class PlayerManager {
 //        System.out.println(result);
     }
 
-    /**
-     * The method in which players are sorted into teams
-     */
+
     public void aLotOfTeamsWithPlayers() {
         Set<String> teamList = new HashSet<>();
         Set<Player> playerSet = new HashSet<>(playerList);
@@ -217,8 +214,32 @@ public class PlayerManager {
                 }
             }
         }
+    }
 
-
+    /**
+     * The method in which players are sorted into teams
+     */
+    public void sortingPlayersIntoTeams() {
+        Set<String> teams = new TreeSet<>();
+        for (Player p : playerList) {
+            teams.add(p.getTeam());
+        }
+        Map<String, ArrayList<Player>> teamsMap = new HashMap<>();
+        for (String team : teams) {
+            ArrayList<Player> players = new ArrayList<>();
+            for (Player p : playerList) {
+                if (p.getTeam().equals(team)) {
+                    players.add(p);
+                }
+            }
+            teamsMap.put(team, players);
+        }
+        for (Map.Entry<String, ArrayList<Player>> entry : teamsMap.entrySet()) {
+            System.out.println("Команда: " + entry.getKey());
+            for (Player p : entry.getValue()){
+                System.out.println("Имя: " + p.getName() + " Возраст: " + p.getAge() + " Рейтинг: " + p.getRating());
+            }
+        }
     }
 
     /**

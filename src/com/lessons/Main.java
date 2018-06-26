@@ -10,5 +10,6 @@ public class Main {
         footballManager.startGame(scanner);
         footballManager.showFootballManager();
 
+
     }
 }
