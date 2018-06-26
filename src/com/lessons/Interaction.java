@@ -21,6 +21,7 @@ public class Interaction {
      * Method allows user to choose command. And performs congruent function
      * @param scan
      */
+
     public void mainChoice(Scanner scan){
 
         while(true){
@@ -30,23 +31,28 @@ public class Interaction {
             String checkString = scan.nextLine();
 
             if (checkString.equals(Commands.ADD_PLAYER.getCommand())){
-                functions.add_player();
+                functions.add_player(scan);
+                scan.nextLine();
             }else if (checkString.equals(Commands.UNIQUE_PLAYERS.getCommand())){
                 functions.showUniquePlayers();
             }else if (checkString.equals(Commands.RATING_PLAYERS.getCommand())){
                 functions.showPlayersByRating();
             }else if (checkString.equals(Commands.DELETE_PLAYER.getCommand())){
-                functions.deletePlayer();
+                functions.deletePlayer(scan);
+                scan.nextLine();
             }else if (checkString.equals(Commands.SHOW_TEAM_AND_PLAYERS.getCommand())){
                 functions.showTeams();
             }else if (checkString.equals(Commands.PLAY_MATCH.getCommand())){
-                functions.play();
+                functions.play(scan);
+                scan.nextLine();
             }else if (checkString.equals(Commands.EXIT.getCommand())){
                 System.out.println("Program is finished");
                 return;
             }else{
                 System.out.println("Incorrect data");
             }
+
+
         }
 
     }
