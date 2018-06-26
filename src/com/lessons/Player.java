@@ -11,6 +11,7 @@ public class Player {
     private Integer age;
     private Integer rating;
     private String team;
+    private Long id;
 
     /**
      * Constructor allows to set name, age, team and rating
@@ -19,11 +20,12 @@ public class Player {
      * @param rating
      * @param team
      */
-    public Player(String name, Integer age, Integer rating, String team) {
+    public Player(String name, Integer age, Integer rating, String team, Long id) {
         this.name = name;
         this.age = age;
         this.rating = rating;
         this.team = team;
+        this.id = id;
     }
 
     /**
@@ -31,6 +33,10 @@ public class Player {
      */
     public Player(){
 
+    }
+
+    public Long getId() {
+        return id;
     }
 
     /**

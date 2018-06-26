@@ -44,7 +44,6 @@ public class Interaction {
                 functions.showTeams();
             }else if (checkString.equals(Commands.PLAY_MATCH.getCommand())){
                 functions.play(scan);
-                scan.nextLine();
             }else if (checkString.equals(Commands.EXIT.getCommand())){
                 System.out.println("Program is finished");
                 return;
