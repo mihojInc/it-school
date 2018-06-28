@@ -1,8 +1,9 @@
 package com.lessons;
 
+import java.util.Comparator;
 import java.util.Objects;
 
-public class Player implements Comparable<Player>{
+public class Player implements Comparator<Player> {
 
     //Fields
     private String name; //Имя
@@ -11,15 +12,10 @@ public class Player implements Comparable<Player>{
     private String team; //Команда
 
     //Constructor
-    public Player() {
-
-    }
-
-    public Player(String name, int age, int rating, String team) {
+    public Player(String name, int age, int rating) {
         this.name = name;
         this.age = age;
         this.rating = rating;
-        this.team = team;
     }
 
     //Getters and Setters
@@ -49,41 +45,44 @@ public class Player implements Comparable<Player>{
 
     public String getTeam() { return team; }
 
-    public void setTeam(String team) {
-        this.team = team; }
+    public void setTeam(String team) { this.team = team; }
 
     //Overridden super class methods
+
+
 
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Player)) return false;
         Player player = (Player) o;
-        return age == player.age &&
-                rating == player.rating &&
-                Objects.equals(name, player.name) &&
-                Objects.equals(team, player.team);
+        return getAge() == player.getAge() &&
+                getRating() == player.getRating() &&
+                Objects.equals(getName(), player.getName()) &&
+                Objects.equals(getTeam(), player.getTeam());
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(name, age, rating, team);
+        return Objects.hash(getName(), getAge(), getRating(), getTeam());
     }
+
 
     @Override
     public String toString() {
-        return "Имя игрока: " + name + " Возраст: " + age + " Рейтинг по FIFA: " + rating + " Команда " + team;
+        return "Имя: " + name + " Возраст: " + age + " Рейтинг по FIFA: " + rating;
     }
 
-    /**
-     * A redefined method of compareTo Interface Compareble for sorting players by name
-     * @param player
-     * @return
-     */
+
     @Override
-    public int compareTo(Player player) {
-        return name.compareTo(player.name);
+    public int compare(Player p1, Player p2) {
+        if(p1.getRating() > p2.getRating()) {
+            return 1;
+        } else if(p1.getRating() < p2.getRating()) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 }
