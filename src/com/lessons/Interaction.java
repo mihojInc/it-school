@@ -28,29 +28,39 @@ public class Interaction {
             for(Commands command: Commands.values()){
                 System.out.println(command.getMessage());
             }
-            String checkString = scan.nextLine();
 
-            if (checkString.equals(Commands.ADD_PLAYER.getCommand())){
-                functions.add_player(scan);
-                scan.nextLine();
-            }else if (checkString.equals(Commands.UNIQUE_PLAYERS.getCommand())){
-                functions.showUniquePlayers();
-            }else if (checkString.equals(Commands.RATING_PLAYERS.getCommand())){
-                functions.showPlayersByRating();
-            }else if (checkString.equals(Commands.DELETE_PLAYER.getCommand())){
-                functions.deletePlayer(scan);
-                scan.nextLine();
-            }else if (checkString.equals(Commands.SHOW_TEAM_AND_PLAYERS.getCommand())){
-                functions.showTeams();
-            }else if (checkString.equals(Commands.PLAY_MATCH.getCommand())){
-                functions.play(scan);
-            }else if (checkString.equals(Commands.EXIT.getCommand())){
-                System.out.println("Program is finished");
-                return;
-            }else{
+            Commands command = Commands.getCommandTitle(scan.nextLine());
+
+            if(command == null){
                 System.out.println("Incorrect data");
+                continue;
             }
 
+            switch (command){
+                case ADD_PLAYER:
+                    functions.add_player(scan);
+                    scan.nextLine();
+                    break;
+                case UNIQUE_PLAYERS:
+                    functions.showUniquePlayers();
+                    break;
+                case RATING_PLAYERS:
+                    functions.showPlayersByRating();
+                    break;
+                case DELETE_PLAYER:
+                    functions.deletePlayer(scan);
+                    scan.nextLine();
+                    break;
+                case PLAY_MATCH:
+                    functions.play(scan);
+                    break;
+                case SHOW_TEAM_AND_PLAYERS:
+                    functions.showTeams();
+                    break;
+                case EXIT:
+                    System.out.println("Program is finished");
+                    return;
+            }
 
         }
 

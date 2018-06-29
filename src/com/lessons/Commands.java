@@ -25,5 +25,13 @@ public enum Commands {
         return command;
     }
 
-
+    public static Commands getCommandTitle(String command){
+        Commands result = null;
+        for(Commands com: values()){
+            if(com.getCommand().equals(command)){
+                result = com;
+            }
+        }
+        return result;
+    }
 }
