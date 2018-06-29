@@ -8,6 +8,7 @@ import java.util.*;
 public class Functionality {
     private List <Player> players = new ArrayList<>();
     private HashMap<String, HashSet<Player>> teamList = new HashMap<>();
+    private PlayerService service = new PlayerService();
 
     /**
      * method for adding new player to list
@@ -18,7 +19,6 @@ public class Functionality {
         Integer age;
         Integer rating;
         String team;
-
 
         System.out.println("Enter player's name ");
         name = scan.nextLine();
@@ -55,17 +55,7 @@ public class Functionality {
     public void showUniquePlayers(){
         int i = 1;
         for(Map.Entry<String, HashSet<Player>> entry : teamList.entrySet()){
-            for(Player player:  entry.getValue()){
-                System.out.println("==========Player " + i + "=========");
-                System.out.println("Name: " + player.getName());
-                System.out.println("Age: " + player.getAge());
-                System.out.println("Rating: " + player.getRating());
-                System.out.println("Team: " + entry.getKey());
-                System.out.println("===========================");
-                i++;
-            }
-
-
+            service.printPlayerListStartId(entry.getValue());
         }
     }
 
@@ -73,15 +63,7 @@ public class Functionality {
      * methods shows players by their rating from the lowest to the highest
      */
     public void showPlayersByRating(){
-        SortByRating ratingSort = new SortByRating();
-        TreeSet<Player> playerTree = new TreeSet<>(ratingSort);
-        for(HashSet<Player> player: teamList.values()){
-            playerTree.addAll(player);
-        }
-        for(Player  player : playerTree){
-            System.out.println(player.getRating() + ". Name: " + player.getName() + "; Team: " + player.getTeam() + "; Age " + player.getAge() + ";");
-        }
-
+        service.printPlayerListStartRating(service.sortPlayersByRating(teamList));
     }
 
     /**
@@ -90,10 +72,9 @@ public class Functionality {
     public void deletePlayer(Scanner scan){
         long id;
         long deletePlayer = 0;
+
         for(HashSet<Player> playerList: teamList.values()){
-            for(Player player: playerList){
-                System.out.println("Id: " + player.getId() + ". Name: " + player.getName() + "; Team: " + player.getTeam() + "; Rating: " + player.getRating() + "; Age " + player.getAge() + ";");
-            }
+            service.printPlayerListStartId(playerList);
         }
         System.out.println("Enter id of player, you want to delete");
 
@@ -130,10 +111,7 @@ public class Functionality {
     public void showTeams(){
         for(Map.Entry<String, HashSet<Player>> entry : teamList.entrySet()){
             System.out.println("==========Team: " + entry.getKey() + "=========");
-            for(Player player:  entry.getValue()){
-                System.out.println("Name: " + player.getName() + "; Age: " + player.getAge() + "; Rating " + player.getRating());
-            }
-
+            service.printPlayerListStartId(entry.getValue());
             System.out.println("===========================");
         }
     }
@@ -166,7 +144,7 @@ public class Functionality {
         }
 
         if(rating1 == 0 || rating2 == 0){
-            System.out.println("You print incorrect name of team");
+            System.out.println("You print incorrect name of team or one of the teams has no players");
         }else if(rating1>rating2){
             System.out.println(team1 + " win with score: " + rating1 + ":" + rating2);
         }else if(rating1<rating2){

@@ -31,35 +31,34 @@ public class Interaction {
 
             Commands command = Commands.getCommandTitle(scan.nextLine());
 
-            if(command == null){
+            if(command != null){
+                switch (command){
+                    case ADD_PLAYER:
+                        functions.add_player(scan);
+                        scan.nextLine();
+                        break;
+                    case UNIQUE_PLAYERS:
+                        functions.showUniquePlayers();
+                        break;
+                    case RATING_PLAYERS:
+                        functions.showPlayersByRating();
+                        break;
+                    case DELETE_PLAYER:
+                        functions.deletePlayer(scan);
+                        scan.nextLine();
+                        break;
+                    case PLAY_MATCH:
+                        functions.play(scan);
+                        break;
+                    case SHOW_TEAM_AND_PLAYERS:
+                        functions.showTeams();
+                        break;
+                    case EXIT:
+                        System.out.println("Program is finished");
+                        return;
+                }
+            }else{
                 System.out.println("Incorrect data");
-                continue;
-            }
-
-            switch (command){
-                case ADD_PLAYER:
-                    functions.add_player(scan);
-                    scan.nextLine();
-                    break;
-                case UNIQUE_PLAYERS:
-                    functions.showUniquePlayers();
-                    break;
-                case RATING_PLAYERS:
-                    functions.showPlayersByRating();
-                    break;
-                case DELETE_PLAYER:
-                    functions.deletePlayer(scan);
-                    scan.nextLine();
-                    break;
-                case PLAY_MATCH:
-                    functions.play(scan);
-                    break;
-                case SHOW_TEAM_AND_PLAYERS:
-                    functions.showTeams();
-                    break;
-                case EXIT:
-                    System.out.println("Program is finished");
-                    return;
             }
 
         }
