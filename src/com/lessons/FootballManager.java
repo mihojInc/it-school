@@ -83,24 +83,43 @@ public class FootballManager {
         }
     }
 
-    public String game(FootballTeam ft1, FootballTeam ft2){
+    public void game(String ft1, String ft2){
         Double rating1 = 0d;
         Double rating2 = 0d;
         for(FootballPlayer fp: listOfPlayers){
-            if(fp.getTeam().getNameOfTeam().equals(ft1.getNameOfTeam())){
+            if(fp.getTeam().getNameOfTeam().equals(ft1)){
                 rating1+=fp.getRating();
-            } else if(fp.getTeam().getNameOfTeam().equals(ft2.getNameOfTeam())){
-                rating1+=fp.getRating();
+                System.out.println(rating1);
+            } else if(fp.getTeam().getNameOfTeam().equals(ft2)){
+                rating2+=fp.getRating();
+                System.out.println(rating2);
             }
         }
         if(rating1>rating2){
-            return "Winner is "+ft1.getNameOfTeam();
+            System.out.println("Winner is "+ft1);
         } else if(rating1>rating2){
-            return "Winner is "+ft2.getNameOfTeam();
+            System.out.println("Winner is "+ft2);
         }
-        return "it is draw";
+        System.out.println("it is draw");
+    }
+     public void displayTeams(){
+       for(FootballTeam fts: listOfTeams){
+        System.out.println(fts.getNameOfTeam());
+       }
     }
 
+    public void deletePlayer(String nameOfPlayer){
+        FootballPlayer toDelete = null;
+        for(FootballPlayer fp: listOfPlayers){
+            if(fp.getName().equals(nameOfPlayer)){
+                toDelete = fp;
+
+            }
+        }
+        if(toDelete!=null){
+        listOfPlayers.remove(toDelete);
+        }else {System.out.println("Error during deleting");}
+    }
 
 
 

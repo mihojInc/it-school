@@ -48,6 +48,12 @@ public class Interaction {
 
 
             } else if (result.equals("deletePlayer")) {
+                newFootballManager.sortedByRating();
+                System.out.println("Enter player to delete");
+                inp.nextLine();
+                String toDelete = inp.nextLine();
+                newFootballManager.deletePlayer(toDelete);
+                newFootballManager.sortedByRating();
 
 
             } else if (result.equals("byTeams")) {
@@ -55,6 +61,18 @@ public class Interaction {
 
 
             } else if (result.equals("play")) {
+                System.out.println("There are available teams:");
+                newFootballManager.displayTeams();
+                System.out.println("Enter names of teams:");
+                if(inp.hasNext()){
+                    inp.nextLine();
+                    String firstTeam = inp.nextLine();
+                    System.out.println(firstTeam);
+                    String secondTeam = inp.nextLine();
+                    System.out.println(secondTeam);
+                    newFootballManager.game(firstTeam,secondTeam);
+                }
+
 
 
             } else if (result.equals("exit")) {
