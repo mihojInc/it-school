@@ -1,17 +1,19 @@
 package com.lessons;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 public class Shop {
-    ArrayList<Product> productList;
-    List<Product> productListSync = Collections.synchronizedList(productList);
+    private ArrayList<Product> productList;
+    private List<Product> productListSync = Collections.synchronizedList(productList);
 
-    Producer producer;
-    Customer customer;
-    Integer boughtProduct =  (int) ( Math.random() * productListSync.size() );
+    private File file = new File("./src/main/java/com/lessons/report.txt");
+    private Producer producer;
+    private Customer customer;
+    private Integer boughtProduct =  (int) ( Math.random() * productListSync.size() );
 
     public synchronized void getProduct(){
         while (productListSync.size() < 1){
@@ -24,7 +26,9 @@ public class Shop {
         }
 
         productListSync.remove(1);
-        System.out.println("Customer " + customer.getName() + " bought " + boughtProduct);
+        String str = "Customer " + customer.getName() + " bought " + boughtProduct;
+        System.out.println(str);
+        FileService.appedToFile(file, str);
         notify();
     }
 
@@ -39,7 +43,9 @@ public class Shop {
         }
 
         productListSync.add(producer.getProduct());
-        System.out.println("Producer of " + producer.getProduct().getName() + " add one good to shop");
+        String str = "Producer of " + producer.getProduct().getName() + " add one good to shop";
+        System.out.println(str);
+        FileService.appedToFile(file, str);
         notify();
     }
 }
