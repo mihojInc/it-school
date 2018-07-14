@@ -2,7 +2,7 @@ package com.lessons;
 
 import java.io.File;
 
-public class Producer{
+public class Producer implements Runnable{
     private Product product;
     private Shop shop;
     private File file = new File("./src/main/java/com/lessons/report.txt");
@@ -26,19 +26,29 @@ public class Producer{
         synchronized (shop){
             while (shop.getPRODUCT_COUNTER() >= 6){
                 try {
-                    System.out.println("Producer of " + product.getName() + " is waiting for free space at stock");
+                    String strWait = "Producer of " + product.getName() + " is waiting for free space at stock";
+                    FileService.appedToFile(file, strWait);
+                    System.out.println(strWait);
                     shop.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
 
+            String str = "Producer of " + product.getName() + " add one good to shop";
+
             shop.getProductListSync().add(product);
             shop.setPRODUCT_COUNTER(shop.getPRODUCT_COUNTER() + 1);
-            String str = "Producer of " + product.getName() + " add one good to shop";
+            shop.TOTAL_PRODUCTS.getAndIncrement();
             System.out.println(str);
             FileService.appedToFile(file, str);
             shop.notifyAll();
+        }
+    }
+
+    public void run() {
+        while(shop.TOTAL_PRODUCTS.get() < 41) {
+            putProduct(product);
         }
     }
 

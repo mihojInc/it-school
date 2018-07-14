@@ -20,20 +20,13 @@ public class App {
         Producer producer3 = new Producer("milk", shop);
 
         FileService.clearFile(file);
-        ProducerRun producerRun1 = new ProducerRun(producer1);
-        ProducerRun producerRun2 = new ProducerRun(producer2);
-        ProducerRun producerRun3 = new ProducerRun(producer3);
 
-        CustomerRun customerRun1 = new CustomerRun(customer1);
-        CustomerRun customerRun2 = new CustomerRun(customer2);
+        new Thread(producer1).start();
+        new Thread(producer2).start();
+        new Thread(producer3).start();
 
-
-        new Thread(producerRun1).start();
-        new Thread(producerRun2).start();
-        new Thread(producerRun3).start();
-
-        new Thread(customerRun1).start();
-        new Thread(customerRun2).start();
+        new Thread(customer1).start();
+        new Thread(customer2).start();
 
     }
 }

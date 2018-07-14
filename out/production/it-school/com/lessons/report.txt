@@ -1,0 +1,96 @@
+Producer of fish add one good to shop
+Producer of fish add one good to shop
+Producer of fish add one good to shop
+Producer of fish add one good to shop
+Producer of fish add one good to shop
+Producer of fish add one good to shop
+Producer of fish is waiting for free space at stock
+Customer Nick bought fish
+Customer Nick bought fish
+Customer Nick bought fish
+Customer Nick bought fish
+Customer Nick bought fish
+Producer of meat add one good to shop
+Producer of meat add one good to shop
+Producer of meat add one good to shop
+Producer of meat add one good to shop
+Producer of meat add one good to shop
+Producer of meat is waiting for free space at stock
+Customer Tom bought meat
+Customer Tom bought meat
+Customer Tom bought fish
+Customer Tom bought meat
+Customer Tom bought meat
+Customer Tom bought meat
+Producer of milk add one good to shop
+Producer of milk add one good to shop
+Producer of milk add one good to shop
+Producer of milk add one good to shop
+Producer of milk add one good to shop
+Producer of milk add one good to shop
+Producer of milk is waiting for free space at stock
+Customer Tom bought milk
+Customer Tom bought milk
+Customer Tom bought milk
+Customer Tom bought milk
+Customer Tom bought milk
+Customer Tom bought milk
+Customer Tom waits
+Producer of meat add one good to shop
+Producer of meat add one good to shop
+Producer of meat add one good to shop
+Producer of meat add one good to shop
+Producer of meat add one good to shop
+Producer of meat add one good to shop
+Producer of meat is waiting for free space at stock
+Customer Nick bought meat
+Customer Nick bought meat
+Customer Nick bought meat
+Customer Nick bought meat
+Customer Nick bought meat
+Customer Nick bought meat
+Customer Nick waits
+Producer of fish add one good to shop
+Customer Nick bought fish
+Customer Nick waits
+Producer of fish add one good to shop
+Producer of fish add one good to shop
+Producer of fish add one good to shop
+Producer of fish add one good to shop
+Producer of fish add one good to shop
+Producer of fish add one good to shop
+Producer of fish is waiting for free space at stock
+Producer of meat is waiting for free space at stock
+Customer Tom bought fish
+Customer Tom bought fish
+Producer of milk add one good to shop
+Producer of milk add one good to shop
+Producer of milk is waiting for free space at stock
+Customer Tom bought milk
+Customer Tom bought milk
+Customer Tom bought fish
+Customer Tom bought fish
+Customer Tom bought fish
+Customer Tom bought fish
+Customer Tom waits
+Producer of meat add one good to shop
+Producer of meat add one good to shop
+Producer of meat add one good to shop
+Producer of meat add one good to shop
+Producer of meat add one good to shop
+Producer of meat add one good to shop
+Producer of fish is waiting for free space at stock
+Customer Nick bought meat
+Customer Nick bought meat
+Customer Nick bought meat
+Customer Nick bought meat
+Customer Nick bought meat
+Customer Nick bought meat
+Customer Nick waits
+Producer of fish add one good to shop
+Producer of fish add one good to shop
+Producer of fish add one good to shop
+Customer Nick bought fish
+Producer of meat add one good to shop
+Customer Tom bought fish
+Producer of milk add one good to shop
