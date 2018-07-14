@@ -27,11 +27,6 @@ public class Shop {
     }
 
 
-    //    private File file = new File("./src/main/java/com/lessons/report.txt");
-//    private Producer producer;
-//    private Customer customer;
-//    private Integer boughtProduct =  (int) ( Math.random() * (productListSync.size()-1) );
-
     public List<Product> getProductListSync() {
         return productListSync;
     }
@@ -40,11 +35,5 @@ public class Shop {
         this.productListSync = productListSync;
     }
 
-//    public Integer getBoughtProduct() {
-//        return boughtProduct;
-//    }
-//
-//    public void setBoughtProduct(Integer boughtProduct) {
-//        this.boughtProduct = boughtProduct;
-//    }
+
 }

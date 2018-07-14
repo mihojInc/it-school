@@ -8,10 +8,6 @@ public class App {
 
         Shop shop = new Shop();
 
-//        Product fish = new Product("fish");
-//        Product meat = new Product("meat");
-//        Product milk = new Product("milk");
-
         Customer customer1 = new Customer("Tom", shop);
         Customer customer2 = new Customer("Nick", shop);
 
