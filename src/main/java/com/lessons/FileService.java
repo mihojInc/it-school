@@ -7,7 +7,34 @@ import java.io.IOException;
 
 public class FileService {
 
-    public static void appedToFile(File file, String str) {
+    public static void clearFile(File file) {
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            fw = new FileWriter(file);
+            bw = new BufferedWriter(fw);
+            bw.write("");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                bw.close();
+                fw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+        public static void appedToFile(File file, String str) {
         FileWriter fw = null;
         BufferedWriter bw = null;
 

@@ -1,7 +1,8 @@
 package com.lessons;
 
-public class Product {
+public class Product{
     String name;
+    Shop shop;
 
     public Product(String name) {
         this.name = name;
@@ -14,4 +15,5 @@ public class Product {
     public void setName(String name) {
         this.name = name;
     }
+
 }
