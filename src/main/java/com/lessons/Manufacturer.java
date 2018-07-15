@@ -36,8 +36,9 @@ public class Manufacturer extends Thread{
 
     @Override
     public void run() {
-        while (store.getMAX_SIZE_PRODUCT() >= 40) {
+        while (store.getMAX_SIZE_PRODUCT() <= 40) {
             makeProduct();
+            System.exit(0);
         }
     }
 
@@ -45,13 +46,13 @@ public class Manufacturer extends Thread{
      * The method in which a new product is manufactured
      */
     public synchronized void makeProduct() {
-        while (store.getCOUNTER() > 6) {
-            String string = "Производитель " + product.getName() + " добавил 1 товар в магазин";
+        while (store.getCOUNTER() < 6) {
+            String text = "Производитель " + product.getName() + " добавил 1 товар в магазин";
             store.getProductList().add(product);
             store.setCOUNTER(store.getCOUNTER() + 1);
-            System.out.println("Товаров на складе " + product);
-            System.out.println(string);
-            recordFile(this.file, string);
+            System.out.println("Товаров на складе " + store.getCOUNTER());
+            System.out.println(text);
+            recordFile(this.file, text);
         }
     }
 
