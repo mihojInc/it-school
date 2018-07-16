@@ -3,55 +3,65 @@ package com.lessons;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static java.lang.Thread.sleep;
 
 public class Store {
 
-    private int product=0;
+    private AtomicInteger product= new AtomicInteger(0);
     private List<String> listOfProducts = new ArrayList<>();
+    private CopyOnWriteArrayList<String> synchr = new CopyOnWriteArrayList<>(listOfProducts);
     private Random random = new Random();
     private AtomicInteger counterP = new AtomicInteger(0);
     private AtomicInteger counterC = new AtomicInteger(40);
 
 
-    public synchronized void put(String name){
+    public void put(String name){
         String msg;
-        while(product>=6){
+        while(product.intValue()>=6){
             try {
-                wait();
+                sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        product++;
+
+        product.getAndIncrement();
         counterP.getAndIncrement();
-        listOfProducts.add(name);
+        synchr.add(name);
+        //listOfProducts.add(name);
+       synchronized (this){
         msg = "Произвоитель " + name + " добавил " + name;
         System.out.println(msg);
         FileWriter.write(msg);
-        System.out.println("Товаров на складе" + product);
-        notify();
+        System.out.println("Товаров на складе" + product);}
     }
 
-    public synchronized void get(String name){
+    public  void get(String name){
         String msg;
-        while(product<1){
+        while(product.intValue()<1){
             try {
-                wait();
+                sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        int aRandomNumber = random.nextInt(listOfProducts.size());
-        product--;
+
+        //int aRandomNumber = random.nextInt(listOfProducts.size());
+        int aRandomNumber = random.nextInt(synchr.size());
+        product.getAndDecrement();
         counterC.getAndDecrement();
-        String chosenProduct = listOfProducts.get(aRandomNumber);
-        listOfProducts.remove(aRandomNumber);
+        //String chosenProduct = listOfProducts.get(aRandomNumber);
+        String chosenProduct = synchr.get(aRandomNumber);
+        //listOfProducts.remove(aRandomNumber);
+        synchr.remove(aRandomNumber);
+        synchronized (this){
         msg = name + " купил " + chosenProduct;
         System.out.println(msg);
         FileWriter.write(msg);
-        System.out.println("Товаров на складе: " + product);
-        notify();
+        System.out.println("Товаров на складе: " + product);}
     }
 
     public AtomicInteger getCounterP() {

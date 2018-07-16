@@ -4,6 +4,7 @@ import static com.lessons.Production.*;
 
 public class App {
     public static void main(String[] args) {
+        FileWriter.clear();
         Store store = new Store();
         Producer first = MILK.createProducer(store);
         Producer second = MEAT.createProducer(store);
