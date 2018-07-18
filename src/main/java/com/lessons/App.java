@@ -12,7 +12,7 @@ public class App {
                 new Person("Rita", Role.DEV, 21),
                 new Person("Oleg", Role.DEV, 19),
                 new Person("Jenja", Role.DEV, 25),
-                new Person("Galya", Role.TEST, 23),
+                new Person("Galya", Role.TEST, 13),
                 new Person("Kolya", Role.TEST, 16),
                 new Person("Igor", Role.DEV, 30),
                 new Person("Ira", Role.DEV, 26),
@@ -53,8 +53,8 @@ public class App {
 
         String testersName = peoples.stream()
                 .filter(person -> person.getAge() < 18 && person.getRole() == Role.TEST)
-                .map(a -> a.getName())
-                .reduce((person, person2) -> person + " " + person2)
+                .map(a -> a.getName() + " - " + a.getAge() + " year")
+                .reduce((person, person2) -> person + ", " + person2)
                 .get();
 
         System.out.println(testersName);
