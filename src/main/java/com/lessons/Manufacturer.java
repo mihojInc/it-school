@@ -1,15 +1,9 @@
 package com.lessons;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
-public class Manufacturer extends Thread{
+public class Manufacturer extends Thread {
 
     private Product product;
     private Store store;
-    private File file = new File("/home/denis/Programming/it-school/src/main/java/com/lessons/FileProduct");
 
     //Constructor
     public Manufacturer(Product product, Store store) {
@@ -36,41 +30,29 @@ public class Manufacturer extends Thread{
 
     @Override
     public void run() {
-        while (store.getMAX_SIZE_PRODUCT() <= 40) {
-            makeProduct();
-            System.exit(0);
+        while (store.getMAX_SIZE_PRODUCT() < 40) {
+            try {
+                sleep(1000L);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            synchronized (store) {
+                makeProduct();
+            }
         }
     }
 
     /**
      * The method in which a new product is manufactured
      */
-    public synchronized void makeProduct() {
-        while (store.getCOUNTER() < 6) {
-            String text = "Производитель " + product.getName() + " добавил 1 товар в магазин";
+    public void makeProduct() {
+        if (store.getCOUNTER() < 6) {
+            String text = "Manufacturer: " + product.getName() + " added 1 product to the store.";
             store.getProductList().add(product);
             store.setCOUNTER(store.getCOUNTER() + 1);
-            System.out.println("Товаров на складе " + store.getCOUNTER());
+            System.out.println("Products in stock: " + store.getCOUNTER());
             System.out.println(text);
-            recordFile(this.file, text);
-        }
-    }
-
-    /**
-     * Method for writing text to a file
-     * @param file - Original file
-     * @param text - Some text
-     */
-    public void recordFile(File file, String text) {
-        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))){
-            if(file.exists()) {
-                bufferedWriter.write(text + "\n");
-                bufferedWriter.flush();
-            } else {
-                System.out.println("The recording didn't work!");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+            FileManager.recordFile(text);
         }
     }
 }
