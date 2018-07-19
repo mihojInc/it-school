@@ -2,6 +2,10 @@ package com.lessons;
 
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        StreamHelper streamHelper = new StreamHelper();
+        streamHelper.listPeople();
+        streamHelper.guruDevelopmentInJava();
+        streamHelper.averageAge();
+        streamHelper.theFirstAndLastDeveloper();
     }
 }
