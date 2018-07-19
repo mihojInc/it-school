@@ -1,11 +1,4 @@
-Buyer: Коля bought the goods: Молоко 
-Manufacturer: Хлеб added 1 product to the store. 
-Manufacturer: Колбаса added 1 product to the store. 
-Manufacturer: Молоко added 1 product to the store. 
-Buyer: Вася bought the goods: Хлеб 
-Buyer: Вася bought the goods: Колбаса 
-Buyer: Вася bought the goods: Молоко 
-Manufacturer: Хлеб added 1 product to the store. 
+ Manufacturer: Хлеб added 1 product to the store. 
 Manufacturer: Колбаса added 1 product to the store. 
 Buyer: Вася bought the goods: Хлеб 
 Buyer: Вася bought the goods: Колбаса 
@@ -16,6 +9,12 @@ Manufacturer: Колбаса added 1 product to the store.
 Buyer: Вася bought the goods: Хлеб 
 Buyer: Вася bought the goods: Колбаса 
 Manufacturer: Молоко added 1 product to the store. 
+Buyer: Коля bought the goods: Молоко 
+Manufacturer: Хлеб added 1 product to the store. 
+Manufacturer: Колбаса added 1 product to the store. 
+Buyer: Вася bought the goods: Хлеб 
+Buyer: Вася bought the goods: Колбаса 
+Manufacturer: Молоко added 1 product to the store. 
 Buyer: Вася bought the goods: Молоко 
 Manufacturer: Хлеб added 1 product to the store. 
 Manufacturer: Колбаса added 1 product to the store. 
@@ -29,99 +28,3 @@ Buyer: Вася bought the goods: Хлеб
 Buyer: Вася bought the goods: Колбаса 
 Manufacturer: Молоко added 1 product to the store. 
 Buyer: Вася bought the goods: Молоко 
-Manufacturer: Хлеб added 1 product to the store. 
-Manufacturer: Колбаса added 1 product to the store. 
-Buyer: Вася bought the goods: Хлеб 
-Buyer: Вася bought the goods: Колбаса 
-Manufacturer: Молоко added 1 product to the store. 
-Buyer: Вася bought the goods: Молоко 
-Manufacturer: Хлеб added 1 product to the store. 
-Manufacturer: Колбаса added 1 product to the store. 
-Buyer: Коля bought the goods: Хлеб 
-Buyer: Коля bought the goods: Колбаса 
-Manufacturer: Молоко added 1 product to the store. 
-Buyer: Вася bought the goods: Молоко 
-Manufacturer: Хлеб added 1 product to the store. 
-Manufacturer: Колбаса added 1 product to the store. 
-Buyer: Коля bought the goods: Хлеб 
-Buyer: Коля bought the goods: Колбаса 
-Manufacturer: Молоко added 1 product to the store. 
-Buyer: Коля bought the goods: Молоко 
-Manufacturer: Хлеб added 1 product to the store. 
-Manufacturer: Колбаса added 1 product to the store. 
-Buyer: Коля bought the goods: Хлеб 
-Buyer: Коля bought the goods: Колбаса 
-Manufacturer: Молоко added 1 product to the store. 
-Buyer: Коля bought the goods: Молоко 
-Manufacturer: Хлеб added 1 product to the store. 
-Manufacturer: Колбаса added 1 product to the store. 
-Buyer: Вася bought the goods: Хлеб 
-Buyer: Вася bought the goods: Колбаса 
-Manufacturer: Молоко added 1 product to the store. 
-Buyer: Вася bought the goods: Молоко 
-Manufacturer: Хлеб added 1 product to the store. 
-Manufacturer: Колбаса added 1 product to the store. 
-Buyer: Коля bought the goods: Хлеб 
-Buyer: Коля bought the goods: Колбаса 
-Manufacturer: Молоко added 1 product to the store. 
-Buyer: Вася bought the goods: Молоко 
-Manufacturer: Молоко added 1 product to the store. 
-Manufacturer: Хлеб added 1 product to the store. 
-Manufacturer: Колбаса added 1 product to the store. 
-Buyer: Коля bought the goods: Молоко 
-Buyer: Коля bought the goods: Хлеб 
-Buyer: Коля bought the goods: Колбаса 
-Manufacturer: Молоко added 1 product to the store. 
-Buyer: Вася bought the goods: Молоко 
-Manufacturer: Колбаса added 1 product to the store. 
-Manufacturer: Хлеб added 1 product to the store. 
-Buyer: Коля bought the goods: Колбаса 
-Buyer: Коля bought the goods: Хлеб 
-Manufacturer: Молоко added 1 product to the store. 
-Buyer: Коля bought the goods: Молоко 
-Manufacturer: Колбаса added 1 product to the store. 
-Manufacturer: Хлеб added 1 product to the store. 
-Buyer: Коля bought the goods: Колбаса 
-Buyer: Коля bought the goods: Хлеб 
-Manufacturer: Молоко added 1 product to the store. 
-Buyer: Коля bought the goods: Молоко 
-Manufacturer: Колбаса added 1 product to the store. 
-Manufacturer: Хлеб added 1 product to the store. 
-Buyer: Коля bought the goods: Колбаса 
-Buyer: Коля bought the goods: Хлеб 
-Manufacturer: Молоко added 1 product to the store. 
-Buyer: Вася bought the goods: Молоко 
-Manufacturer: Колбаса added 1 product to the store. 
-Manufacturer: Хлеб added 1 product to the store. 
-Buyer: Вася bought the goods: Колбаса 
-Buyer: Вася bought the goods: Хлеб 
-Manufacturer: Молоко added 1 product to the store. 
-Buyer: Вася bought the goods: Молоко 
-Manufacturer: Колбаса added 1 product to the store. 
-Buyer: Вася bought the goods: Колбаса 
-Manufacturer: Хлеб added 1 product to the store. 
-Buyer: Коля bought the goods: Хлеб 
-Manufacturer: Молоко added 1 product to the store. 
-Buyer: Коля bought the goods: Молоко 
-Manufacturer: Колбаса added 1 product to the store. 
-Buyer: Вася bought the goods: Колбаса 
-Manufacturer: Хлеб added 1 product to the store. 
-Buyer: Вася bought the goods: Хлеб 
-Manufacturer: Молоко added 1 product to the store. 
-Manufacturer: Колбаса added 1 product to the store. 
-Buyer: Вася bought the goods: Молоко 
-Buyer: Вася bought the goods: Колбаса 
-Manufacturer: Хлеб added 1 product to the store. 
-Buyer: Коля bought the goods: Хлеб 
-Manufacturer: Молоко added 1 product to the store. 
-Buyer: Вася bought the goods: Молоко 
-Manufacturer: Колбаса added 1 product to the store. 
-Buyer: Вася bought the goods: Колбаса 
-Manufacturer: Хлеб added 1 product to the store. 
-Buyer: Коля bought the goods: Хлеб 
-Manufacturer: Молоко added 1 product to the store. 
-Buyer: Вася bought the goods: Молоко 
-Manufacturer: Колбаса added 1 product to the store. 
-Buyer: Вася bought the goods: Колбаса 
-Manufacturer: Хлеб added 1 product to the store. 
-Buyer: Коля bought the goods: Хлеб 

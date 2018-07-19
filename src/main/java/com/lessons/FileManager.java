@@ -7,7 +7,8 @@ import java.io.IOException;
 
 public class FileManager {
 
-    public static void clearFile(File file) {
+    public static void clearFile() {
+        File file = new File("/home/denis/Programming/it-school/src/main/java/com/lessons/FileProduct");
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))) {
             bufferedWriter.write(" ");
             bufferedWriter.close();

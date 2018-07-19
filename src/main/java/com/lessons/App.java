@@ -11,6 +11,7 @@ public class App {
 
         Thread customer1 = new Thread(new Customer("Коля", store));
         Thread customer2 = new Thread(new Customer("Вася", store));
+        FileManager.clearFile();
 
         manufacturer1.start();
         manufacturer2.start();
