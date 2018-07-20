@@ -9,8 +9,6 @@ public class Consumer_Version2 extends Thread {
 
     private String name;
 
-    private Store store;
-
     private long choosingTime;
 
     public Consumer_Version2(String name, long choosingTime, Store_Version2 store_version2) {
