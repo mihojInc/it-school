@@ -25,4 +25,9 @@ public enum Production {
         Producer newProducer = new Producer(this.getName(),this.timeProd,store);
         return newProducer;
     }
+
+    public Producer_Version2 createProducer2(Store_Version2 store_version2){
+        Producer_Version2 producer_version2 = new Producer_Version2(this.getName(),this.getTimeProd(),store_version2);
+        return producer_version2;
+    }
 }
