@@ -2,6 +2,16 @@ package com.lessons;
 
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Runnable task = () -> {
+            String threadName = Thread.currentThread().getName();
+            System.out.println("Hello " + threadName);
+        };
+
+        task.run();
+
+        Thread thread = new Thread(task);
+        thread.start();
+
+        System.out.println("Done!");
     }
 }
