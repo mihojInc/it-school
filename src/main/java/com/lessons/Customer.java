@@ -32,7 +32,7 @@ public class Customer implements Runnable {
 
     @Override
     public void run() {
-        while (store.getMAX_SIZE_PRODUCT() < 40) {
+        while (store.atomicInteger.get() < 40) {
             try {
                 Thread.sleep(0L);
             } catch (InterruptedException e) {

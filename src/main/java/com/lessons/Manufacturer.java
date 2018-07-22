@@ -30,7 +30,7 @@ public class Manufacturer extends Thread {
 
     @Override
     public void run() {
-        while (store.getMAX_SIZE_PRODUCT() < 40) {
+        while (store.atomicInteger.get() < 40) {
             try {
                 sleep(1000L);
             } catch (InterruptedException e) {
@@ -50,6 +50,7 @@ public class Manufacturer extends Thread {
             String text = "Manufacturer: " + product.getName() + " added 1 product to the store.";
             store.getProductList().add(product);
             store.setCOUNTER(store.getCOUNTER() + 1);
+            store.atomicInteger.getAndIncrement();
             System.out.println("Products in stock: " + store.getCOUNTER());
             System.out.println(text);
             FileManager.recordFile(text);
