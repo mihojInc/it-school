@@ -1,0 +1,4 @@
+RESULT:
+ForkJoinPool-1-worker-1 -> 150 ms
+ForkJoinPool-1-worker-1 -> 151 ms
+4181 -> 161 ms
