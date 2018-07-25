@@ -41,8 +41,8 @@ public class Loader {
             Files.createDirectories(path2);
         }
         Path downloadPath = Paths.get("images\\" + name);
-        ReadableByteChannel rbc = Channels.newChannel(url.openStream());
-        FileOutputStream fos = new FileOutputStream(downloadPath.toFile());
+        ReadableByteChannel rbc = Channels.newChannel(url.openStream());//reading by byte
+        FileOutputStream fos = new FileOutputStream(downloadPath.toFile()); //stream of symbols for write to file
         fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
     }
 
