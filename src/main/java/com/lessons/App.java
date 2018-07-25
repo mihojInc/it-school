@@ -1,9 +1,15 @@
 package com.lessons;
 
-public class App {
-    public static void main(String[] args) {
+import java.io.FileWriter;
+import java.io.IOException;
 
-        Shop store = new Shop();
+public class App {
+    public static void main(String[] args) throws IOException {
+
+        WriteFile fileWriter = new WriteFile( new FileWriter("notes3.txt", false));
+
+        Shop store = new Shop(fileWriter);
+
 
         Provider provider1= new Provider(store, "ATB", TypeItems.FISH, 100);
         Provider provider2= new Provider(store, "ROST", TypeItems.MEET, 500);

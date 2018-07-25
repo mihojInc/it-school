@@ -1,11 +1,17 @@
 package com.lessons;
 
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Shop {
     private List<Items> items = new ArrayList<>();
     private static int count = 0;
+    WriteFile writer;
+
+    public Shop(WriteFile writer) {
+        this.writer = writer;
+    }
 
     public static int getCount() {
         return count;
@@ -20,7 +26,9 @@ public class Shop {
             }
         }
         items.add(item);
-        System.out.println("Поставщик положил товар" + item.getName() + " Количество товара в магазине " + items.size() + " Всего товара " + count);
+        String text = "Поставщик положил товар" + item.getName() + " Количество товара в магазине " + items.size() + " Всего товара " + count;
+        System.out.println(text);
+        writer.writeFile(text);
         count++;
         notify();
     }
@@ -34,7 +42,10 @@ public class Shop {
             }
         }
         items.remove(items.size()-1);
-        System.out.println("Покупатель купил товар" + " Количество товара в магазине " + items.size() + " Всего товара " + count);
+
+        String text = "Покупатель купил товар" + " Количество товара в магазине " + items.size() + " Всего товара " + count;
+        System.out.println(text);
+        writer.writeFile(text);
         notify();
 
     }
