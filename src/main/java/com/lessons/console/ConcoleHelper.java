@@ -20,10 +20,12 @@ public class ConcoleHelper {
 
                 //load by file address
                 case DFF:
-                    downloader.loadAllFiles();
+                    System.out.println("How much image?");
+                    downloader.loadAllFiles(Integer.valueOf(scanner.nextLine()));
                     break;
 
                 case DFC:
+                    System.out.println("input path:");
                     downloader.downloadFromConsole(scanner.nextLine());
                     break;
 
