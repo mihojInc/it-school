@@ -17,6 +17,6 @@ public class CallableImageLoader implements Callable<String> {
         loader.setUrlLine(url);
         loader.load();
         System.out.println(i);
-        return "Loading image complete" + i;
+        return "Loading image complete " + i;
     }
 }
