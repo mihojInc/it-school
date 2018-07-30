@@ -1,7 +1,12 @@
 package com.lessons;
 
+import java.io.File;
+import java.util.Scanner;
+
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        FileUtil.clear();
+        Scanner input = new Scanner(System.in);
+        InteractionWithUser.interact(input);
     }
 }
