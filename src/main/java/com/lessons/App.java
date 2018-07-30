@@ -1,8 +1,7 @@
 package com.lessons;
 
 public class App {
-    public static void main(String[] args) throws Throwable{
-
-        new Fibonacci().writeResultInConsole();
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
     }
 }
