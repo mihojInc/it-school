@@ -20,7 +20,6 @@ public class Loader {
     }
 
     /**
-     *
      * @param urlLine
      * @throws EmptyURLException
      */
@@ -33,12 +32,13 @@ public class Loader {
 
     /**
      * Процедцра копирует переданную ссылку в папку
+     *
      * @param urlLine
      * @param log
      * @throws IOException
      * @throws EmptyURLException
      */
-    public synchronized void load(String urlLine, LogService log) throws IOException, EmptyURLException  {
+    public synchronized void load(String urlLine, LogService log) throws IOException, EmptyURLException {
 
         if (urlLine == null || urlLine.length() == 0) {
             throw new EmptyURLException("Link of image is null");

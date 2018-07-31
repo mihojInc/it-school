@@ -14,7 +14,7 @@ public class LogService {
         this.file = file;
     }
 
-    public synchronized void addLog(String text)throws IOException {
+    public synchronized void addLog(String text) throws IOException {
         FileManager.appendFile(file, text);
     }
 }

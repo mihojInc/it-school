@@ -29,9 +29,10 @@ public class DownloadService {
 
     /**
      * В данной функции будет указан файл, в котором указан список ссыолок на файлы
+     *
      * @throws IOException
      */
-    public void downloadFromFile()throws Exception {
+    public void downloadFromFile() throws Exception {
         System.out.println("File path: ");
 
         sc.nextLine();
@@ -39,57 +40,59 @@ public class DownloadService {
 
         System.out.println("Enter count of images for downloading: ");
         int count;
-        while(!sc.hasNextInt()){
+        while (!sc.hasNextInt()) {
             System.out.println("You enter wrong number");
             sc.next();
         }
 
         count = sc.nextInt();
         List<String> list = FileManager.readFile(pathList, count);
-        executeLoad(list,count);
+        executeLoad(list, count);
     }
 
-    /**читаем файл по очереди
+    /**
+     * читаем файл по очереди
      *
      * @throws Exception
      */
-    public void downloadOneByOne()throws Exception{
+    public void downloadOneByOne() throws Exception {
         System.out.println("Enter count of images for downloading: ");
 
         int count;
-        while(!sc.hasNextInt()){
+        while (!sc.hasNextInt()) {
             System.out.println("You enter wrong number");
             sc.next();
         }
 
         count = sc.nextInt();
         ArrayList<String> list = new ArrayList<>();
-        for(int i=0;i<count; i++){
+        for (int i = 0; i < count; i++) {
             System.out.println("Enter next image: ");
             list.add(sc.nextLine());
         }
-       executeLoad(list,count);
+        executeLoad(list, count);
     }
 
     /**
      * Непосредственно процедура в который запускаются потоки
+     *
      * @param list
      * @param count
      */
-    public void executeLoad(List<String> list, int count){
+    public void executeLoad(List<String> list, int count) {
         ExecutorService service = Executors.newFixedThreadPool(count);
 
         //Получили список того что нам нужно затянуть из интернета и проходим по списку и делаем новый поток
-        list.forEach((a)->{
-            service.submit(() ->{
-                CallableImageLoader cil= new CallableImageLoader(1, a, log);
-                try{
+        list.forEach((a) -> {
+            service.submit(() -> {
+                CallableImageLoader cil = new CallableImageLoader(1, a, log);
+                try {
                     cil.call();
-                }catch (IOException e){
+                } catch (IOException e) {
                     System.out.println("Empty picture");
-                }catch (EmptyURLException exception){
+                } catch (EmptyURLException exception) {
                     System.out.println("Empty picture");
-                }catch (Exception exc){
+                } catch (Exception exc) {
                     System.out.println("Empty picture");
                 }
                 System.out.println(Thread.currentThread().getName());

@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Operation {
     /**
      * Main action in program. Here you have to chose type of downloading images
+     *
      * @param sc
      */
     public void mainOperation(Scanner sc) throws Exception {
@@ -22,8 +23,8 @@ public class Operation {
             case 2:
                 ds.downloadOneByOne();
                 break;
-                default:
-                    break;
+            default:
+                break;
         }
     }
 }
