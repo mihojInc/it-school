@@ -6,11 +6,13 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class DownloadService {
-    File fileWithLinks = new File("./src/main/java/com/lessons/links");
-    Scanner scan = new Scanner(System.in);
-    Interaction interaction = new Interaction();
+    private File fileWithLinks = new File("./src/main/java/com/lessons/links");
+    private Scanner scan = new Scanner(System.in);
+    private Interaction interaction = new Interaction();
+    private static CopyOnWriteArrayList<String> logList = new CopyOnWriteArrayList<>();
 
-    public void downloadFromFile(Integer count){
+
+    public void downloadImages(Integer count, Integer downloadType){
         AtomicInteger innerCount = new AtomicInteger(1);
         String link = "";
         ExecutorService es = Executors.newFixedThreadPool(count);
@@ -19,52 +21,29 @@ public class DownloadService {
         List<CallableImageLoader> list = new LinkedList<>();
 
         while (innerCount.get()<=count){
-            link = FileUtil.readString(fileWithLinks,innerCount.get());
+            if(downloadType == 2){
+                link = interaction.printLink(scan);
+            }else if(downloadType == 1){
+                link = FileUtil.readString(fileWithLinks,innerCount.get());
+            }
             list.add(new CallableImageLoader(innerCount.get(), link));
             innerCount.getAndIncrement();
         }
 
-        list.stream().forEach((a) -> es.submit(a));
-
-        for (Future future: listFutures) {
-            try {
-                System.out.println(future.get());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-        }
+       list.stream().forEach((a) -> {
+           try {
+               logList.add(es.submit(a).get());
+           } catch (InterruptedException e) {
+               e.printStackTrace();
+           } catch (ExecutionException e) {
+               e.printStackTrace();
+           }
+       });
         es.shutdown();
     }
 
-    public void downloadFromConsole(Integer count){
-        AtomicInteger innerCount = new AtomicInteger(1);
-        String link = "";
-        ExecutorService es = Executors.newFixedThreadPool(count);
-        List<Future> listFutures = new LinkedList<>();
-
-        List<CallableImageLoader> list = new LinkedList<>();
-
-        while (innerCount.get()<=count){
-            StringBuffer sb = new StringBuffer(interaction.printLink(scan));
-            link = sb.insert(0,"https://").toString();
-            list.add(new CallableImageLoader(innerCount.get(), link));
-            innerCount.getAndIncrement();
-        }
-
-        list.stream().forEach((a) -> es.submit(a));
-
-        for (Future future: listFutures) {
-            try {
-                System.out.println(future.get());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-        }
-        es.shutdown();
+    public static CopyOnWriteArrayList<String> getLogList() {
+        return logList;
     }
 
 }

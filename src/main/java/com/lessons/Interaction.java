@@ -2,6 +2,7 @@ package com.lessons;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Interaction {
@@ -36,11 +37,11 @@ public class Interaction {
         switch (choice){
             case 1:
                 DownloadService downloadService = new DownloadService();
-                downloadService.downloadFromFile(imagesCounter);
+                downloadService.downloadImages(imagesCounter, 1);
                 break;
             case 2:
                 DownloadService downloadServiceConsole = new DownloadService();
-                downloadServiceConsole.downloadFromConsole(imagesCounter);
+                downloadServiceConsole.downloadImages(imagesCounter, 2);
                 break;
             default:
                 System.out.println("You enter wrong number, please print 1 or 2");
