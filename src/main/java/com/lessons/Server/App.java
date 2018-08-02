@@ -16,16 +16,19 @@ public class App {
         ServerSocket serverSocket = new ServerSocket(PORT);
         System.out.println("Server started!");
 
-        while (true) {
-            try {
-                //Блокируется до нового соединения
+        try {
+            while (true) {
+                // Блокируется до возникновения нового соединения:
                 Socket socket = serverSocket.accept();
-                //Добавляем нового пользователя в список
-                clientsList.add(new ServerSomething(socket));
-                socket.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+                try {
+                    //Добавляем нового пользователя в список
+                    clientsList.add(new ServerSomething(socket));
+                } catch (IOException e) {
+                    socket.close();
+                }
             }
+        } finally {
+            serverSocket.close();
         }
     }
 }
