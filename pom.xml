@@ -48,7 +48,7 @@
               <configuration>
                 <transformers>
                   <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                    <mainClass>com.lessons.App</mainClass>
+                    <mainClass>com.lessons.Server.App</mainClass>
                   </transformer>
                 </transformers>
               </configuration>
