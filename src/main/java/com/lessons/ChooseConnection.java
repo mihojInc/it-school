@@ -10,6 +10,10 @@ public class ChooseConnection {
         System.out.println("If you want to use program as a server - print 1\n" +
                 "If you want to use program as a client - print 2");
 
+        while(!scan.hasNextInt()){
+            System.out.println("You enter wrong data, please print number");
+            scan.next();
+        }
         choice = scan.nextInt();
         switch (choice){
             case 1:
