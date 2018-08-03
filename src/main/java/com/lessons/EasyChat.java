@@ -4,7 +4,6 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.URL;
 import java.util.Scanner;
 
 /**
@@ -25,7 +24,6 @@ public class EasyChat {
 
         if (choise.equals("s")) {
             ServerSocket ss = new ServerSocket(PORT);
-            System.out.println("Ip for connection: " + yourIp() + " or local: " + InetAddress.getLocalHost().getHostAddress());
             socket = ss.accept();
         } else {
             InetAddress inetAddress = InetAddress.getByName(clientConnect());
@@ -53,15 +51,8 @@ public class EasyChat {
     }
 
     /**
-     * Get your Ip for internet connection
-     * https://stackoverflow.com/questions/8083479/java-getting-my-ip-address
+     * Input address, or d't input
      */
-    private String yourIp() throws IOException{
-        URL url = new URL("http://checkip.amazonaws.com/");
-        BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
-        return br.readLine();
-    }
-
     private String clientConnect() {
         System.out.println("Input ip for connection:");
         String ip = scanner.nextLine();
