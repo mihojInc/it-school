@@ -31,12 +31,8 @@ public class ServerHelper extends Thread {
             try {
                 while (true) {
                     message = inMessage.readLine();
-                    if(message.equals("stop")) {
-                        downService();
-                        break;
-                    }
                     System.out.println("User correspondence history: " + message);
-                    for (ServerHelper serverHelper : App.clientList) {
+                    for (ServerHelper serverHelper : Server.clientList) {
                         serverHelper.send(message);
                     }
                 }
@@ -56,7 +52,7 @@ public class ServerHelper extends Thread {
         try {
             outMessage.write(message + "\n");
             outMessage.flush();
-        } catch (IOException ignored) {}
+        } catch (IOException e) {}
     }
 
     /**
@@ -68,9 +64,9 @@ public class ServerHelper extends Thread {
                 socket.close();
                 inMessage.close();
                 outMessage.close();
-                for (ServerHelper serverHelper : App.clientList) {
+                for (ServerHelper serverHelper : Server.clientList) {
                     if(serverHelper.equals(this)) serverHelper.interrupt();
-                    App.clientList.remove(this);
+                    Server.clientList.remove(this);
                 }
             }
         } catch (IOException e) {
