@@ -16,6 +16,7 @@ public class Helper {
         return String.valueOf(chArray);
     }
 
+
     public static void showNenuATM(){
         MenuATM[] menu = MenuATM.values();
         for (MenuATM m : menu) {
@@ -32,5 +33,16 @@ public class Helper {
     public static String formatNumTransaction(String trans){
         String numTransaction = trans.substring(12);
         return numTransaction;
+    }
+
+    public static String getAdress(String iAdress){
+        BankAdress[] adresses = BankAdress.values();
+        String fullBankAdress = BankAdress.BANK_OF_AMERICA.getBankAdress();
+        for (BankAdress a:adresses) {
+            if (a.getBankName()==iAdress){
+                fullBankAdress = a.getBankAdress();
+            }
+        }
+        return fullBankAdress;
     }
 }

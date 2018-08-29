@@ -57,7 +57,11 @@ public class App {
                     System.out.println(Helper.formatBillNumber(inputCardName));
                     break;
                 case WITHDRAW_MONEY:
-
+                    try {
+                        Bill billWithDraw = new Bill(inputCardName,creditCard.getCardValidDate(),creditCard.getCardHolderName(),creditCard.getCardBank(),creditCard.getCardBalance(),300);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case CHANGE_PIN:
 
