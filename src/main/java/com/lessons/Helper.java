@@ -39,10 +39,21 @@ public class Helper {
         BankAdress[] adresses = BankAdress.values();
         String fullBankAdress = BankAdress.BANK_OF_AMERICA.getBankAdress();
         for (BankAdress a:adresses) {
-            if (a.getBankName()==iAdress){
+            if (a.getBankName().equals(iAdress)){
                 fullBankAdress = a.getBankAdress();
             }
         }
         return fullBankAdress;
+    }
+
+    public static String getPhone(String iPhone){
+        BankAdress[] adresses = BankAdress.values();
+        String bankPhone = BankAdress.BANK_OF_AMERICA.getBankPhone();
+        for (BankAdress a:adresses) {
+            if (a.getBankName().equals(iPhone)){
+                bankPhone = a.getBankPhone();
+            }
+        }
+        return bankPhone;
     }
 }

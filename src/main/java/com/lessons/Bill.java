@@ -25,15 +25,23 @@ public class Bill {
 
         File billFile = new File(filePath);
         PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(billFile, true)));
-        writer.println("********************");
-        writer.print("* ");
+        writer.println("******************************************************");
+        writer.print("               *  ");
         writer.print(Helper.modifyString(billBankName));
-        writer.println(" *");
-        writer.println("********************");
+        writer.println("  *");
+        writer.println("******************************************************");
         SimpleDateFormat dataFormat = new SimpleDateFormat("dd/MM/yyyy");
         String billDate = dataFormat.format(System.currentTimeMillis());
-        writer.print("* Date: "+billDate+"           ");
+        writer.print("* Date: "+billDate+"               ");
         writer.println("transaction# "+Helper.formatNumTransaction(Helper.formatBillNumber(billNumber))+" *");
+        writer.println("*                                                    *");
+        writer.println("*                                                    *");
+        writer.println("*                                                    *");
+        writer.println("*                                                    *");
+        writer.println("******************************************************");
+        writer.println("Your current account balance: "+billSum+ " UAH");
+        writer.println("******************************************************");
+        writer.println("Bank contact information: phone/fax "+Helper.getPhone(billBankName));
         writer.flush();
         writer.close();
 
