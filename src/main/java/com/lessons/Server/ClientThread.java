@@ -104,7 +104,7 @@ public class ClientThread extends Thread {
 
                     objOut.writeObject(GamePlay.getStatment());
                     objOut.flush();
-                    if(GameAnalizator.winner()){
+                    if(GameAnalizator.winner(GamePlay.getStatment())){
                         System.out.println("Player + " + colorPlayer + " win");
                         GamePlay.sendStateToAnother();
                         break;

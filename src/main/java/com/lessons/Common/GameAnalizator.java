@@ -135,5 +135,6 @@ public class GameAnalizator {
         }
 
         statment.setWinner();
+        return true;
     }
 }
