@@ -14,6 +14,9 @@ public class Statment implements Serializable {
     private Figure[][] state = new Figure[8][8];
     private Figure figure = new Figure(99,99,  Colors.EMPTY);
     private Figure unExist = new Figure(99,99,  Colors.NULL);
+    AnswerAfterStep ans = AnswerAfterStep.PLAY_GAME;
+
+
     /**
      * curPlayer its color current player
      */
@@ -43,8 +46,15 @@ public class Statment implements Serializable {
 
     }
 
+    public AnswerAfterStep getAns() {
+        return ans;
+    }
+
     public Colors getCurPlayer() {
         return curPlayer;
+    }
+    public void setWinner(){
+        ans = AnswerAfterStep.WNNER;
     }
 
     public void setCurPlayer(Colors curPlayer) {
@@ -71,9 +81,10 @@ public class Statment implements Serializable {
      */
     public void makeStep(int x_old, int y_old, int x_new, int y_new) {
         try{
-            if((y_new-y_old)>1){
+            if((y_new-y_old)==2){
                 state[x_new-1][y_new-1] = null;
-            }else{
+            }
+            if((y_new-y_old)==-2){
                 state[x_new-1][y_new+1] = null;
             }
             state[x_new][y_new]=state[x_old][y_old];

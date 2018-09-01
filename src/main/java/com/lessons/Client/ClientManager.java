@@ -70,7 +70,9 @@ public class ClientManager {
         while (true) {
             statment = (Statment) objIn.readObject();
             DashBoard.draw(statment);
-
+            if (statment.getAns() == AnswerAfterStep.WNNER) {
+                System.out.println("Player + " + statment.getCurPlayer() + " win");
+            }
             System.out.println("Step " + color.getDesc());
             System.out.println("Take figure");
             while (true) {
@@ -82,7 +84,7 @@ public class ClientManager {
                 dataOutputStreamP.write(y);
                 dataOutputStreamP.flush();
 
-                AnswerAfterStep ans  = (AnswerAfterStep) objIn.readObject();
+                AnswerAfterStep ans = (AnswerAfterStep) objIn.readObject();
                 if (ans == AnswerAfterStep.WRONG_STEP) {
                     System.out.println("Incorrect step");
                     continue;
@@ -99,7 +101,7 @@ public class ClientManager {
                 dataOutputStreamP.write(x_new);
                 dataOutputStreamP.write(y_new);
                 dataOutputStreamP.flush();
-                AnswerAfterStep ans  = (AnswerAfterStep) objIn.readObject();
+                AnswerAfterStep ans = (AnswerAfterStep) objIn.readObject();
                 if (ans == AnswerAfterStep.WRONG_STEP) {
                     System.out.println("Incorrect step");
                     continue;
@@ -108,6 +110,10 @@ public class ClientManager {
                 }
             }
             statment = (Statment) objIn.readObject();
+
+            if (statment.getAns() == AnswerAfterStep.WNNER) {
+                System.out.println("Player + " + statment.getCurPlayer() + " win");
+            }
             DashBoard.draw(statment);
         }
     }

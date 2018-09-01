@@ -67,7 +67,7 @@ public class ClientThread extends Thread {
                     while (true) {
                         x = in.read();
                         y = in.read();
-                        if (GameAnalizator.availableFigureForStep(GamePlay.getStatment(),0,0, x, y) == null) {
+                        if (GameAnalizator.availableFigureForStep(GamePlay.getStatment(), x, y) == null) {
                             System.out.println("Wrong figure for step");
                             objOut.writeObject(AnswerAfterStep.WRONG_STEP);
                             out.flush();
@@ -87,7 +87,7 @@ public class ClientThread extends Thread {
                             break;
                         }
                         y_new = in.read();
-                        if (!GameAnalizator.haveFigureStep(GamePlay.getStatment(),x,y, x_new, y_new)) {
+                        if (!GameAnalizator.coorrectStep(GamePlay.getStatment(),x,y, x_new, y_new)) {
                             System.out.println("Wrong aim for step");
                             objOut.writeObject(AnswerAfterStep.WRONG_STEP);
                             objOut.flush();
@@ -104,6 +104,11 @@ public class ClientThread extends Thread {
 
                     objOut.writeObject(GamePlay.getStatment());
                     objOut.flush();
+                    if(GameAnalizator.winner()){
+                        System.out.println("Player + " + colorPlayer + " win");
+                        GamePlay.sendStateToAnother();
+                        break;
+                    }
                     GamePlay.changePlayer();
                     GamePlay.sendStateToAnother();
                 }
