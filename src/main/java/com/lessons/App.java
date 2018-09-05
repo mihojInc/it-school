@@ -64,6 +64,8 @@ public class App {
                     }
                     break;
                 case CHANGE_PIN:
+                    ATMStatus atmStatus = new ATMStatus();
+                    CalculateMoneyAtm.getMoney(atmStatus);
 
                     break;
                 case PRINT_HISTORY:

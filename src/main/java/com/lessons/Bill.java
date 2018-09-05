@@ -60,13 +60,14 @@ public class Bill {
 
         File billFile = new File(filePath);
         PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(billFile, true)));
-        writer.println("********************");
-        writer.print("* ");
-        writer.print(Helper.modifyString(billBankName));
-        writer.println(" *");
+        writer.println("===================================");
+        writer.println("|   Cheque ATM cash transaction:  |");
+        writer.println("|         № "+Helper.formatNumTransaction(Helper.formatBillNumber(billNumber))+"         | ");
+   //     writer.print(Helper.modifyString(billBankName));
+        writer.println("===================================");
         writer.println("********************");
         writer.println(Helper.getAdress(billBankName));
-        SimpleDateFormat dataFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat dataFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         String billDate = dataFormat.format(System.currentTimeMillis());
         writer.print("* Date: "+billDate+"           ");
         writer.println("transaction# "+Helper.formatNumTransaction(Helper.formatBillNumber(billNumber))+" *");

@@ -1,0 +1,8 @@
+===================================
+|   Cheque ATM cash transaction:  |
+|         № 012216         | 
+===================================
+********************
+World Financial Center, 200 Vesey Street
+New York, NY 10285
+* Date: 01-09-2018 22:16:03           transaction# 012216 *
