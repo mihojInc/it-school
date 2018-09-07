@@ -1,5 +1,7 @@
 package src.main.java.com.lessons;
 
+import javenue.csv.Csv;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -16,12 +18,7 @@ public class CalculateMoneyAtm {
     static Integer tenHryvnas = 0;
     static Integer totalAmount = 0;
 
-//    public static void main(String[] args) {
-//
-//        ATMStatus atmStatus = new ATMStatus();
-//        getMoney(atmStatus);
-//
-//    }
+
 
     public static void reRun(ATMStatus atmStatus) {
 
@@ -32,6 +29,7 @@ public class CalculateMoneyAtm {
             getMoney(atmStatus);
         }
         if (choice.equals("n") || choice.equals("N")) {
+            saveMoneyATM(initialFiftyHoundredHryvnas,initialHoundredHryvnas,initialFiftyHryvnas,initialTenHryvnas );
             System.exit(1);
         } else {
 
@@ -140,4 +138,15 @@ public class CalculateMoneyAtm {
 
     }
 
+    public static void saveMoneyATM(int cass1, int cass2, int cass3, int cass4){
+        String filename = "C:\\Users\\master\\IdeaProjects\\it-school_projectATM\\src\\main\\java\\com\\lessons\\templates\\ATMDispenser.csv";
+        Csv.Writer writer = new Csv.Writer(filename).delimiter(',');
+        writer
+                .value("500UAH").value(String.valueOf(cass1)).newLine()
+                .value("100UAH").value(String.valueOf(cass2)).newLine()
+                .value("50UAH").value(String.valueOf(cass3)).newLine()
+                .value("10UAH").value(String.valueOf(cass4)).newLine()
+                .flush()
+                .close();
+    }
 }

@@ -60,17 +60,29 @@ public class Bill {
 
         File billFile = new File(filePath);
         PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(billFile, true)));
-        writer.println("===================================");
-        writer.println("|   Cheque ATM cash transaction:  |");
-        writer.println("|         № "+Helper.formatNumTransaction(Helper.formatBillNumber(billNumber))+"         | ");
+        writer.println("===========================================");
+        writer.println("|       Cheque ATM cash transaction:      |");
+        writer.println("|               № "+Helper.formatNumTransaction(Helper.formatBillNumber(billNumber))+"                  | ");
    //     writer.print(Helper.modifyString(billBankName));
-        writer.println("===================================");
-        writer.println("********************");
-        writer.println(Helper.getAdress(billBankName));
+        writer.println("===========================================");
+
         SimpleDateFormat dataFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         String billDate = dataFormat.format(System.currentTimeMillis());
-        writer.print("* Date: "+billDate+"           ");
-        writer.println("transaction# "+Helper.formatNumTransaction(Helper.formatBillNumber(billNumber))+" *");
+        writer.println("|      * Date: "+billDate+" *      |");
+        writer.println("===========================================");
+        writer.println("Your withdrawal amount: "+iAmount+" uah");
+        writer.println("New balance of your account: "+billSum+" uah");
+        writer.println();
+        writer.println();
+        writer.println();
+        writer.println();
+        writer.println("-------------------------------------------");
+        writer.println("Contact information of the serving bank:");
+        writer.println("Adress: "+Helper.getAdress(billBankName));
+        writer.println("phone/fax: "+Helper.getPhone(billBankName));
+        writer.println("-------------------------------------------");
+        writer.println(Helper.modifyString(billCardHolder)+" :           _______ sign");
+        writer.println();
         writer.flush();
         writer.close();
     }

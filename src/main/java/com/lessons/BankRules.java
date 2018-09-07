@@ -10,6 +10,12 @@ public class BankRules {
         }
         return false;
     }
+    public static boolean isCardBlocked(int iCard){
+       if (iCard == 0) {
+           return true;
+       }
+       return false;
+    }
 
     public static boolean isPinCorrect(int pinCard, int ipinCard){
         if (pinCard==ipinCard) {

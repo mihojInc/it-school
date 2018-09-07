@@ -31,63 +31,74 @@ public class App {
         while (inputSteam.hasNext()) {
             String data = inputSteam.next();
             String[] values = data.split(",");
-            System.out.println(values[0]);
-            System.out.println(values[5]);
+//            System.out.println(values[0]);
+//            System.out.println(values[5]);
             creditCard = new CreditCard(inputCardName, values[0], Double.parseDouble(values[1]), Integer.parseInt(values[2]), format.parse(values[3]), Integer.parseInt(values[4]), values[5], inputCardHistory);
-            System.out.println(creditCard);
+//            System.out.println(creditCard);
         }
         // input PIN
         System.out.println("Please enter your PIN code:");
         int iPin = s.nextInt();
-        System.out.println(BankRules.isPinCorrect(creditCard.getCardPin(), iPin));
-        System.out.println(creditCard.getCardValidDate());
-        inputSteam.close();
+
+        if (BankRules.isCardValidate(creditCard.getCardValidDate())) {
+            if (BankRules.isCardBlocked(creditCard.getCardBlockField())) {
+                System.out.println(BankRules.isPinCorrect(creditCard.getCardPin(), iPin));
+//        System.out.println(creditCard.getCardValidDate());
+                inputSteam.close();
 
 
-        System.out.println(BankRules.isCardValidate(creditCard.getCardValidDate()));
-        System.out.println(Helper.modifyString(creditCard.getCardHolderName()));
-        MenuATM menuATM = MenuATM.EMPTY;
-        Helper.showNenuATM();
-        while (true) {
-            String oper = s.next();
+                System.out.println(BankRules.isCardValidate(creditCard.getCardValidDate()));
 
-            //инициализация списка меню
-            switch (menuATM.getName(Integer.parseInt(oper))) {
-                case BALANCE:
-                    System.out.println(Helper.formatBillNumber(inputCardName));
-                    break;
-                case WITHDRAW_MONEY:
-                    try {
-                        Bill billWithDraw = new Bill(inputCardName,creditCard.getCardValidDate(),creditCard.getCardHolderName(),creditCard.getCardBank(),creditCard.getCardBalance(),300);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                MenuATM menuATM = MenuATM.EMPTY;
+                Helper.showNenuATM();
+                while (true) {
+                    String oper = s.next();
+
+                    //инициализация списка меню
+                    switch (menuATM.getName(Integer.parseInt(oper))) {
+                        case BALANCE:
+                            try {
+                                Bill bill = new Bill(inputCardName, creditCard.getCardValidDate(), creditCard.getCardHolderName(), creditCard.getCardBank(), creditCard.getCardBalance());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            break;
+                        case WITHDRAW_MONEY:
+                            try {
+                                Bill billWithDraw = new Bill(inputCardName, creditCard.getCardValidDate(), creditCard.getCardHolderName(), creditCard.getCardBank(), creditCard.getCardBalance(), 300);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            break;
+                        case CHANGE_PIN:
+                            ATMStatus atmStatus = new ATMStatus();
+                            CalculateMoneyAtm.getMoney(atmStatus);
+
+                            break;
+                        case PRINT_HISTORY:
+
+                            break;
+
+                        case QUIT:
+                            System.out.println("Game over");
+                            return;
+
                     }
-                    break;
-                case CHANGE_PIN:
-                    ATMStatus atmStatus = new ATMStatus();
-                    CalculateMoneyAtm.getMoney(atmStatus);
-
-                    break;
-                case PRINT_HISTORY:
-                    try {
-                        Bill bill = new Bill(inputCardName,creditCard.getCardValidDate(),creditCard.getCardHolderName(),creditCard.getCardBank(),creditCard.getCardBalance());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-
-                case QUIT:
-                    System.out.println("Game over");
-                    return;
-
-            }
 
 
-            //BankRules.isCardValidate(creditCard.getCardValidDate());
-            //   String timeStamp = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance());
-            //    System.out.println(timeStamp );
+                    //BankRules.isCardValidate(creditCard.getCardValidDate());
+                    //   String timeStamp = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance());
+                    //    System.out.println(timeStamp );
+                }
 
+            }else {
+                System.out.println("Your card has blocked, please contact the bank...");
+                return;
+            }// "if" blocked
+        } else {
+            System.out.println("Your card has expired, please contact the bank...");
+            return;
+        }// "if" validate
 
-        }
     }
 }
