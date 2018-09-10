@@ -1,7 +1,1 @@
-package com.lessons;
-
-public class App {
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
-    }
-}
+package com.lessons;import java.sql.Connection;import java.sql.DriverManager;import java.sql.ResultSet;import java.sql.Statement;public class App {    private static String create = "create table Person1(id int not null primary key, name char(50), last_name char(50));";    private static String incert = "insert into Person1 values(1, 'Yuri2', 'Klymenko');";    private static String select = "select * from Person1;";    private static String update = "update Person1 set name  = 'Mykyta' where id=1;";    public static void main(String[] args) throws Exception {    //    Class.forName("com.mysql.jdbc.Driver");        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/school?autoReconnect=true&useSSL=false&serverTimezone=Europe/Kiev", "root", "root");        Statement stat_create = connection.createStatement();        Statement stat_insert = connection.createStatement();        Statement stat_select = connection.createStatement();        Statement stat_update = connection.createStatement();       stat_create.execute(create);        stat_insert.execute(incert);        printResult(stat_select.executeQuery(select));        stat_update.execute(update);        System.out.println("After update:");        printResult(stat_select.executeQuery(select));    }    public static void printResult(ResultSet set)throws Exception{        while (set.next()) {            System.out.println("Name " + set.getString(2));            System.out.println("Last name " + set.getString(3));        }    }}
