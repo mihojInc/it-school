@@ -18,19 +18,23 @@ public class CalculateMoneyAtm {
     static Integer tenHryvnas = 0;
     static Integer totalAmount = 0;
 
+    static Double newUserBalance = 0.0;
+    public Double saveBalance = 0.0;
 
 
     public static void reRun(ATMStatus atmStatus) {
 
-        System.out.println("Would u like to credit more money ? y/n ");
+        System.out.println("Would you like to credit more money ? y/n ");
         Scanner input = new Scanner(System.in);
-        String choice = input.nextLine();
+        String choice = input.next();
         if (choice.equals("y") || choice.equals("Y")) {
-            getMoney(atmStatus);
+            getMoney(atmStatus, newUserBalance);
         }
         if (choice.equals("n") || choice.equals("N")) {
-            saveMoneyATM(initialFiftyHoundredHryvnas,initialHoundredHryvnas,initialFiftyHryvnas,initialTenHryvnas );
-            System.exit(1);
+            saveMoneyATM(initialFiftyHoundredHryvnas, initialHoundredHryvnas, initialFiftyHryvnas, initialTenHryvnas);
+
+//            System.exit(1);
+            return;
         } else {
 
             System.out.println("Invalid Input");
@@ -38,7 +42,7 @@ public class CalculateMoneyAtm {
         reRun(atmStatus);
     }
 
-    public static void getMoney(ATMStatus atmStatus) {
+    public static Double getMoney(ATMStatus atmStatus, Double userBalance) {
         fiftyHoundredHryvnas = 0;
         houndredHryvnas = 0;
         fiftyHryvnas = 0;
@@ -65,80 +69,87 @@ public class CalculateMoneyAtm {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter Money > ");
         String amount = input.nextLine();
-        try {
+        if (BankRules.isBalanceAviable(userBalance, Double.parseDouble(amount))) {
             try {
-                amountInt = Integer.parseInt(amount);
-                if (amountInt % 10 != 0) {
-                    System.out.println("Please enter amount in multiple of 10 ");
+                try {
+                    amountInt = Integer.parseInt(amount);
+                    if (amountInt % 10 != 0) {
+                        System.out.println("Please enter amount in multiple of 10 ");
+                        reRun(atmStatus);
+                    }
+                } catch (NumberFormatException ne) {
+
+                }
+                System.out.print("Required Amount : ");
+                System.out.println(amount);
+
+                totalAmount = ((initialFiftyHoundredHryvnas * 500) + (initialHoundredHryvnas * 100)
+                        + (initialFiftyHryvnas * 50) + (initialTenHryvnas * 10));
+                System.out
+                        .println("Total Available amount in ATM : " + totalAmount);
+                if (totalAmount < amountInt) {
+                    System.out
+                            .println("Total Avaialble amount is less in atm, Sorry for Inconvience");
                     reRun(atmStatus);
                 }
-            } catch (NumberFormatException ne) {
+
+                // алгоритм набора купюр из кассет
+
+                while (amountInt >= 500 && initialFiftyHoundredHryvnas > 0) {
+                    initialFiftyHoundredHryvnas = initialFiftyHoundredHryvnas - 1;
+                    fiftyHoundredHryvnas++;
+                    amountInt = amountInt - 500;
+                }
+
+                while (amountInt >= 100 && initialHoundredHryvnas > 0) {
+                    initialHoundredHryvnas = initialHoundredHryvnas - 1;
+                    houndredHryvnas++;
+                    amountInt = amountInt - 100;
+                }
+
+                while (amountInt >= 50 && initialFiftyHryvnas > 0) {
+                    initialFiftyHryvnas = initialFiftyHryvnas - 1;
+                    fiftyHryvnas++;
+                    amountInt = amountInt - 50;
+                }
+                while (amountInt >= 10 && initialTenHryvnas > 0) {
+                    initialTenHryvnas = initialTenHryvnas - 1;
+                    tenHryvnas++;
+                    amountInt = amountInt - 10;
+                }
+                if (amountInt > 0) {
+                    System.out.println("No avalable balance in this unit");
+                    reRun(atmStatus);
+                } else {
+                    System.out.println("Please take your money in currency");
+                    Map<String, Integer> avaialableMoney = new HashMap<String, Integer>();
+                    System.out.println("     No of 500:" + fiftyHoundredHryvnas);
+                    System.out.println("     No of 100:" + houndredHryvnas);
+                    System.out.println("     No of 50:" + fiftyHryvnas);
+                    System.out.println("     No of 10:" + tenHryvnas);
+                    avaialableMoney.put("500", (initialFiftyHoundredHryvnas));
+                    avaialableMoney.put("100", (initialHoundredHryvnas));
+                    avaialableMoney.put("50", (initialFiftyHryvnas));
+                    avaialableMoney.put("10", (initialTenHryvnas));
+                    atmStatus.setAvaialableMoney(avaialableMoney);
+                }
+                //return amountInt;
+            } catch (Exception e) {
 
             }
-            System.out.print("Required Amount : ");
-            System.out.println(amount);
-
-            totalAmount = ((initialFiftyHoundredHryvnas * 500) + (initialHoundredHryvnas * 100)
-                    + (initialFiftyHryvnas * 50) + (initialTenHryvnas * 10));
-            System.out
-                    .println("Total Available amount in ATM : " + totalAmount);
-            if (totalAmount < amountInt) {
-                System.out
-                        .println("Total Avaialble amount is less in atm, Sorry for Inconvience");
-                reRun(atmStatus);
-            }
-
-            // алгоритм набора купюр из кассет
-
-            while (amountInt >= 500 && initialFiftyHoundredHryvnas > 0) {
-                initialFiftyHoundredHryvnas = initialFiftyHoundredHryvnas - 1;
-                fiftyHoundredHryvnas++;
-                amountInt = amountInt - 500;
-            }
-
-            while (amountInt >= 100 && initialHoundredHryvnas > 0) {
-                initialHoundredHryvnas = initialHoundredHryvnas - 1;
-                houndredHryvnas++;
-                amountInt = amountInt - 100;
-            }
-
-            while (amountInt >= 50 && initialFiftyHryvnas > 0) {
-                initialFiftyHryvnas = initialFiftyHryvnas - 1;
-                fiftyHryvnas++;
-                amountInt = amountInt - 50;
-            }
-            while (amountInt >= 10 && initialTenHryvnas > 0) {
-                initialTenHryvnas = initialTenHryvnas - 1;
-                tenHryvnas++;
-                amountInt = amountInt - 10;
-            }
-            if (amountInt > 0) {
-                System.out.println("No avalable balance in this unit");
-                reRun(atmStatus);
-            } else {
-                System.out.println("Plz take your money in currency");
-                Map<String, Integer> avaialableMoney = new HashMap<String, Integer>();
-                System.out.println("     No of 500:" + fiftyHoundredHryvnas);
-                System.out.println("     No of 100:" + houndredHryvnas);
-                System.out.println("     No of 50:" + fiftyHryvnas);
-                System.out.println("     No of 10:" + tenHryvnas);
-                avaialableMoney.put("500", (initialFiftyHoundredHryvnas));
-                avaialableMoney.put("100", (initialHoundredHryvnas));
-                avaialableMoney.put("50", (initialFiftyHryvnas));
-                avaialableMoney.put("10", (initialTenHryvnas));
-                atmStatus.setAvaialableMoney(avaialableMoney);
-            }
-            //return amountInt;
-        } catch (Exception e) {
-
+            System.out.println("Take your amount = " + (500 * fiftyHoundredHryvnas + 100 * houndredHryvnas + 50 * fiftyHryvnas + 10 * tenHryvnas));
+            newUserBalance = userBalance - Double.parseDouble(amount);
+            reRun(atmStatus);
+        } else {
+            System.out.println("Your balance does not have the required amount!");
+            newUserBalance = userBalance;
+            reRun(atmStatus);
         }
-        System.out.println("Take your Amount = " + (500 * fiftyHoundredHryvnas + 100 * houndredHryvnas + 50 * fiftyHryvnas + 10 * tenHryvnas));
-        reRun(atmStatus);
-
+        return newUserBalance;
 
     }
 
-    public static void saveMoneyATM(int cass1, int cass2, int cass3, int cass4){
+    public static void saveMoneyATM(int cass1, int cass2, int cass3, int cass4) {
         String filename = "C:\\Users\\master\\IdeaProjects\\it-school_projectATM\\src\\main\\java\\com\\lessons\\templates\\ATMDispenser.csv";
         Csv.Writer writer = new Csv.Writer(filename).delimiter(',');
         writer
@@ -148,5 +159,8 @@ public class CalculateMoneyAtm {
                 .value("10UAH").value(String.valueOf(cass4)).newLine()
                 .flush()
                 .close();
+
     }
+
+
 }

@@ -1,0 +1,20 @@
+===========================================
+|       Cheque ATM cash transaction:      |
+|               № 112257                  | 
+===========================================
+|      * Date: 11-09-2018 22:57:56 *      |
+===========================================
+Your withdrawal amount: 1000.0 uah
+New balance of your account: 300.0 uah
+
+
+
+
+-------------------------------------------
+Contact information of the serving bank:
+Adress: 50 avenue Jean Jaurès 92
+ 120 Montrouge
+phone/fax: +44(904) 567-899
+-------------------------------------------
+Grigoriy Ivanchenko :           _______ sign
+

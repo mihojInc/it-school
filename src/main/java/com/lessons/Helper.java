@@ -2,7 +2,9 @@ package src.main.java.com.lessons;
 
 import javafx.scene.input.DataFormat;
 
+import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Helper {
 
@@ -55,5 +57,11 @@ public class Helper {
             }
         }
         return bankPhone;
+    }
+    public static String formatDate(Date iDate){
+        String dateToString ="";
+        Format formatter = new SimpleDateFormat("dd.MM.yyyy");
+        dateToString = formatter.format(iDate);
+        return dateToString;
     }
 }

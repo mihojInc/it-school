@@ -1,5 +1,7 @@
 package src.main.java.com.lessons;
 
+import javenue.csv.Csv;
+
 import java.util.Date;
 
 public class CreditCard {
@@ -72,5 +74,16 @@ public class CreditCard {
 
      public String getCardHistory() {
           return cardHistory;
+     }
+
+     public static void setNewPin(String pfName, String pName, Double pAmount, int pNewPIN, Date pDate, String pBank){
+          String filePath = "C:\\Users\\master\\IdeaProjects\\it-school_projectATM\\src\\main\\java\\com\\lessons\\creditCards\\";
+          String filename = filePath+pfName+".csv";
+          Csv.Writer writer = new Csv.Writer(filename).delimiter(',');
+          writer
+                  .value(pName).value(String.valueOf(pAmount)).value(String.valueOf(pNewPIN)).value(Helper.formatDate(pDate)).value("0").value(pBank)
+                  .flush()
+                  .close();
+
      }
 }

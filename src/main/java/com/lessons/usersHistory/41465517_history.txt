@@ -1,6 +1,5 @@
-user check account
-********************
-user check account
-********************
-user check account
-********************
+11-09-2018 21:28:30 user changed the pin code
+11-09-2018 22:06:08 user print history
+11-09-2018 22:06:47 user print history
+11-09-2018 23:11:59 the user typed the wrong pin...
+11-09-2018 23:12:08 user print history

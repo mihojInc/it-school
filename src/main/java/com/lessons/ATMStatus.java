@@ -19,10 +19,6 @@ public class ATMStatus {
 
         cassete = tmpDisp.toArray(new String[tmpDisp.size()]);
 
-        //   avaialableMoney.put("500", 10);
-        //   avaialableMoney.put("100", 10);
-        //   avaialableMoney.put("50", 10);
-        // avaialableMoney.put("10", 10);
 
         avaialableMoney.put("500", Integer.parseInt(cassete[0]));
         avaialableMoney.put("100", Integer.parseInt(cassete[1]));
@@ -94,10 +90,6 @@ public class ATMStatus {
             }
         }
 
-        //       System.out.println("500UAH=" + cassete1);
-        //       System.out.println("100UAH=" + cassete2);
-        //       System.out.println("50UAH=" + cassete3);
-        //       System.out.println("10UAH=" + cassete4);
         return dispenser;
     }
 
