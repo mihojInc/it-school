@@ -64,4 +64,31 @@ public class Helper {
         dateToString = formatter.format(iDate);
         return dateToString;
     }
+
+    public static String formatStringName(String unName){
+        String formatName ="";
+        char[] chArray = unName.toCharArray();
+        for(int i = 0; i<chArray.length; i++){
+            if(chArray[i] == '_'){
+                chArray[i] = ' ';
+            }
+        }
+        formatName = String.valueOf(chArray);
+        return formatName.toUpperCase();
+    }
+
+    public static String formatDateForCard(Date localDate){
+        String dateToString ="";
+        Format formatter = new SimpleDateFormat("MM/yy");
+        dateToString = formatter.format(localDate);
+        return dateToString;
+    }
+
+    public static String formatCardNumber(String cardNumber){
+        StringBuilder stringBuilder = new StringBuilder(cardNumber.substring(0,4));
+        stringBuilder.append(" 0000 0000 ");
+        stringBuilder.append(cardNumber.substring(4,8));
+        return String.valueOf(stringBuilder);
+    }
+
 }

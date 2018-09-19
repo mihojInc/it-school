@@ -19,7 +19,10 @@ public class Bill {
     public static final com.itextpdf.text.Font FONT = new com.itextpdf.text.Font(Font.FontFamily.COURIER, 12, Font.BOLD, GrayColor.GRAYWHITE);
     public static final com.itextpdf.text.Font NUMFONT = new com.itextpdf.text.Font(Font.FontFamily.COURIER, 11, Font.BOLD, GrayColor.GRAYWHITE);
     public static final com.itextpdf.text.Font DATEFONT = new com.itextpdf.text.Font(Font.FontFamily.COURIER, 8, Font.BOLD, GrayColor.GRAYWHITE);
+    public static final com.itextpdf.text.Font LISTFONT = new com.itextpdf.text.Font(Font.FontFamily.COURIER, 7, Font.BOLD, GrayColor.GRAY);
+    public static final com.itextpdf.text.Font HEADERFONT = new com.itextpdf.text.Font(Font.FontFamily.COURIER, 12, Font.BOLD, GrayColor.GRAY);
     public static final String MAESTRO = "D:\\Java\\library\\bank\\maestro.png";
+    public static final String MAESTRO_END = "D:\\Java\\library\\bank\\end_logo.jpg";
 
     // bill#1 account state request
     public Bill(String billNumber, Date billDateTransaction, String billCardHolder, String billBankName, double billSum) throws IOException {
@@ -98,21 +101,47 @@ public class Bill {
     }
 
 
-    public static void printHistoryUser(String userCard) throws IOException, DocumentException {
+    public static void printHistoryUser(String userCard, String cardHolderHistoryUser, Date cardDateHistoryUser) throws IOException, DocumentException {
         String filePath = "C:\\Users\\master\\IdeaProjects\\it-school_projectATM\\src\\main\\java\\com\\lessons\\usersHistory\\";
         String filename = filePath + userCard + "_history.txt";
         String filePathPDF = "C:\\Users\\master\\IdeaProjects\\it-school_projectATM\\src\\main\\java\\com\\lessons\\printForms\\";
         String filenamePDF = filePathPDF + userCard + "_history.pdf";
 
-        pdfHistoryCreater(filenamePDF);
+        pdfHistoryCreater(filename, filenamePDF, cardHolderHistoryUser, userCard, cardDateHistoryUser);
+
+    }
+
+    public static void pdfHistoryCreater(String fileHistory, String filenamePDF, String cardHolderHistoryCreater, String cardNumberHistoryCreater, Date cardDateHistoryCreater) throws IOException, DocumentException {
+        File file = new File(filenamePDF);
+        file.getParentFile().mkdirs();
+        createPdf(fileHistory, filenamePDF, cardHolderHistoryCreater, cardNumberHistoryCreater, cardDateHistoryCreater);
+    }
+
+    public static void createPdf(String fileTXT, String dest, String cardHolderName, String cardNumber, Date cardDate) throws IOException, DocumentException {
+        Document document = new Document(PageSize.A6);
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(dest));
+        document.open();
+
+        PdfContentByte cb = writer.getDirectContentUnder();
+        document.add(getWatermarkedImage(cb, Image.getInstance(MAESTRO),
+                "MR " + Helper.formatStringName(cardHolderName), FONT, 140, 15,
+                Helper.formatCardNumber(cardNumber), NUMFONT, 150, 50,
+                Helper.formatDateForCard(cardDate), DATEFONT, 125, 30));
+        List list = new List(List.ORDERED);
+        Image image = Image.getInstance(MAESTRO_END);
+
         try {
-            File file = new File(filename);
+            File file = new File(fileTXT);
             FileReader fr = new FileReader(file);
             BufferedReader reader = new BufferedReader(fr);
+
             String line = reader.readLine();
             while (line != null) {
-                System.out.println(line);
+ //               System.out.println(line); off console
+
+                list.add(new ListItem(line, LISTFONT));
                 line = reader.readLine();
+
             }
             reader.close();
         } catch (FileNotFoundException e) {
@@ -120,23 +149,15 @@ public class Bill {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+        Paragraph empty = new Paragraph();
+        empty.add(" ");
 
-    public static void pdfHistoryCreater(String filenamePDF) throws IOException, DocumentException {
-        File file = new File(filenamePDF);
-        file.getParentFile().mkdirs();
-        createPdf(filenamePDF);
-    }
+        Font font = HEADERFONT;
+        document.add(new Paragraph("USER HISTORY:", font ));
+        document.add(empty);
 
-    public static void createPdf(String dest) throws IOException, DocumentException {
-        Document document = new Document(PageSize.A6);
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(dest));
-        document.open();
-        PdfContentByte cb = writer.getDirectContentUnder();
-        document.add(getWatermarkedImage(cb, Image.getInstance(MAESTRO),
-                "MR TARAS SEMENOV", FONT, 140, 15,
-                "4146 0000 0000 0020", NUMFONT, 150, 50,
-                "09/20", DATEFONT,125, 30));
+        document.add(list);
+        document.add(image);
 
 
         document.close();
@@ -156,5 +177,24 @@ public class Bill {
         ColumnText.showTextAligned(template, Element.ALIGN_RIGHT,
                 new Phrase(dateWatermark, dateFont), corXdate, corYdate, 0);
         return Image.getInstance(template);
+    }
+
+    public static void printFileHistory(String filename) {
+        try {
+            File file = new File(filename);
+            FileReader fr = new FileReader(file);
+            BufferedReader reader = new BufferedReader(fr);
+            String line = reader.readLine();
+            while (line != null) {
+                System.out.println(line);
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

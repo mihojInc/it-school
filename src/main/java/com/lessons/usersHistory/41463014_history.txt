@@ -6,3 +6,8 @@
 11-09-2018 22:56:24 user check account
 11-09-2018 22:57:56 user withdrew 1000.0 UAH
 11-09-2018 23:14:29 user print history
+16-09-2018 20:00:02 the user typed the wrong pin...
+16-09-2018 20:00:08 user print history
+16-09-2018 20:13:35 user print history
+17-09-2018 16:11:18 the user typed the wrong pin...
+17-09-2018 16:11:22 user print history

@@ -90,7 +90,7 @@ public class App {
                                     break;
                                 case PRINT_HISTORY:
                                     History.saveUserHistory(creditCard.getCardName(), "user print history");
-                                    Bill.printHistoryUser(creditCard.getCardName());
+                                    Bill.printHistoryUser(creditCard.getCardName(), creditCard.getCardHolderName(),creditCard.getCardValidDate());
 
                                     break;
 
